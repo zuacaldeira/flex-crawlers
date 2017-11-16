@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest
+-------------------------------------------------------------------------------
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.638 sec
