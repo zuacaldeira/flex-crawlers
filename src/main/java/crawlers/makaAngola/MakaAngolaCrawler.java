@@ -7,15 +7,9 @@ package crawlers.makaAngola;
 
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import crawlers.exceptions.UrlNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.AuthorsNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
 import db.NewsSource;
-import javax.ejb.Stateless;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,8 +18,7 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-
-@Stateless public class MakaAngolaCrawler extends FlexNewsCrawler {
+public class MakaAngolaCrawler extends FlexNewsCrawler {
 
     public MakaAngolaCrawler() {
         super();
@@ -36,7 +29,7 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    
+
     public void crawl() {
         try {
             crawlWebsite(getUrl(), getMySource());
@@ -74,7 +67,7 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null.");
         }
@@ -82,11 +75,11 @@ import org.jsoup.select.Elements;
         if (!links.isEmpty() && links.first() != null && !links.first().absUrl("href").isEmpty()) {
             return links.first().absUrl("href");
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -94,11 +87,11 @@ import org.jsoup.select.Elements;
         if (!elements.isEmpty() && !elements.text().isEmpty()) {
             return elements.text();
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -109,11 +102,11 @@ import org.jsoup.select.Elements;
                 return image.attr("src");
             }
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -124,11 +117,11 @@ import org.jsoup.select.Elements;
                 return content.text();
             }
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getAuthorsValue(Document document) throws AuthorsNotFoundException {
+    protected String getAuthorsValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -136,11 +129,11 @@ import org.jsoup.select.Elements;
         if (!authors.isEmpty() && !authors.text().isEmpty()) {
             return authors.text();
         }
-        throw new AuthorsNotFoundException();
+        return getMySource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -151,6 +144,6 @@ import org.jsoup.select.Elements;
                 return time.attr("datetime");
             }
         }
-        throw new TimeNotFoundException();
+        return null;
     }
 }

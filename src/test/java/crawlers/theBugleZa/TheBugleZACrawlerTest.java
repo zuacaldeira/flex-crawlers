@@ -12,7 +12,9 @@ import crawlers.exceptions.ArticlesNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
 import crawlers.exceptions.DocumentNotFoundException;
 import db.NewsSource;
+import org.jsoup.nodes.Document;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -45,9 +47,9 @@ public class TheBugleZACrawlerTest extends AbstractCrawlerTest {
     }
     
     @Override
-    @Test(expected = AuthorsNotFoundException.class)
+    @Test
     public void testGetAuthors() throws AuthorsNotFoundException, DocumentNotFoundException, ArticlesNotFoundException {
-        super.testGetAuthors();
+        assertTrue(getCrawler().getAuthors(new Document("")).contains(getCrawler().getMySource().getName()));
     }
 
 }

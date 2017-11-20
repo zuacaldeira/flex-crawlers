@@ -39,8 +39,10 @@ crawlers/globalVoices/GlobalVoicesCrawlerAYM.class
 crawlers/globalVoices/GlobalVoicesCrawlerHI.class
 crawlers/globalVoices/GlobalVoicesCrawlerNE.class
 crawlers/globalVoices/GlobalVoicesCrawlerRO.class
+utils/Neo4jSessionFactoryForCrawlers.class
 utils/json/SingleSourceResponse.class
 crawlers/globalVoices/GlobalVoicesCrawlerPS.class
+main/Main.class
 utils/json/SingleArticleResponse.class
 crawlers/globalVoices/GlobalVoicesCrawlerHE.class
 crawlers/globalVoices/GlobalVoicesCrawlerUR.class
@@ -59,6 +61,7 @@ utils/elements/ImageUrlElement.class
 crawlers/globalVoices/GlobalVoicesCrawlerAM.class
 crawlers/Logos.class
 utils/FlexCrawlerLogger.class
+utils/MyDateUtils.class
 crawlers/globalVoices/GlobalVoicesCrawlerJA.class
 crawlers/globalVoices/GlobalVoicesCrawlerOR.class
 crawlers/telaNon/TelaNonCrawler.class
@@ -69,6 +72,7 @@ crawlers/globalVoices/GlobalVoicesCrawlerKO.class
 crawlers/exceptions/TitleNotFoundException.class
 crawlers/globalVoices/GlobalVoicesCrawlerEO.class
 crawlers/globalVoices/GlobalVoicesCrawlerPT.class
+utils/CrawlerDBUtils.class
 crawlers/globalVoices/GlobalVoicesCrawlerCS.class
 crawlers/globalVoices/GlobalVoicesCrawlerDA.class
 crawlers/globalVoices/GlobalVoicesCrawlerEL.class

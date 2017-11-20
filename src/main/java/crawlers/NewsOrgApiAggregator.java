@@ -19,23 +19,18 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import java.util.HashMap;
+import org.neo4j.ogm.session.Session;
+import utils.CrawlerDBUtils;
 import utils.json.SingleArticleResponse;
 import utils.json.SingleSourceResponse;
-import services.NewsArticleService;
-import services.NewsArticleServiceInterface;
-import services.NewsSourceService;
-import services.NewsSourceServiceInterface;
 import utils.FlexCrawlerLogger;
+import utils.Neo4jSessionFactoryForCrawlers;
 
 /**
  *
  * @author zua
  */
-@Singleton
-@Startup
 public class NewsOrgApiAggregator {
 
     private final String API_KEY = "5b4e00f3046843138d8368211777a4f2";
@@ -43,20 +38,15 @@ public class NewsOrgApiAggregator {
     private final String ARTICLES_URL = "http://newsapi.org/v1/articles?";
 
     private ObjectMapper objectMapper;
-
-    private NewsArticleServiceInterface articlesService;
-    private NewsSourceServiceInterface sourcesService;
-
     private FlexCrawlerLogger logger;
+    private final Session session;
 
     public NewsOrgApiAggregator() {
         objectMapper = new ObjectMapper();
         logger = new FlexCrawlerLogger(NewsOrgApiAggregator.class);
-        articlesService = new NewsArticleService();
-        sourcesService = new NewsSourceService();
+        session = Neo4jSessionFactoryForCrawlers.getInstance().getNeo4jSession();
     }
 
-    @Schedule(hour = "*", minute = "*/30")
     public void aggregate() {
         try {
             loadAllData();
@@ -155,7 +145,7 @@ public class NewsOrgApiAggregator {
                     NewsArticle article = sar.convert2NewsArticle(source);
                     boolean shouldSave = article.getTitle() != null
                             && !article.getTitle().isEmpty()
-                            && articlesService.find(article.getTitle()) == null;
+                            && notInBd(article.getTitle());
                     if (shouldSave) {
                         logger.info("%s", "\tSaved new article " + article.getTitle());
                         NewsAuthor author = sar.convert2NewsAuthor(source);
@@ -176,8 +166,9 @@ public class NewsOrgApiAggregator {
     }
      */
     protected NewsSource saveReturnSource(NewsSource source) {
-        sourcesService.save(source);
-        return sourcesService.find(source);
+        session.save(source);
+        String query = "MATCH (s:NewsSource) WHERE s.sourceId='" + source.getSourceId() + "' RETURN s";
+        return session.queryForObject(NewsSource.class, query, new HashMap<>());
     }
 
     private String readAllData(Reader rd) throws IOException {
@@ -189,16 +180,14 @@ public class NewsOrgApiAggregator {
         return sb.toString();
     }
 
-    void setNewsArticlesService(NewsArticleServiceInterface newsArticleService) {
-        articlesService = newsArticleService;
-    }
-
-    void setNewsSourcesService(NewsSourceServiceInterface newsSourceService) {
-        sourcesService = newsSourceService;
-    }
-
     protected MultipleSourcesResponse read(String result) throws IOException {
         return objectMapper.readValue(result, MultipleSourcesResponse.class);
+    }
+
+    private boolean notInBd(String title) {
+        String query = "MATCH (n:NewsArticle) WHERE n.title=" + CrawlerDBUtils.getInstance().wrapUp(title) + " RETURN n";
+        NewsArticle t = session.queryForObject(NewsArticle.class, query, new HashMap<String, Object>());
+        return t == null;
     }
 
 }

@@ -7,15 +7,9 @@ package crawlers.jornalDeAngola;
 
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
-import crawlers.exceptions.AuthorsNotFoundException;
 import db.NewsSource;
-import javax.ejb.Stateless;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,8 +18,7 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-
-@Stateless public class JornalDeAngolaCrawler extends FlexNewsCrawler {
+public class JornalDeAngolaCrawler extends FlexNewsCrawler {
 
     public JornalDeAngolaCrawler() {
         super();
@@ -36,7 +29,7 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    
+
     public void crawl() {
         try {
             crawlWebsite(getUrl(), getMySource());
@@ -141,7 +134,7 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -150,11 +143,11 @@ import org.jsoup.select.Elements;
             String time = first.attr("datetime");
             return time;
         }
-        throw new TimeNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null.");
         }
@@ -162,11 +155,11 @@ import org.jsoup.select.Elements;
         if (url != null) {
             return url.absUrl("href");
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -177,11 +170,11 @@ import org.jsoup.select.Elements;
                 return text;
             }
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -192,11 +185,11 @@ import org.jsoup.select.Elements;
                 return value;
             }
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document)  {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -207,11 +200,11 @@ import org.jsoup.select.Elements;
                 return text;
             }
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getAuthorsValue(Document document) throws AuthorsNotFoundException {
+    protected String getAuthorsValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -224,7 +217,7 @@ import org.jsoup.select.Elements;
                 return text;
             }
         }
-        throw new AuthorsNotFoundException();
+        return getSource().getName();
     }
 
     @Override

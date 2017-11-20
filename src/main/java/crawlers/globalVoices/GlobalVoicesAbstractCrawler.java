@@ -6,13 +6,7 @@
 package crawlers.globalVoices;
 
 import crawlers.FlexNewsCrawler;
-import crawlers.exceptions.UrlNotFoundException;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
-import crawlers.exceptions.AuthorsNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -49,7 +43,7 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null");
         }
@@ -60,11 +54,11 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
                 return url.absUrl("href");
             }
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -72,11 +66,11 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
         if (!titles.isEmpty() && !titles.text().isEmpty()) {
             return titles.text();
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -87,11 +81,11 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
                 return urls.attr("src");
             }
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -102,11 +96,11 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
                 return paragraph.text();
             }
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getAuthorsValue(Document document) throws AuthorsNotFoundException {
+    protected String getAuthorsValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -114,11 +108,11 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
         if (!elements.isEmpty() && !elements.text().isEmpty()) {
             return elements.text().trim();
         }
-        throw new AuthorsNotFoundException();
+        return getMySource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -138,8 +132,7 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
                 }
             }
         }
-        throw new TimeNotFoundException();
-
+        return null;
     }
 
     protected String extractDate(String phrase) {

@@ -4,6 +4,7 @@ crawlers/globalVoices/GlobalVoicesCrawlerTestIT.class
 utils/elements/ImageUrlElementTest.class
 crawlers/exceptions/UrlNotFoundExceptionTest.class
 crawlers/iolNews/IOLNewsIsolezweCrawlerTest.class
+utils/MyDateUtilsTest.class
 utils/json/MultipleArticlesResponseTest.class
 crawlers/exceptions/TitleNotFoundExceptionTest.class
 utils/elements/TimeElementTest.class

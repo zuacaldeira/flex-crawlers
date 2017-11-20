@@ -7,8 +7,8 @@ package utils.json;
 
 import crawlers.Logos;
 import db.NewsSource;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public class SingleSourceResponse {
 
     public SingleSourceResponse() {
         urlsToLogos = new HashMap<String, String>();
-        sortBysAvailable = new LinkedList<>();
+        sortBysAvailable = new ArrayList<>();
     }
 
     public String getId() {
@@ -104,6 +104,7 @@ public class SingleSourceResponse {
     public void setSortBysAvailable(List<String> sortBysAvailable) {
         this.sortBysAvailable = sortBysAvailable;
     }
+
 
     public NewsSource convert2NewsSource() {
         NewsSource result = new NewsSource(id, name, description, url, category, language, country);

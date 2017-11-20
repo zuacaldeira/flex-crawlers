@@ -6,10 +6,6 @@
 package crawlers;
 
 import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.DocumentNotFoundException;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
 import crawlers.exceptions.ContentNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
 import utils.elements.TitleElement;
@@ -23,44 +19,40 @@ import db.NewsAuthor;
 import db.NewsSource;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import javax.ejb.EJB;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import services.NewsArticleServiceInterface;
-import services.NewsSourceServiceInterface;
+import org.neo4j.ogm.session.Session;
+import utils.DatabaseUtils;
 import utils.FlexCrawlerLogger;
+import utils.Neo4jSessionFactoryForCrawlers;
 
 /**
  *
  * @author zua
  */
 public abstract class FlexNewsCrawler {
-
-    @EJB
-    private NewsArticleServiceInterface articlesService;
-
-    @EJB
-    private NewsSourceServiceInterface sourcesService;
-
+    
     private FlexCrawlerLogger logger;
+    private final Session session;
 
     public FlexNewsCrawler() {
         logger = new FlexCrawlerLogger(getClass());
+        session = Neo4jSessionFactoryForCrawlers.getInstance().getNeo4jSession();
     }
 
     public abstract void crawl();
 
     protected void crawlWebsite(String url, NewsSource source) {
         logger.info("Processing source %s (%s)", source.getName(), url);
-        try {
-            Document document = openDocument(url);
+        Document document = openDocument(url);
+        if(document != null) {
             crawlUrl(document, source);
-            sourcesService.save(source);
-        } catch (Exception e) {
+            session.save(source);
         }
         logger.info("Finished: %s", source.getName());
     }
@@ -78,7 +70,7 @@ public abstract class FlexNewsCrawler {
             return Jsoup.connect(url).userAgent("Mozilla").get();
         } catch (IOException | NullPointerException | IllegalArgumentException e) {
             logger.error("Could not open url %s: ", url);
-            throw new DocumentNotFoundException();
+            return null;
         }
     }
 
@@ -103,17 +95,23 @@ public abstract class FlexNewsCrawler {
         logger.log("Processing article: %s", article.text());
 
         String articleUrl = getUrl(article);
-        Document document = openDocument(articleUrl);
-        String title = getTitle(document);
-        String imageUrl = getImageUrl(document);
-        String description = getContent(document);
-        Date date = getPublishedAt(document);
-        Set<NewsAuthor> authors = getNewsAuthors(getAuthors(document));
-        saveArticle(articleUrl, title, imageUrl, description, date, authors, source);
+        if(articleUrl != null) {
+            Document document = openDocument(articleUrl);
+            if(document != null) {
+                String title = getTitle(document);
+                if(title != null) {
+                    String imageUrl = getImageUrl(document);
+                    String description = getContent(document);
+                    Date date = getPublishedAt(document);
+                    Set<NewsAuthor> authors = getNewsAuthors(getAuthors(document));
+                    saveArticle(articleUrl, title, imageUrl, description, date, authors, source);
+                }
+            }
+        }
     }
 
     private void saveArticle(String articleUrl, String title, String imageUrl, String description, Date date, Set<NewsAuthor> authors, NewsSource source) {
-        if (title != null && !title.isEmpty() && articlesService.findArticleWithTitle(title) == null) {
+        if (title != null && !title.isEmpty() && notInBd(title)) {
             NewsArticle newsArticle = new NewsArticle();
             newsArticle.setSourceId(source.getSourceId());
             newsArticle.setLanguage(source.getLanguage());
@@ -141,45 +139,45 @@ public abstract class FlexNewsCrawler {
 
     protected abstract Elements getArticles(Document document) throws ArticlesNotFoundException;
 
-    public final String getUrl(Element article) throws UrlNotFoundException {
+    public final String getUrl(Element article){
         return getUrlElement(article).getValue();
     }
 
-    public final UrlElement getUrlElement(Element article) throws UrlNotFoundException {
+    public final UrlElement getUrlElement(Element article){
         return new UrlElement(getUrlValue(article));
     }
 
-    protected abstract String getUrlValue(Element article) throws UrlNotFoundException;
+    protected abstract String getUrlValue(Element article);
 
-    public final String getTitle(Document document) throws TitleNotFoundException {
-        return getTitleElement(document).getValue();
+    public final String getTitle(Document document) {
+        return DatabaseUtils.getInstance().wrapUp(getTitleElement(document).getValue());
     }
 
-    public final TitleElement getTitleElement(Document document) throws TitleNotFoundException {
+    public final TitleElement getTitleElement(Document document)  {
         return new TitleElement(getTitleValue(document));
     }
 
-    protected abstract String getTitleValue(Document document) throws TitleNotFoundException;
+    protected abstract String getTitleValue(Document document);
 
-    public final String getImageUrl(Document document) throws ImageNotFoundException {
+    public final String getImageUrl(Document document) {
         return getImageUrlElement(document).getValue();
     }
 
-    public final ImageUrlElement getImageUrlElement(Document document) throws ImageNotFoundException {
+    public final ImageUrlElement getImageUrlElement(Document document) {
         return new ImageUrlElement(getImageUrlValue(document));
     }
 
-    protected abstract String getImageUrlValue(Document document) throws ImageNotFoundException;
+    protected abstract String getImageUrlValue(Document document);
 
-    public final String getContent(Document document) throws ContentNotFoundException {
-        return getContentElement(document).getValue();
+    public final String getContent(Document document) {
+        return DatabaseUtils.getInstance().wrapUp(getContentElement(document).getValue());
     }
 
-    public final ContentElement getContentElement(Document document) throws ContentNotFoundException {
+    public final ContentElement getContentElement(Document document)  {
         return new ContentElement(getContentValue(document));
     }
 
-    protected abstract String getContentValue(Document document) throws ContentNotFoundException;
+    protected abstract String getContentValue(Document document) ;
 
     public final Set<String> getAuthors(Document document) {
         AuthorsElement authorsElement = getAuthorsElement(document);
@@ -229,12 +227,10 @@ public abstract class FlexNewsCrawler {
         return logger;
     }
 
-    public void setArticlesService(NewsArticleServiceInterface articlesService) {
-        this.articlesService = articlesService;
-    }
-
-    public void setSourcesService(NewsSourceServiceInterface sourcesService) {
-        this.sourcesService = sourcesService;
+    private boolean notInBd(String title) {
+        String query = "MATCH (n:NewsArticle) WHERE n.title='" + title + "' RETURN n";
+        NewsArticle t = session.queryForObject(NewsArticle.class, query, new HashMap<String, Object>());
+        return t == null;
     }
 
 }

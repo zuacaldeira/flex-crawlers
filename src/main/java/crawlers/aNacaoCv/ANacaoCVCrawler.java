@@ -7,15 +7,9 @@ package crawlers.aNacaoCv;
 
 import crawlers.exceptions.ArticlesNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import crawlers.FlexNewsCrawler;
-import crawlers.exceptions.ImageNotFoundException;
 import crawlers.Logos;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
 import db.NewsSource;
-import javax.ejb.Stateless;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,7 +18,7 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-@Stateless
+
 public class ANacaoCVCrawler extends FlexNewsCrawler {
 
     public ANacaoCVCrawler() {
@@ -69,7 +63,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null");
         }
@@ -78,11 +72,11 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found url ", urls.attr("href"));
             return urls.attr("href");
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -91,11 +85,11 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found Titles ", titles.text());
             return titles.text();
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -104,11 +98,11 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found Images ", images.attr("href"));
             return images.attr("href");
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -117,7 +111,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found content ", contents.text());
             return contents.text();
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
@@ -130,11 +124,11 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found author", paragraphs.last().text());
             return paragraphs.last().text();
         }
-        throw new AuthorsNotFoundException();
+        return getSource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document)  {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -143,7 +137,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found time ", times.first().text());
             return times.first().text();
         }
-        throw new TimeNotFoundException();
+        return null;
     }
     
     

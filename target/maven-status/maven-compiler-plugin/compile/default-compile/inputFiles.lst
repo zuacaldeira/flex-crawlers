@@ -1,5 +1,6 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerSV.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/iolNews/IOLNewsZACrawler.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/utils/CrawlerDBUtils.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/exceptions/DocumentNotFoundException.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerHE.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerUR.java
@@ -8,6 +9,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerAR.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerZHS.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/utils/json/MultipleArticlesResponse.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/utils/Neo4jSessionFactoryForCrawlers.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerEO.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerDE.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/exceptions/TimeNotFoundException.java
@@ -36,6 +38,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerEL.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerOR.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerID.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/utils/MyDateUtils.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerKO.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerBG.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerRO.java
@@ -78,4 +81,5 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/utils/elements/UrlElement.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerDA.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/utils/elements/TimeElement.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/main/Main.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/globalVoices/GlobalVoicesCrawlerKM.java

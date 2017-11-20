@@ -6,16 +6,10 @@
 package crawlers.aVerdadeOnline;
 
 import crawlers.exceptions.ArticlesNotFoundException;
-import crawlers.exceptions.AuthorsNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import crawlers.FlexNewsCrawler;
-import crawlers.exceptions.ImageNotFoundException;
 import crawlers.Logos;
 import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
 import db.NewsSource;
-import javax.ejb.Stateless;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,7 +18,7 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-@Stateless
+
 public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
 
     public AVerdadeOnlineCrawler() {
@@ -122,7 +116,7 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null.");
         }
@@ -133,14 +127,14 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
                 return href;
             }
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     /*
     "";
      */
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -151,14 +145,14 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
                 return text;
             }
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     /*
     "#main_body > div > table > tbody > tr > td > p > img[src]"
      */
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -169,7 +163,7 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
                 return getFullImageUrl(src);
             }
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     protected String getFullImageUrl(String src) {
@@ -183,7 +177,7 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
     "main > article > p.info-autor"
      */
     @Override
-    protected String getAuthorsValue(Document document) throws AuthorsNotFoundException {
+    protected String getAuthorsValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -196,14 +190,14 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
             }*/
             return text;
         }
-        throw new AuthorsNotFoundException();
+        return getSource().getName();
     }
 
     /*
      "#main_body > div > table:nth-child(4) > tbody > tr:nth-child(3) > td > p:nth-child(3)"
      */
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document)  {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -215,8 +209,7 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
                 return text;
             }
         }
-        throw new ContentNotFoundException();
-
+        return null;
     }
 
     /*
@@ -239,6 +232,6 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
                 }
             }
         }
-        throw new TimeNotFoundException();
+        return null;
     }
 }

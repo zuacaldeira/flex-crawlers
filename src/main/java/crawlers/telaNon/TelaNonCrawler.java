@@ -7,15 +7,9 @@ package crawlers.telaNon;
 
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
-import crawlers.exceptions.AuthorsNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
 import db.NewsSource;
-import javax.ejb.Stateless;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,14 +18,12 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-
-@Stateless public class TelaNonCrawler extends FlexNewsCrawler {
+public class TelaNonCrawler extends FlexNewsCrawler {
 
     public TelaNonCrawler() {
     }
 
     @Override
-    
     public void crawl() {
         try {
             crawlWebsite(getMySource().getUrl(), getMySource());
@@ -61,7 +53,7 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null");
         }
@@ -70,11 +62,11 @@ import org.jsoup.select.Elements;
             getLogger().log("%s %s", "Found url: ", urls.attr("href"));
             return urls.attr("href");
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -84,11 +76,11 @@ import org.jsoup.select.Elements;
             getLogger().log("%s %s", "Found title: ", title);
             return title;
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -98,11 +90,11 @@ import org.jsoup.select.Elements;
             getLogger().log("%s %s", "Found image: ", image);
             return image;
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document)  {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -112,19 +104,19 @@ import org.jsoup.select.Elements;
             getLogger().log("%s %s", "Found content: ", content);
             return content;
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getAuthorsValue(Document document) throws AuthorsNotFoundException {
+    protected String getAuthorsValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
-        throw new AuthorsNotFoundException();
+        return getMySource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }
@@ -134,6 +126,6 @@ import org.jsoup.select.Elements;
             getLogger().log("%s %s", "Found time: ", time);
             return time;
         }
-        throw new TimeNotFoundException();
+        return null;
     }
 }

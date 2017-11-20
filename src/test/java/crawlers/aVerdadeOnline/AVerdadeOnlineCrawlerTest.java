@@ -16,6 +16,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 /**
@@ -47,12 +48,12 @@ public class AVerdadeOnlineCrawlerTest extends AbstractCrawlerTest {
         return new AVerdadeOnlineCrawler();
     }
 
-    @Test(expected=UrlNotFoundException.class)
+    @Test
     public void testGetUrlValueFail() throws UrlNotFoundException {
         getCrawler().getUrlValue(new Element("div"));
     }
     
-    @Test(expected=UrlNotFoundException.class)
+    @Test
     public void testGetUrlValue() throws UrlNotFoundException {
         Element article = new Element("div");
         Element tbody = new Element("tbody");
@@ -77,7 +78,7 @@ public class AVerdadeOnlineCrawlerTest extends AbstractCrawlerTest {
         getCrawler().getUrlValue(article);
     }
 
-    @Test(expected=TitleNotFoundException.class)
+    @Test
     public void testGetTitleValueFail() throws TitleNotFoundException {
         Document document = new Document("");
         Element article = new Element("div");
@@ -104,17 +105,17 @@ public class AVerdadeOnlineCrawlerTest extends AbstractCrawlerTest {
         getCrawler().getTitleValue(document);
     }
 
-    @Test(expected=TitleNotFoundException.class)
+    @Test
     public void testGetTitleValue() throws TitleNotFoundException {
         getCrawler().getTitleValue(new Document(""));
     }
     
-    @Test(expected=ImageNotFoundException.class)
+    @Test
     public void testGetImageValue() throws ImageNotFoundException {
-        getCrawler().getImageUrlValue(new Document(""));
+        assertNull(getCrawler().getImageUrlValue(new Document("")));
     }
     
-    @Test(expected=ImageNotFoundException.class)
+    @Test
     public void testGetImageValueFail() throws ImageNotFoundException {
         Document document = new Document("");
         
@@ -124,7 +125,7 @@ public class AVerdadeOnlineCrawlerTest extends AbstractCrawlerTest {
         p.appendChild(img);
         assertFalse(document.select("p > img").isEmpty());
         
-        getCrawler().getImageUrlValue(document);
+        assertNull(getCrawler().getImageUrlValue(document));
     }
     
     @Test

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package crawlers.globalVoices;
-import javax.ejb.Stateless;
+
 
 import crawlers.Logos;
 import db.NewsSource;
@@ -14,7 +14,7 @@ import db.NewsSource;
  * @author zua
  */
 
-@Stateless public class GlobalVoicesCrawlerAR extends GlobalVoicesAbstractCrawler {
+ public class GlobalVoicesCrawlerAR extends GlobalVoicesAbstractCrawler {
 
     public GlobalVoicesCrawlerAR() {
     }

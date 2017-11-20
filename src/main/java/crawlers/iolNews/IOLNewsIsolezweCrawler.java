@@ -7,14 +7,14 @@ package crawlers.iolNews;
 
 import crawlers.Logos;
 import db.NewsSource;
-import javax.ejb.Stateless;
+
 
 /**
  *
  * @author zua
  */
 
-@Stateless public class IOLNewsIsolezweCrawler extends AbstactIOLNewsCrawler {
+ public class IOLNewsIsolezweCrawler extends AbstactIOLNewsCrawler {
 
     public IOLNewsIsolezweCrawler() {
     }

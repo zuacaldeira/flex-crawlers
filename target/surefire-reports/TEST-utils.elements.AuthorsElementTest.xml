@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="utils.elements.AuthorsElementTest" time="0" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="utils.elements.AuthorsElementTest" time="0.001" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -27,7 +27,6 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="maven.ext.class.path" value="/Applications/NetBeans/NetBeans 8.2.app/Contents/Resources/NetBeans/java/maven-nblib/netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.3.3/libexec/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/zua/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
@@ -46,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/Applications/NetBeans/NetBeans 8.2.app/Contents/Resources/NetBeans/java/maven-nblib/netbeans-eventspy.jar clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -64,7 +63,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[0: &lt;null&gt;, 0]" time="0"/>
+  <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[0: &lt;null&gt;, 0]" time="0.001"/>
   <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[1: &lt;empty string&gt;, 0]" time="0"/>
   <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[2: Alexandre Caldeira, 1]" time="0"/>
   <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[3: Alexandre Caldeira, Zua Caldeira, 2]" time="0"/>

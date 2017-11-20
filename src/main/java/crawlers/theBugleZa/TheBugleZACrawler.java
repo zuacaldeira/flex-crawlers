@@ -7,15 +7,10 @@ package crawlers.theBugleZa;
 
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
 import db.NewsSource;
-import javax.ejb.Stateless;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -24,8 +19,7 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-
-@Stateless public class TheBugleZACrawler extends FlexNewsCrawler {
+public class TheBugleZACrawler extends FlexNewsCrawler {
 
     public TheBugleZACrawler() {
         super();
@@ -36,11 +30,11 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    
+
     public void crawl() {
         try {
             crawlWebsite(getUrl(), getMySource());
-        } catch(Exception e) {
+        } catch (Exception e) {
             getLogger().error("Exception thrown: %s", e.getMessage());
         }
     }
@@ -77,7 +71,7 @@ import org.jsoup.select.Elements;
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article) {
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null.");
         }
@@ -85,23 +79,23 @@ import org.jsoup.select.Elements;
         if (!links.isEmpty() && links.first() != null && !links.first().absUrl("href").isEmpty()) {
             return links.first().absUrl("href");
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
         Elements elements = document.select("body h1.title");
-        if(!elements.isEmpty() && !elements.text().isEmpty()) {
+        if (!elements.isEmpty() && !elements.text().isEmpty()) {
             return elements.text();
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -110,19 +104,19 @@ import org.jsoup.select.Elements;
             getLogger().log("%s", "Found image " + images.first().absUrl("src"));
             return images.first().absUrl("src");
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
         Elements contents = document.select("div.body.wrap-text > p");
-        if(!contents.isEmpty() && contents.first() != null && !contents.first().text().isEmpty()) {
+        if (!contents.isEmpty() && contents.first() != null && !contents.first().text().isEmpty()) {
             return contents.first().text();
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
@@ -133,34 +127,33 @@ import org.jsoup.select.Elements;
         Elements times = document.select("div.info > b");
         if (!times.isEmpty()) {
             Element time = null;
-            if(times.size() == 2) {
+            if (times.size() == 2) {
                 time = times.get(0);
             }
-            if(time != null && !time.text().isEmpty()) {
+            if (time != null && !time.text().isEmpty()) {
                 return time.text();
             }
         }
-        throw new AuthorsNotFoundException();
+        return getMySource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
         Elements times = document.select("div.info > b");
         if (!times.isEmpty()) {
             Element time = null;
-            if(times.size() == 1) {
+            if (times.size() == 1) {
                 time = times.get(0);
-            }
-            else{
+            } else {
                 time = times.get(1);
             }
-            if(time != null && !time.text().isEmpty()) {
+            if (time != null && !time.text().isEmpty()) {
                 return time.text();
             }
         }
-        throw new TimeNotFoundException();
+        return null;
     }
 }

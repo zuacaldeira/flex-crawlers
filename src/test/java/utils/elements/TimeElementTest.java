@@ -50,10 +50,10 @@ public class TimeElementTest {
     public void testGetDate(String dateString, String language) throws TimeNotFoundException {
         System.out.println("getDate");
         TimeElement instance = new TimeElement(dateString, language);
-        //assertNotNull(instance.getDate());
+        assertNotNull(instance.getDate());
     }
 
-    @Test
+    @Test(expected=Exception.class)
     @UseDataProvider("timeFailData")
     public void testGetDateFail(String dateString, String language) throws TimeNotFoundException {
         System.out.println("getDate");

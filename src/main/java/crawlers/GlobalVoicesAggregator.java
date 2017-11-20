@@ -48,19 +48,15 @@ import crawlers.globalVoices.GlobalVoicesCrawlerTR;
 import crawlers.globalVoices.GlobalVoicesCrawlerUR;
 import crawlers.globalVoices.GlobalVoicesCrawlerZHS;
 import crawlers.globalVoices.GlobalVoicesCrawlerZHT;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
 
 /**
  *
  * @author zua
  */
-@Singleton
+
+
 public class GlobalVoicesAggregator {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    @Schedule(hour = "*", minute = "*/30")
     public void aggregate() {
         try {
             new GlobalVoicesCrawlerAM().crawl();

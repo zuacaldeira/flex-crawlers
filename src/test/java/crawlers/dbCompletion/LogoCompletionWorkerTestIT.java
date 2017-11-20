@@ -9,7 +9,6 @@ import db.NewsSource;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Ignore;
 import org.junit.Test;
 import services.NewsSourceService;
 
@@ -27,7 +26,6 @@ public class LogoCompletionWorkerTestIT {
      * Test of crawlWebsite method, of class TheBugleZACrawler.
      */
     @Test
-    @Ignore
     public void testCrawl() throws Exception {
         System.out.println("crawl");
         NewsSourceService service = new NewsSourceService();
@@ -38,7 +36,6 @@ public class LogoCompletionWorkerTestIT {
         String logoUrl = service.find(source).getLogoUrl();
         assertTrue(logoUrl ==null || logoUrl.equals(""));
         LogoCompletionWorker crawler = new LogoCompletionWorker();
-        crawler.setSourcesService(service);
         crawler.crawl();
         assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().size());
     }

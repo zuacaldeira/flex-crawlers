@@ -14,8 +14,6 @@ import java.text.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
-import services.NewsArticleService;
-import services.NewsSourceService;
 
 /**
  *
@@ -112,8 +110,6 @@ public class NewsOrgApiAggregatorTestIT {
     public void testLoadAllData() throws IOException, ApiCallException {
         System.out.println("loadAllData");
         NewsOrgApiAggregator instance = new NewsOrgApiAggregator();
-        instance.setNewsArticlesService(new NewsArticleService());
-        instance.setNewsSourcesService(new NewsSourceService());
         instance.loadAllData();
         assertTrue(true);
     }
@@ -122,8 +118,6 @@ public class NewsOrgApiAggregatorTestIT {
     public void testLoadAllIOException() throws IOException, ApiCallException {
         System.out.println("loadAllData");
         NewsOrgApiAggregator instance = new NewsOrgApiAggregator();
-        instance.setNewsArticlesService(new NewsArticleService());
-        instance.setNewsSourcesService(new NewsSourceService());
         instance.read("");
     }
     
@@ -133,8 +127,6 @@ public class NewsOrgApiAggregatorTestIT {
     public void testCrawl() throws IOException, ApiCallException, ParseException {
         System.out.println("loadAllData");
         NewsOrgApiAggregator instance = new NewsOrgApiAggregator();
-        instance.setNewsArticlesService(new NewsArticleService());
-        instance.setNewsSourcesService(new NewsSourceService());
         instance.aggregate();
     }
 

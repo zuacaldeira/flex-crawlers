@@ -7,8 +7,6 @@ package utils.json;
 
 import db.NewsSource;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -193,10 +191,8 @@ public class SingleSourceResponseTest {
         System.out.println("getSortBysAvailable");
         SingleSourceResponse response = new SingleSourceResponse();
         
-        List<String> list = new LinkedList<>();
-        
-        response.setSortBysAvailable(list);
-        assertEquals(list, response.getSortBysAvailable());
+        response.getSortBysAvailable().add("top");
+        assertTrue(response.getSortBysAvailable().contains("top"));
     }
 
     /**

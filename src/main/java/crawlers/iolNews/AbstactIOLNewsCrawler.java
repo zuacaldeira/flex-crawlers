@@ -6,12 +6,7 @@
 package crawlers.iolNews;
 
 import crawlers.FlexNewsCrawler;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -48,7 +43,7 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getUrlValue(Element article) throws UrlNotFoundException {
+    protected String getUrlValue(Element article)  {
         // Check argument
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null");
@@ -59,11 +54,11 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found url ", links.first().absUrl("href"));
             return links.first().absUrl("href");
         }
-        throw new UrlNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getTitleValue(Document document) throws TitleNotFoundException {
+    protected String getTitleValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -73,11 +68,11 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found title ", titles.text().trim());
             return titles.text().trim();
         }
-        throw new TitleNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getImageUrlValue(Document document) throws ImageNotFoundException {
+    protected String getImageUrlValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -87,11 +82,11 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found image ", images.attr("content"));
             return images.attr("content");
         }
-        throw new ImageNotFoundException();
+        return null;
     }
 
     @Override
-    protected String getContentValue(Document document) throws ContentNotFoundException {
+    protected String getContentValue(Document document){
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -100,7 +95,7 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found content ", contents.text());
             return contents.text();
         }
-        throw new ContentNotFoundException();
+        return null;
     }
 
     @Override
@@ -113,11 +108,11 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
             getLogger().log("%s", "Found authors " + authors.text());
             return authors.text();
         }
-        throw new AuthorsNotFoundException();
+        return getMySource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document) throws TimeNotFoundException {
+    protected String getTimeValue(Document document)  {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -126,6 +121,6 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
             getLogger().log("%s", "Found time " + times.attr("content"));
             return times.attr("content");
         }
-        throw new TimeNotFoundException();
+        return null;
     }
 }

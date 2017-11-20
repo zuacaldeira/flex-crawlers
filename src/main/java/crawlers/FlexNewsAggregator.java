@@ -13,19 +13,17 @@ import crawlers.jornalDeAngola.JornalDeAngolaCrawler;
 import crawlers.makaAngola.MakaAngolaCrawler;
 import crawlers.telaNon.TelaNonCrawler;
 import crawlers.theBugleZa.TheBugleZACrawler;
-import javax.ejb.Singleton;
-import javax.ejb.Schedule;
 
 /**
  *
  * @author zua
  */
-@Singleton
+
+
 public class FlexNewsAggregator {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    @Schedule(hour = "*", minute = "*/30")
     public void aggregate() {
         try {
             // Our crawlers and aggregators of crawlers 

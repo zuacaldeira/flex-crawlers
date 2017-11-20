@@ -8,6 +8,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/NewsOrgApiAggregatorTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/iolNews/IOLNewsIsolezweCrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/utils/json/SingleSourceResponseTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/utils/MyDateUtilsTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/exceptions/DocumentNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/makaAngola/MakaAngolaCrawlerTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/exceptions/ContentNotFoundExceptionTest.java

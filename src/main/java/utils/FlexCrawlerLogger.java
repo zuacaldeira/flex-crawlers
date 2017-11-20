@@ -32,9 +32,7 @@ public class FlexCrawlerLogger {
     }
 
     public void error(String format, Object... values) {
-        if(isOn) {
-            serr(format, values);
-        }
+        serr(format, values);
     }
 
     public void on() {

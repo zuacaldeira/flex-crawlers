@@ -5,31 +5,27 @@
  */
 package crawlers.dbCompletion;
 
+import com.google.common.collect.Lists;
 import crawlers.Logos;
 import db.NewsSource;
 import java.util.List;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
-import services.NewsSourceService;
-import services.NewsSourceServiceInterface;
+import org.neo4j.ogm.session.Session;
 import utils.FlexCrawlerLogger;
+import utils.Neo4jSessionFactoryForCrawlers;
 
 /**
  *
  * @author zua
  */
-@Singleton
-@Lock(LockType.READ)
+
 public class LogoCompletionWorker {
 
     private final FlexCrawlerLogger logger = new FlexCrawlerLogger(LogoCompletionWorker.class);
-
-    private NewsSourceServiceInterface sourcesService = new NewsSourceService();
+    private Session session = Neo4jSessionFactoryForCrawlers.getInstance().getNeo4jSession();
 
     public void crawl() {
         try {
-            List<NewsSource> sources = (List<NewsSource>) sourcesService.findAllSources();
+            List<NewsSource> sources = findAllSources();
             logger.info("FFFFFFFFFF Found %d sources", sources.size());
 
             for (NewsSource s : sources) {
@@ -37,7 +33,7 @@ public class LogoCompletionWorker {
                     logger.info("FFFFFFFFFF Found %s without logo", s.getSourceId());
                     s.setLogoUrl(Logos.getLogo(s.getSourceId()));
                     try {
-                        sourcesService.save(s);
+                        saveSource(s);
                     } catch (Exception e) {
                         logger.error("Found Exception %s", e);
                     }
@@ -48,8 +44,11 @@ public class LogoCompletionWorker {
         }
     }
 
-    public void setSourcesService(NewsSourceServiceInterface sourcesService) {
-        this.sourcesService = sourcesService;
+    private List<NewsSource> findAllSources() {
+        return Lists.newArrayList(session.loadAll(NewsSource.class));
     }
 
+    private void saveSource(NewsSource s) {
+        session.save(s);
+    }
 }
