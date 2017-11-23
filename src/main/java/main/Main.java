@@ -22,12 +22,6 @@ public class Main {
     
     public static void main(String... args) {
         while(true) {
-            new NewsOrgApiAggregator().aggregate();
-            try {
-                Thread.sleep(60000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
             new FlexNewsAggregator().aggregate();
             try {
                 Thread.sleep(60000);
@@ -35,6 +29,12 @@ public class Main {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
             new GlobalVoicesAggregator().aggregate();
+            try {
+                Thread.sleep(60000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            new NewsOrgApiAggregator().aggregate();
             try {
                 Thread.sleep(60000);
             } catch (InterruptedException ex) {

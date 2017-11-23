@@ -22,9 +22,7 @@ public class FlexCrawlerLogger {
     }
 
     public void log(String format, Object... values) {
-        if (isOn) {
-            sout(format, values);
-        }
+        sout(format, values);
     }
 
     public void info(String format, Object... values) {

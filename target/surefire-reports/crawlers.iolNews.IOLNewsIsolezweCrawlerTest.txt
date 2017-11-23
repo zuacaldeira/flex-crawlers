@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: crawlers.iolNews.IOLNewsIsolezweCrawlerTest
 -------------------------------------------------------------------------------
-Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.401 sec
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.147 sec

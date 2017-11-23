@@ -215,7 +215,7 @@ public abstract class AbstractCrawlerTest {
 
     @Test
     public void testGetNewsAuthors() {
-        assertTrue(getCrawler().getNewsAuthors(new HashSet<>()).size() == 1);
+        assertTrue(getCrawler().getNewsAuthors(new HashSet<>(), getCrawler().getSource()).size() == 1);
     }
 
 }

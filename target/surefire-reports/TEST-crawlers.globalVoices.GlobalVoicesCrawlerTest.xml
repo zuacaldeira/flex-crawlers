@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="29" failures="0" name="crawlers.globalVoices.GlobalVoicesCrawlerTest" time="2.599" errors="0" skipped="0">
+<testsuite tests="29" failures="0" name="crawlers.globalVoices.GlobalVoicesCrawlerTest" time="3.001" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install exec:java"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -63,33 +63,33 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetMySource" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetMySource[0: en]" time="0"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetMySource" time="0.003"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetMySource[0: en]" time="0.001"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetMySource[0: en, GB]" time="0"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="extractDate" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetContentValue" time="0"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetContentValue" time="0.001"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalgetArticles" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetTitle" time="0.947"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptygetArticles" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetNewsAuthors" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetTimeValue" time="0"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetAuthorsValue" time="0.003"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetTitle" time="1.422"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptygetArticles" time="0.001"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetNewsAuthors" time="0.06"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetTimeValue" time="0.001"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetImageUrlValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="openDocument" time="0.2"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetTime" time="0.284"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetAuthors" time="0.3"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetTitleValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetUrlValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetArticles" time="0.175"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="openDocument" time="0.198"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetTime" time="0.235"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetAuthors" time="0.283"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetTitleValue" time="0.001"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetUrlValue" time="0.001"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetArticles" time="0.167"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetContentValue" time="0.001"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetImageUrl" time="0.249"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetUrlValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetAuthorsValue" time="0.001"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetContent" time="0.253"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetImageUrl" time="0.217"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetUrlValue" time="0.001"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetAuthorsValue" time="0"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetContent" time="0.232"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testIllegalGetTimeValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetUrl" time="0.186"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetSource" time="0.001"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetUrl" time="0.161"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testGetSource" time="0.01"/>
   <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetTitleValue" time="0"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="openDocumentFail" time="0.001"/>
-  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetImageUrlValue" time="0.001"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="openDocumentFail" time="0.002"/>
+  <testcase classname="crawlers.globalVoices.GlobalVoicesCrawlerTest" name="testEmptyGetImageUrlValue" time="0"/>
 </testsuite>
