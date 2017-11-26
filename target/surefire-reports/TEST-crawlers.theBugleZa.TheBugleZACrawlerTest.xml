@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="26" failures="0" name="crawlers.theBugleZa.TheBugleZACrawlerTest" time="18.335" errors="0" skipped="0">
+<testsuite tests="26" failures="0" name="crawlers.theBugleZa.TheBugleZACrawlerTest" time="13.72" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -63,30 +63,30 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetAuthors" time="0"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetAuthors" time="0.001"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetMySource" time="0"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetContentValue" time="0"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalgetArticles" time="0"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetTitle" time="4.022"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetTitle" time="2.386"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptygetArticles" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetNewsAuthors" time="0.043"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetTimeValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetImageUrlValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="openDocument" time="1.352"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetTime" time="2.288"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetNewsAuthors" time="0.101"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetTimeValue" time="0.002"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetImageUrlValue" time="0.001"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="openDocument" time="1.305"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetTime" time="2.45"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetTitleValue" time="0"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetUrlValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetArticles" time="4.47"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetArticles" time="1.227"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetContentValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetImageUrl" time="2.286"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetImageUrl" time="2.453"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetUrlValue" time="0"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetContent" time="2.456"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetContent" time="2.455"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testIllegalGetTimeValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetUrl" time="1.404"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetSource" time="0.014"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetUrl" time="1.232"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testGetSource" time="0.104"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetTitleValue" time="0"/>
-  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="openDocumentFail" time="0"/>
+  <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="openDocumentFail" time="0.003"/>
   <testcase classname="crawlers.theBugleZa.TheBugleZACrawlerTest" name="testEmptyGetImageUrlValue" time="0"/>
 </testsuite>

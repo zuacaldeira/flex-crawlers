@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="26" failures="0" name="crawlers.makaAngola.MakaAngolaCrawlerTest" time="2.261" errors="0" skipped="0">
+<testsuite tests="26" failures="0" name="crawlers.makaAngola.MakaAngolaCrawlerTest" time="2.629" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -63,30 +63,30 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetMySource" time="0.002"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetContentValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalgetArticles" time="0.001"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetMySource" time="0.001"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetContentValue" time="0.001"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalgetArticles" time="0"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetAuthorsValue" time="0.001"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetTitle" time="0.586"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetTitle" time="0.682"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptygetArticles" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetNewsAuthors" time="0.035"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetTimeValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetImageUrlValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="openDocument" time="0.176"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetTime" time="0.302"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetAuthors" time="0.316"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetNewsAuthors" time="0.099"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetTimeValue" time="0.014"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetImageUrlValue" time="0.001"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="openDocument" time="0.188"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetTime" time="0.326"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetAuthors" time="0.374"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetTitleValue" time="0"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetUrlValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetArticles" time="0.141"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetContentValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetImageUrl" time="0.274"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetUrlValue" time="0"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetArticles" time="0.149"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetContentValue" time="0.001"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetImageUrl" time="0.291"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetUrlValue" time="0.001"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetContent" time="0.277"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetContent" time="0.33"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testIllegalGetTimeValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetUrl" time="0.141"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetSource" time="0.009"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetUrl" time="0.154"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testGetSource" time="0.014"/>
   <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetTitleValue" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="openDocumentFail" time="0"/>
-  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetImageUrlValue" time="0"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="openDocumentFail" time="0.001"/>
+  <testcase classname="crawlers.makaAngola.MakaAngolaCrawlerTest" name="testEmptyGetImageUrlValue" time="0.001"/>
 </testsuite>

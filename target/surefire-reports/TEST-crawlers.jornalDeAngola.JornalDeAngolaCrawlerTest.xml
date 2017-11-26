@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="26" failures="0" name="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" time="11.403" errors="0" skipped="0">
+<testsuite tests="26" failures="0" name="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" time="10.497" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -63,30 +63,30 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetMySource" time="0.002"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetContentValue" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalgetArticles" time="0"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetMySource" time="0.001"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetContentValue" time="0.001"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalgetArticles" time="0.001"/>
   <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetTitle" time="1.194"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetTitle" time="2.127"/>
   <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptygetArticles" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetNewsAuthors" time="0.074"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetTimeValue" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetImageUrlValue" time="0.001"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="openDocument" time="0.605"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetTime" time="0.884"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetAuthors" time="1.369"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetNewsAuthors" time="0.471"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetTimeValue" time="0.001"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetImageUrlValue" time="0"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="openDocument" time="2.39"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetTime" time="0.937"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetAuthors" time="0.919"/>
   <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetTitleValue" time="0"/>
   <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetUrlValue" time="0.001"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetArticles" time="2.036"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetContentValue" time="0.002"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetImageUrl" time="2.871"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetUrlValue" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetAuthorsValue" time="0.116"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetContent" time="1.613"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetArticles" time="0.881"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetContentValue" time="0.003"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetImageUrl" time="1.018"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetUrlValue" time="0.001"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetAuthorsValue" time="0.088"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetContent" time="1.037"/>
   <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testIllegalGetTimeValue" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetUrl" time="0.62"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetSource" time="0.013"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetUrl" time="0.597"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testGetSource" time="0.016"/>
   <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetTitleValue" time="0"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="openDocumentFail" time="0.002"/>
-  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetImageUrlValue" time="0"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="openDocumentFail" time="0.005"/>
+  <testcase classname="crawlers.jornalDeAngola.JornalDeAngolaCrawlerTest" name="testEmptyGetImageUrlValue" time="0.002"/>
 </testsuite>

@@ -22,7 +22,7 @@ import db.NewsSource;
     @Override
     public NewsSource getMySource() {
         String sourceId = "global-voices-da";
-        String name = "Global Voices (da)";
+        String name = "Global Voices (DA)";
         String description = "";
         String url = "https://da.globalvoices.org";
         String category = "general";

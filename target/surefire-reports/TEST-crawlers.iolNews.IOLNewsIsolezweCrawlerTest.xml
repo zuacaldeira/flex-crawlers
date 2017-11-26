@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="26" failures="0" name="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" time="2.126" errors="0" skipped="0">
+<testsuite tests="26" failures="0" name="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" time="4.907" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -63,30 +63,30 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetMySource" time="0.001"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetMySource" time="0"/>
   <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetContentValue" time="0"/>
   <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalgetArticles" time="0"/>
   <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetTitle" time="0.942"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptygetArticles" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetNewsAuthors" time="0.045"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetTimeValue" time="0.001"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetTitle" time="1.135"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptygetArticles" time="0.001"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetNewsAuthors" time="0.089"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetTimeValue" time="0.003"/>
   <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetImageUrlValue" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="openDocument" time="0.096"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetTime" time="0.206"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetAuthors" time="0.203"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetTitleValue" time="0.001"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetUrlValue" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetArticles" time="0.093"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetContentValue" time="0.004"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetImageUrl" time="0.186"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="openDocument" time="0.429"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetTime" time="0.758"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetAuthors" time="0.561"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetTitleValue" time="0.002"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetUrlValue" time="0.001"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetArticles" time="0.331"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetContentValue" time="0.005"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetImageUrl" time="0.538"/>
   <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetUrlValue" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetAuthorsValue" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetContent" time="0.219"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetAuthorsValue" time="0.001"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetContent" time="0.491"/>
   <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testIllegalGetTimeValue" time="0"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetUrl" time="0.117"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetSource" time="0.01"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetTitleValue" time="0.001"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="openDocumentFail" time="0.001"/>
-  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetImageUrlValue" time="0"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetUrl" time="0.439"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testGetSource" time="0.088"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetTitleValue" time="0"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="openDocumentFail" time="0.012"/>
+  <testcase classname="crawlers.iolNews.IOLNewsIsolezweCrawlerTest" name="testEmptyGetImageUrlValue" time="0.023"/>
 </testsuite>

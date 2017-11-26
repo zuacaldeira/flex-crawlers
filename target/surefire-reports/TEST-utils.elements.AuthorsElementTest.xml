@@ -63,8 +63,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[0: &lt;null&gt;, 0]" time="0.001"/>
+  <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[0: &lt;null&gt;, 0]" time="0"/>
   <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[1: &lt;empty string&gt;, 0]" time="0"/>
   <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[2: Alexandre Caldeira, 1]" time="0"/>
-  <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[3: Alexandre Caldeira, Zua Caldeira, 2]" time="0"/>
+  <testcase classname="utils.elements.AuthorsElementTest" name="testGetAuthors[3: Alexandre Caldeira, Zua Caldeira, 2]" time="0.001"/>
 </testsuite>
