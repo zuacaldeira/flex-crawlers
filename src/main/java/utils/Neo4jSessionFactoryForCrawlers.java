@@ -5,8 +5,6 @@
  */
 package utils;
 
-import org.neo4j.ogm.authentication.UsernamePasswordCredentials;
-import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 
@@ -23,12 +21,8 @@ public class Neo4jSessionFactoryForCrawlers {
     private final SessionFactory sessionFactory;
     
     private Neo4jSessionFactoryForCrawlers() {
-        Configuration configuration = new Configuration("ogm.properties");
-        UsernamePasswordCredentials userCredentials = (UsernamePasswordCredentials)configuration.driverConfiguration().getCredentials();
-        System.out.println(configuration.driverConfiguration().getDriverClassName());
-        System.out.println(userCredentials.getUsername());
-        System.out.println(userCredentials.getPassword());
-        sessionFactory = new SessionFactory(configuration, "db");
+        // We pass it as the first argument to a SessionFactory instance
+        sessionFactory = new SessionFactory("db");
     }
     
     public static Neo4jSessionFactoryForCrawlers getInstance() {

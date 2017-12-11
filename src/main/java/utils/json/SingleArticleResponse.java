@@ -5,9 +5,11 @@
  */
 package utils.json;
 
-import db.NewsArticle;
-import db.NewsAuthor;
-import db.NewsSource;
+import db.news.NewsArticle;
+import db.news.NewsAuthor;
+import db.news.NewsSource;
+import db.relationships.AuthoredBy;
+import db.relationships.PublishedBy;
 import java.util.Date;
 import utils.MyDateUtils;
 
@@ -93,7 +95,22 @@ public class SingleArticleResponse {
         String sourceId = source.getSourceId();
         String language = source.getLanguage();
         String country = source.getCountry().toUpperCase();
-        NewsArticle article = new NewsArticle(title, description, url, urlToImage, date, sourceId, language, country);
+        NewsArticle article = new NewsArticle();
+        article.setTitle(title);
+        article.setDescription(description);
+        article.setUrl(url);
+        article.setImageUrl(urlToImage);
+        article.setPublishedAt(date);
+        article.setLanguage(language);
+        article.setCountry(country);
+        
+        PublishedBy publishedBy = new PublishedBy();
+        publishedBy.setArticle(article);
+        publishedBy.setSource(source);
+        
+        AuthoredBy authoredBy = new AuthoredBy();
+        authoredBy.setArticle(article);
+        authoredBy.setAuthor(convert2NewsAuthor(source));
         return article;
     }
 

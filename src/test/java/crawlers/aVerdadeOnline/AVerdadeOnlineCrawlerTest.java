@@ -11,7 +11,7 @@ import crawlers.Logos;
 import crawlers.exceptions.ImageNotFoundException;
 import crawlers.exceptions.UrlNotFoundException;
 import crawlers.exceptions.TitleNotFoundException;
-import db.NewsSource;
+import db.news.NewsSource;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import static org.junit.Assert.assertEquals;

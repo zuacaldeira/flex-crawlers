@@ -11,7 +11,7 @@ import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import db.NewsSource;
+import db.news.NewsSource;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;

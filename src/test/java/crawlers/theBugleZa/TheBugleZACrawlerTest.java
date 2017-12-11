@@ -11,7 +11,7 @@ import crawlers.Logos;
 import crawlers.exceptions.ArticlesNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
 import crawlers.exceptions.DocumentNotFoundException;
-import db.NewsSource;
+import db.news.NewsSource;
 import org.jsoup.nodes.Document;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

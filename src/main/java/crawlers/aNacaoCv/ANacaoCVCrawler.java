@@ -9,7 +9,7 @@ import crawlers.exceptions.ArticlesNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import db.NewsSource;
+import db.news.NewsSource;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -43,8 +43,15 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         String language = "pt";
         String country = "CV";
 
-        NewsSource source = new NewsSource(sourceId, name, description, url, category, language, country);
+        NewsSource source = new NewsSource();
+        source.setCategory(category);
+        source.setCountry(country);
+        source.setDescription(description);
+        source.setLanguage(language);
         source.setLogoUrl(Logos.getLogo(sourceId));
+        source.setName(name);
+        source.setSourceId(sourceId);
+        source.setUrl(url);
 
         return source;
     }
@@ -124,7 +131,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
             getLogger().log("%s %s", "Found author", paragraphs.last().text());
             return paragraphs.last().text();
         }
-        return getSource().getName();
+        return getMySource().getName();
     }
 
     @Override

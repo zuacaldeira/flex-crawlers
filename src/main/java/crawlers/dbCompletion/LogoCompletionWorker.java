@@ -5,10 +5,8 @@
  */
 package crawlers.dbCompletion;
 
-import com.google.common.collect.Lists;
 import crawlers.Logos;
-import db.NewsSource;
-import java.util.List;
+import db.news.NewsSource;
 import org.neo4j.ogm.session.Session;
 import utils.FlexCrawlerLogger;
 import utils.Neo4jSessionFactoryForCrawlers;
@@ -25,9 +23,7 @@ public class LogoCompletionWorker {
 
     public void crawl() {
         try {
-            List<NewsSource> sources = findAllSources();
-            logger.info("FFFFFFFFFF Found %d sources", sources.size());
-
+            Iterable<NewsSource> sources = findAllSources();
             for (NewsSource s : sources) {
                 if (s.getLogoUrl() == null || s.getLogoUrl().isEmpty()) {
                     logger.info("FFFFFFFFFF Found %s without logo", s.getSourceId());
@@ -44,8 +40,8 @@ public class LogoCompletionWorker {
         }
     }
 
-    private List<NewsSource> findAllSources() {
-        return Lists.newArrayList(session.loadAll(NewsSource.class));
+    private Iterable<NewsSource> findAllSources() {
+        return session.loadAll(NewsSource.class);
     }
 
     private void saveSource(NewsSource s) {

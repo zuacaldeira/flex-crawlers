@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: crawlers.theBugleZa.TheBugleZACrawlerTest
 -------------------------------------------------------------------------------
-Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.733 sec
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.593 sec

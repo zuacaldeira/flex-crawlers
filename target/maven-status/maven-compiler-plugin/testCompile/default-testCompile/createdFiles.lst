@@ -21,7 +21,6 @@ crawlers/exceptions/DocumentNotFoundExceptionTest.class
 utils/elements/AuthorsElementTest.class
 crawlers/aVerdadeOnline/AVerdadeOnlineCrawlerTestIT.class
 crawlers/iolNews/IOLNewsZACrawlerTest.class
-utils/json/SingleArticleResponseTest.class
 crawlers/exceptions/TimeNotFoundExceptionTest.class
 crawlers/AbstractCrawlerTest.class
 crawlers/exceptions/ArticlesNotFoundExceptionTest.class

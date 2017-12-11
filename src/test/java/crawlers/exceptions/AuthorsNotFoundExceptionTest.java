@@ -5,7 +5,6 @@
  */
 package crawlers.exceptions;
 
-import crawlers.exceptions.AuthorsNotFoundException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

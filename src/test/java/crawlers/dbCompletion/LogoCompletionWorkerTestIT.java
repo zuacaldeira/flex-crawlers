@@ -5,12 +5,11 @@
  */
 package crawlers.dbCompletion;
 
-import db.NewsSource;
+import db.news.NewsSource;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import services.NewsSourceService;
+import services.news.NewsSourceService;
 
 /**
  *
@@ -32,12 +31,10 @@ public class LogoCompletionWorkerTestIT {
         NewsSource source = new NewsSource();
         source.setSourceId("maka-angola");
         service.save(source);
-        assertNotNull(service.find(source));
-        String logoUrl = service.find(source).getLogoUrl();
-        assertTrue(logoUrl ==null || logoUrl.equals(""));
+        assertNotNull(service.find(source.getSourceId()));
         LogoCompletionWorker crawler = new LogoCompletionWorker();
         crawler.crawl();
-        assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().size());
+        assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().count());
     }
 
 

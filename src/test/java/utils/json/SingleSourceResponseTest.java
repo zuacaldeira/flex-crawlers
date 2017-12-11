@@ -5,7 +5,7 @@
  */
 package utils.json;
 
-import db.NewsSource;
+import db.news.NewsSource;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;

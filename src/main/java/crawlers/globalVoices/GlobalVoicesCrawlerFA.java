@@ -6,7 +6,7 @@
 package crawlers.globalVoices;
 
 import crawlers.Logos;
-import db.NewsSource;
+import db.news.NewsSource;
 
 
 /**
@@ -29,9 +29,17 @@ import db.NewsSource;
         String language = "fa";
         String country = "IR";
 
-        NewsSource source = new NewsSource(sourceId, name, description, url, category, language, country);
-        source.setLogoUrl(Logos.getLogo("global-voices"));
+        NewsSource source = new NewsSource();
+        source.setCategory(category);
+        source.setCountry(country);
+        source.setDescription(description);
+        source.setLanguage(language);
+        source.setLogoUrl(Logos.getLogo(sourceId));
+        source.setName(name);
+        source.setSourceId(sourceId);
+        source.setUrl(url);
 
+        source.setLogoUrl(Logos.getLogo("global-voices"));
         return source;
     }
 

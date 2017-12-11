@@ -8,7 +8,7 @@ package crawlers.jornalDeAngola;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import crawlers.exceptions.ArticlesNotFoundException;
-import db.NewsSource;
+import db.news.NewsSource;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -99,7 +99,15 @@ public class JornalDeAngolaCrawler extends FlexNewsCrawler {
         String language = "pt";
         String country = "AO";
 
-        NewsSource source = new NewsSource(sourceId, name, description, url, category, language, country);
+        NewsSource source = new NewsSource();
+        source.setCategory(category);
+        source.setCountry(country);
+        source.setDescription(description);
+        source.setLanguage(language);
+        source.setLogoUrl(Logos.getLogo(sourceId));
+        source.setName(name);
+        source.setSourceId(sourceId);
+        source.setUrl(url);
         source.setLogoUrl(Logos.getLogo("jornal-de-angola"));
 
         return source;

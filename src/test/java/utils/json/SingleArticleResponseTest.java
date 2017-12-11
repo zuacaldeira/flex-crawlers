@@ -5,8 +5,8 @@
  */
 package utils.json;
 
-import db.NewsAuthor;
-import db.NewsSource;
+import db.news.NewsAuthor;
+import db.news.NewsSource;
 import java.text.ParseException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -195,7 +195,7 @@ public class SingleArticleResponseTest {
         
         assertEquals("title", instance.convert2NewsArticle(source).getTitle());
         assertEquals("description", instance.convert2NewsArticle(source).getDescription());
-        assertEquals("my-source", instance.convert2NewsArticle(source).getSourceId());
+        assertEquals("my-source", instance.convert2NewsArticle(source).getPublishedBy().getSource().getSourceId());
     }
 
     /**

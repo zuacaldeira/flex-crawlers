@@ -8,7 +8,7 @@ package crawlers.iolNews;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
-import db.NewsSource;
+import db.news.NewsSource;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 

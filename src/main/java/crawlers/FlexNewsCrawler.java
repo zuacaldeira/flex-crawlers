@@ -7,16 +7,21 @@ package crawlers;
 
 import crawlers.exceptions.TimeNotFoundException;
 import crawlers.exceptions.ArticlesNotFoundException;
-import db.Neo4jSessionFactory;
+import db.news.NewsArticle;
+import db.news.NewsAuthor;
+import db.news.NewsSource;
+import db.news.Tag;
+import db.relationships.AuthoredBy;
+import db.relationships.EditedBy;
+import db.relationships.PublishedBy;
+import db.relationships.TaggedAs;
+import utils.Neo4jSessionFactoryForCrawlers;
 import utils.elements.TitleElement;
 import utils.elements.UrlElement;
 import utils.elements.AuthorsElement;
 import utils.elements.TimeElement;
 import utils.elements.ContentElement;
 import utils.elements.ImageUrlElement;
-import db.NewsArticle;
-import db.NewsAuthor;
-import db.NewsSource;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,8 +31,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.neo4j.ogm.session.Session;
-import org.neo4j.ogm.transaction.Transaction;
 import utils.DatabaseUtils;
 import utils.FlexCrawlerLogger;
 
@@ -38,11 +41,11 @@ import utils.FlexCrawlerLogger;
 public abstract class FlexNewsCrawler {
     
     private FlexCrawlerLogger logger;
-    private final Session session;
-
+    private Neo4jSessionFactoryForCrawlers sessionFactory;
+    
     public FlexNewsCrawler() {
         logger = new FlexCrawlerLogger(getClass());
-        session = Neo4jSessionFactory.getInstance().getNeo4jSession();
+        sessionFactory = Neo4jSessionFactoryForCrawlers.getInstance();
     }
 
     public abstract void crawl();
@@ -111,22 +114,35 @@ public abstract class FlexNewsCrawler {
     private void saveArticle(String articleUrl, String title, String imageUrl, String description, Date date, Set<NewsAuthor> authors, NewsSource source) {
         if (title != null && !title.isEmpty() && notInBd(title)) {
             NewsArticle newsArticle = new NewsArticle();
-            newsArticle.setSourceId(source.getSourceId());
             newsArticle.setLanguage(source.getLanguage());
             newsArticle.setCountry(source.getCountry());
-            newsArticle.getCategories().add(source.getCategory());
-
             newsArticle.setTitle(title);
             newsArticle.setUrl(articleUrl);
-
             newsArticle.setImageUrl(imageUrl);
             newsArticle.setPublishedAt(date);
             newsArticle.setDescription(description);
+            
+            PublishedBy publishedBy = new PublishedBy();
+            publishedBy.setArticle(newsArticle);
+            publishedBy.setSource(source);
+            
+            Tag tag = new Tag();
+            tag.setTag(source.getCategory());
+            
+            TaggedAs taggedAs = new TaggedAs();
+            taggedAs.setArticle(newsArticle);
+            taggedAs.setTag(tag);
+            
+            AuthoredBy authoredBy = new AuthoredBy();
+            authoredBy.setArticle(newsArticle);
+            for(NewsAuthor na: authors) {
+                authoredBy.setAuthor(na);
+                EditedBy editedBy = new EditedBy();
+                editedBy.setAuthor(na);
+                editedBy.setSource(source);
+            }
 
-            newsArticle.getAuthors().addAll(authors);
-            source.getCorrespondents().addAll(authors);
-
-            Neo4jSessionFactory.getInstance().getNeo4jSession().save(newsArticle);
+            sessionFactory.getNeo4jSession().save(newsArticle);
             logger.info("\tSaved new article: %s", newsArticle.getTitle());
         } else {
             logger.info("\tIgnored old article: %s", title);
@@ -195,7 +211,7 @@ public abstract class FlexNewsCrawler {
 
     protected Set<NewsAuthor> getNewsAuthors(Set<String> names, NewsSource source) {
         Set<NewsAuthor> result = new HashSet<>();
-        if (names.isEmpty()) {
+        if (names == null || names.isEmpty()) {
             result.add(findAuthor(source.getName()));
         } else {
             names.stream().filter((name) -> (name != null && !name.isEmpty())).forEachOrdered((name) -> {
@@ -227,14 +243,18 @@ public abstract class FlexNewsCrawler {
 
     private boolean notInBd(String title) {
         String query = "MATCH (n:NewsArticle) WHERE n.title='" + title + "' RETURN n";
-        NewsArticle t = session.queryForObject(NewsArticle.class, query, new HashMap<String, Object>());
+        NewsArticle t = sessionFactory.getNeo4jSession().queryForObject(NewsArticle.class, query, new HashMap<String, Object>());
         return t == null;
     }
     
     protected NewsSource saveReturnSource(NewsSource source) {
-        session.save(source);
         String query = "MATCH (s:NewsSource) WHERE s.sourceId='" + source.getSourceId() + "' RETURN s";
-        return session.queryForObject(NewsSource.class, query, new HashMap<>());
+        NewsSource db = sessionFactory.getNeo4jSession().queryForObject(NewsSource.class, query, new HashMap<>());
+        if(db != null) {
+            return db;
+        }
+        sessionFactory.getNeo4jSession().save(source);
+        return sessionFactory.getNeo4jSession().queryForObject(NewsSource.class, query, new HashMap<>());
     }
 
 }

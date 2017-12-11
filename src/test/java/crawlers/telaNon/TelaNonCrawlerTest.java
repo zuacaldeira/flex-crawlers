@@ -12,7 +12,7 @@ import crawlers.exceptions.ArticlesNotFoundException;
 import crawlers.exceptions.AuthorsNotFoundException;
 import crawlers.exceptions.DocumentNotFoundException;
 import crawlers.exceptions.JsoupElementNotFoundException;
-import db.NewsSource;
+import db.news.NewsSource;
 import static org.junit.Assert.assertEquals;
 import org.junit.Ignore;
 import org.junit.Test;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="33" failures="0" name="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" time="5.798" errors="0" skipped="0">
+<testsuite tests="33" failures="0" name="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" time="5.543" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre/lib"/>
@@ -27,6 +27,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
+    <property name="maven.ext.class.path" value="/Applications/NetBeans/NetBeans 8.2.app/Contents/Resources/NetBeans/java/maven-nblib/netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.3.3/libexec/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/zua/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
@@ -45,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install exec:java"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=/Applications/NetBeans/NetBeans 8.2.app/Contents/Resources/NetBeans/java/maven-nblib/netbeans-eventspy.jar install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -69,31 +70,31 @@
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetTitleValue" time="0"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetImageValue" time="0"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetImageValueFail" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetUrlValue" time="0.001"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetUrlValue" time="0"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetMySource" time="0"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetContentValue" time="0"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalgetArticles" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetAuthorsValue" time="0.001"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetTitle" time="2.309"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetAuthorsValue" time="0"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetTitle" time="2.223"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptygetArticles" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetNewsAuthors" time="0.053"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetTimeValue" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetImageUrlValue" time="0.001"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="openDocument" time="0.498"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetTime" time="0.574"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetAuthors" time="0.446"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetTitleValue" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetUrlValue" time="0.001"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetArticles" time="0.503"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetContentValue" time="0.001"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetImageUrl" time="0.54"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetNewsAuthors" time="0.108"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetTimeValue" time="0.001"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetImageUrlValue" time="0"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="openDocument" time="0.362"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetTime" time="0.569"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetAuthors" time="0.454"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetTitleValue" time="0.001"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetUrlValue" time="0"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetArticles" time="0.231"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetContentValue" time="0"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetImageUrl" time="0.44"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetUrlValue" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetAuthorsValue" time="0.016"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetContent" time="0.445"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetAuthorsValue" time="0.061"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetContent" time="0.764"/>
   <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testIllegalGetTimeValue" time="0"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetUrl" time="0.393"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetSource" time="0.01"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetTitleValue" time="0.001"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="openDocumentFail" time="0.001"/>
-  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetImageUrlValue" time="0.004"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetUrl" time="0.318"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testGetSource" time="0.011"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetTitleValue" time="0"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="openDocumentFail" time="0"/>
+  <testcase classname="crawlers.aVerdadeOnline.AVerdadeOnlineCrawlerTest" name="testEmptyGetImageUrlValue" time="0"/>
 </testsuite>

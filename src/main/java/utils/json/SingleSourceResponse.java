@@ -6,7 +6,7 @@
 package utils.json;
 
 import crawlers.Logos;
-import db.NewsSource;
+import db.news.NewsSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,7 +107,13 @@ public class SingleSourceResponse {
 
 
     public NewsSource convert2NewsSource() {
-        NewsSource result = new NewsSource(id, name, description, url, category, language, country);
+        NewsSource result = new NewsSource();
+        result.setSourceId(id);
+        result.setCategory(category);
+        result.setDescription(description);
+        result.setCountry(country);
+        result.setLanguage(language);
+        result.setUrl(url);
         result.setLogoUrl(Logos.getLogo(id));
         return result;
     }

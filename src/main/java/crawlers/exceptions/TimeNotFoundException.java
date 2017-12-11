@@ -5,13 +5,13 @@
  */
 package crawlers.exceptions;
 
-import services.NewsServiceException;
-
 /**
  *
  * @author zua
  */
 public class TimeNotFoundException extends JsoupElementNotFoundException {
+
+    private static final long serialVersionUID = -746307936794979898L;
 
     public TimeNotFoundException() {
     }

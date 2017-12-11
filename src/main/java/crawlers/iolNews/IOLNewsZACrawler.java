@@ -6,7 +6,7 @@
 package crawlers.iolNews;
 
 import crawlers.Logos;
-import db.NewsSource;
+import db.news.NewsSource;
 
 
 /**
@@ -35,7 +35,15 @@ import db.NewsSource;
         String language = "en";
         String country = "ZA";
 
-        NewsSource source = new NewsSource(sourceId, name, description, url, category, language, country);
+        NewsSource source = new NewsSource();
+        source.setCategory(category);
+        source.setCountry(country);
+        source.setDescription(description);
+        source.setLanguage(language);
+        source.setLogoUrl(Logos.getLogo(sourceId));
+        source.setName(name);
+        source.setSourceId(sourceId);
+        source.setUrl(url);
         source.setLogoUrl(Logos.getLogo(sourceId));
 
         return source;

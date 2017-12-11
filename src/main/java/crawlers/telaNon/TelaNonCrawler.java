@@ -8,7 +8,7 @@ package crawlers.telaNon;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import crawlers.exceptions.ArticlesNotFoundException;
-import db.NewsSource;
+import db.news.NewsSource;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -34,7 +34,15 @@ public class TelaNonCrawler extends FlexNewsCrawler {
 
     @Override
     public NewsSource getMySource() {
-        NewsSource source = new NewsSource("tela-non", "Téla Nón", "", "http://www.telanon.info/", "geral", "pt", "ST");
+        NewsSource source = new NewsSource();
+        source.setCategory("geral");
+        source.setCountry("ST");
+        source.setDescription("");
+        source.setLanguage("pt");
+        source.setSourceId("tela-non");
+        source.setLogoUrl(Logos.getLogo(source.getSourceId()));
+        source.setName("Téla Nón");
+        source.setUrl("http://www.telanon.info/");
         source.setLogoUrl(Logos.getLogo("tela-non"));
         return source;
     }
