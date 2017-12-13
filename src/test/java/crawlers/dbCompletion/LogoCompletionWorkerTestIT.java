@@ -9,7 +9,7 @@ import db.news.NewsSource;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
-import services.news.NewsSourceService;
+import backend.services.news.NewsSourceService;
 
 /**
  *
@@ -34,7 +34,7 @@ public class LogoCompletionWorkerTestIT {
         assertNotNull(service.find(source.getSourceId()));
         LogoCompletionWorker crawler = new LogoCompletionWorker();
         crawler.crawl();
-        assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().count());
+        assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().size());
     }
 
 

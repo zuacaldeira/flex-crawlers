@@ -20,19 +20,6 @@
             <version>1.10.3</version>
             <type>jar</type>
         </dependency>
-        <dependency>
-            <groupId>com.tngtech.java</groupId>
-            <artifactId>junit-dataprovider</artifactId>
-            <version>1.10.0</version>
-            <scope>test</scope>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.github.zuacaldeira</groupId>
-            <artifactId>flex-app-backend</artifactId>
-            <version>1.1.22-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
         <dependency> 
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-ogm-core</artifactId>
@@ -44,17 +31,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.1</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.7</version>
-        </dependency>   
         <dependency> <!-- If you're using the EMBEDDED driver -->
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-ogm-embedded-driver</artifactId>
@@ -66,6 +42,19 @@
             <artifactId>neo4j-ogm-test</artifactId>
             <version>2.1.5</version>
             <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.13.1</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.github.zuacaldeira</groupId>
+            <artifactId>flex-app-backend</artifactId>
+            <version>1.1.22-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>

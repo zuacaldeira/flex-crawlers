@@ -14,10 +14,9 @@ import java.util.Map;
  * @author zua
  */
 public final class Logos {
-    private static Map<String, String> logos;
+    private static final Map<String, String> logos = new HashMap<>();
     
     static{
-        logos = new HashMap<>();
         logos.put("global-voices", "https://pbs.twimg.com/profile_images/469223261323018240/OvCrbQzO_400x400.png");
         logos.put("abc-news-au", "https://pbs.twimg.com/profile_images/851166911245107200/4xsqBmY5_400x400.jpg");
         logos.put("maka-angola", "https://pbs.twimg.com/profile_images/437691631840415744/WAqRENf9_400x400.png");

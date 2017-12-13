@@ -5,9 +5,9 @@
  */
 package crawlers;
 
-import crawlers.exceptions.ApiCallException;
-import utils.json.MultipleSourcesResponse;
-import utils.json.MultipleArticlesResponse;
+import crawlers.publishers.exceptions.ApiCallException;
+import crawlers.json.MultipleSourcesResponse;
+import crawlers.json.MultipleArticlesResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import db.news.NewsArticle;
 import db.news.NewsSource;
@@ -19,11 +19,11 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import utils.CrawlerDBUtils;
-import utils.json.SingleArticleResponse;
-import utils.json.SingleSourceResponse;
-import utils.FlexCrawlerLogger;
-import utils.Neo4jSessionFactoryForCrawlers;
+import crawlers.utils.CrawlerDBUtils;
+import crawlers.json.SingleArticleResponse;
+import crawlers.json.SingleSourceResponse;
+import crawlers.utils.FlexCrawlerLogger;
+import crawlers.utils.Neo4jSessionFactoryForCrawlers;
 
 /**
  *
@@ -107,7 +107,10 @@ public class NewsOrgApiAggregator {
         return builder.toString();
     }
 
-    public String makeApiCall(String url) throws ApiCallException {
+    public String makeApiCall(String url) throws IllegalArgumentException, ApiCallException {
+        if(url == null) {
+            throw new IllegalArgumentException();
+        }
         try (InputStream is = new URL(url).openConnection().getInputStream()) {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             return readAllData(rd);
@@ -120,13 +123,16 @@ public class NewsOrgApiAggregator {
     protected void loadAllData() throws IOException, ApiCallException {
         logger.info("%s", "Start loading data from " + SOURCES_URL);
         String result = makeApiCall(getSourcesQuery(null, null, null));
+        logger.info("%s", "Answer: " + result);
 
         MultipleSourcesResponse sourcesResponse = read(result);
         if ("ok".equals(sourcesResponse.getStatus())) {
             for (SingleSourceResponse ssr : sourcesResponse.getSources()) {
                 NewsSource source = ssr.convert2NewsSource();
-                loadAllArticles(source);
-                saveReturnSource(source);
+                if(!source.getSourceId().equals("the-hindu")) {
+                    loadAllArticles(source);
+                    saveReturnSource(source);
+                }
             }
         }
         logger.info("%s", "Finished: " + SOURCES_URL);

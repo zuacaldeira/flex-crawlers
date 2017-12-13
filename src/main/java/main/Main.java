@@ -1,6 +1,5 @@
 package main;
 
-
 import crawlers.FlexNewsAggregator;
 import crawlers.GlobalVoicesAggregator;
 import crawlers.NewsOrgApiAggregator;
@@ -12,16 +11,14 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author zua
  */
 public class Main {
-    
-    
+
     public static void main(String... args) {
-        while(true) {
+        while (true) {
             new FlexNewsAggregator().aggregate();
             try {
                 Thread.sleep(60000);

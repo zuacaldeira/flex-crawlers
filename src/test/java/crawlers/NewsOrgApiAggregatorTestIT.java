@@ -5,21 +5,19 @@
  */
 package crawlers;
 
-import crawlers.exceptions.ApiCallException;
-import com.tngtech.java.junit.dataprovider.DataProvider;
-import com.tngtech.java.junit.dataprovider.DataProviderRunner;
-import com.tngtech.java.junit.dataprovider.UseDataProvider;
+import crawlers.publishers.exceptions.ApiCallException;
 import java.io.IOException;
 import java.text.ParseException;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  *
  * @author zua
  */
-@RunWith(DataProviderRunner.class)
 public class NewsOrgApiAggregatorTestIT {
 
     public NewsOrgApiAggregatorTestIT() {
@@ -66,16 +64,14 @@ public class NewsOrgApiAggregatorTestIT {
         };
     }
 
-    @Test
-    @UseDataProvider("sourceQueries")
+    @Test(dataProvider = "sourceQueries")
     public void testGetSourceQuery(String category, String language2Letter, String country, String expected) {
         System.out.println("getSourcesQuery");
         NewsOrgApiAggregator mapper = new NewsOrgApiAggregator();
         assertEquals(expected, mapper.getSourcesQuery(category, language2Letter, country));
     }
 
-    @Test
-    @UseDataProvider("articlesQueries")
+    @Test(dataProvider = "articlesQueries")
     public void testGetArticlesQuery(String source, String expected) {
         System.out.println("getArticlesQuery");
         NewsOrgApiAggregator mapper = new NewsOrgApiAggregator();
@@ -87,16 +83,14 @@ public class NewsOrgApiAggregatorTestIT {
      *
      * @param apiCall An string with the web service call.
      */
-    @Test
-    @UseDataProvider("apiCalls")
+    @Test(dataProvider = "apiCalls")
     public void testMakeApiCall(String apiCall) throws ApiCallException {
         System.out.println("makeApiCall");
         NewsOrgApiAggregator instance = new NewsOrgApiAggregator();
         assertNotNull(instance.makeApiCall(apiCall));
     }
 
-    @Test(expected=ApiCallException.class)
-    @UseDataProvider("apiFailCalls")
+    @Test(expectedExceptions = IllegalArgumentException.class, dataProvider = "apiFailCalls")
     public void testMakeApiCallFail(String apiCall) throws ApiCallException {
         System.out.println("makeApiCall");
         NewsOrgApiAggregator instance = new NewsOrgApiAggregator();
@@ -114,7 +108,7 @@ public class NewsOrgApiAggregatorTestIT {
         assertTrue(true);
     }
     
-    @Test(expected=IOException.class)
+    @Test(expectedExceptions = IOException.class)
     public void testLoadAllIOException() throws IOException, ApiCallException {
         System.out.println("loadAllData");
         NewsOrgApiAggregator instance = new NewsOrgApiAggregator();

@@ -5,14 +5,14 @@
  */
 package crawlers;
 
-import crawlers.exceptions.DocumentNotFoundException;
-import crawlers.exceptions.UrlNotFoundException;
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.TitleNotFoundException;
-import crawlers.exceptions.ImageNotFoundException;
-import crawlers.exceptions.ContentNotFoundException;
-import crawlers.exceptions.ArticlesNotFoundException;
-import crawlers.exceptions.AuthorsNotFoundException;
+import crawlers.publishers.exceptions.DocumentNotFoundException;
+import crawlers.publishers.exceptions.UrlNotFoundException;
+import crawlers.publishers.exceptions.TimeNotFoundException;
+import crawlers.publishers.exceptions.TitleNotFoundException;
+import crawlers.publishers.exceptions.ImageNotFoundException;
+import crawlers.publishers.exceptions.ContentNotFoundException;
+import crawlers.publishers.exceptions.ArticlesNotFoundException;
+import crawlers.publishers.exceptions.AuthorsNotFoundException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -123,7 +123,7 @@ public abstract class AbstractCrawlerTest {
     @Test
     public void testGetSource() {
         System.out.println("getSource");
-        assertEquals(getCrawler().getMySource(), getCrawler().getSource());
+        assertNotNull(getCrawler().getMySource());
     }
 
     protected Elements getArticles(FlexNewsCrawler crawler) throws DocumentNotFoundException, ArticlesNotFoundException {
@@ -215,7 +215,7 @@ public abstract class AbstractCrawlerTest {
 
     @Test
     public void testGetNewsAuthors() {
-        assertTrue(getCrawler().getNewsAuthors(new HashSet<>(), getCrawler().getSource()).size() == 1);
+        assertTrue(getCrawler().getNewsAuthors(new HashSet<>(), getCrawler().getMySource()).size() == 1);
     }
 
 }

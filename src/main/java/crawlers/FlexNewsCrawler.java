@@ -5,47 +5,42 @@
  */
 package crawlers;
 
-import crawlers.exceptions.TimeNotFoundException;
-import crawlers.exceptions.ArticlesNotFoundException;
+import crawlers.publishers.exceptions.TimeNotFoundException;
+import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.news.Tag;
 import db.relationships.AuthoredBy;
 import db.relationships.EditedBy;
 import db.relationships.PublishedBy;
-import db.relationships.TaggedAs;
-import utils.Neo4jSessionFactoryForCrawlers;
-import utils.elements.TitleElement;
-import utils.elements.UrlElement;
-import utils.elements.AuthorsElement;
-import utils.elements.TimeElement;
-import utils.elements.ContentElement;
-import utils.elements.ImageUrlElement;
+import crawlers.elements.TitleElement;
+import crawlers.elements.UrlElement;
+import crawlers.elements.AuthorsElement;
+import crawlers.elements.TimeElement;
+import crawlers.elements.ContentElement;
+import crawlers.elements.ImageUrlElement;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import utils.DatabaseUtils;
-import utils.FlexCrawlerLogger;
+import backend.services.news.NewsArticleService;
+import backend.utils.DatabaseUtils;
+import crawlers.utils.FlexCrawlerLogger;
 
 /**
  *
  * @author zua
  */
 public abstract class FlexNewsCrawler {
-    
+
     private FlexCrawlerLogger logger;
-    private Neo4jSessionFactoryForCrawlers sessionFactory;
-    
+
     public FlexNewsCrawler() {
         logger = new FlexCrawlerLogger(getClass());
-        sessionFactory = Neo4jSessionFactoryForCrawlers.getInstance();
     }
 
     public abstract void crawl();
@@ -53,11 +48,11 @@ public abstract class FlexNewsCrawler {
     protected void crawlWebsite(String url, NewsSource source) {
         logger.info("Processing source %s (%s)", source.getName(), url);
         Document document = openDocument(url);
-        if(document != null) {
+        if (document != null) {
             crawlUrl(document, source);
-            logger.info("Finished: %s", source.getName());
-        }
-        else {
+            //new NewsSourceService().save(source);
+            logger.info("Saved and Finished: %s", source.getName());
+        } else {
             logger.info("Document not found");
         }
     }
@@ -67,7 +62,7 @@ public abstract class FlexNewsCrawler {
      *
      * @param url A web address url, starting with http(s).
      * @return The top document representing the content of web address.
-     * @throws crawlers.exceptions.DocumentNotFoundException It no corresponding
+     * @throws crawlers.publishers.exceptions.DocumentNotFoundException It no corresponding
      * document exists for the given url.
      */
     protected Document openDocument(String url) {
@@ -79,15 +74,15 @@ public abstract class FlexNewsCrawler {
         }
     }
 
-    protected NewsSource getSource() {
-        return saveReturnSource(getMySource());
-    }
-
     private void crawlUrl(Document document, NewsSource source) {
         Elements articles = getArticles(document);
-        for(int i = 0; i < articles.size(); i++) {
+        for (int i = 0; i < articles.size(); i++) {
             Element article = articles.get(i);
-            importArticle(article, source);
+            try {
+                importArticle(article, source);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -96,15 +91,21 @@ public abstract class FlexNewsCrawler {
         logger.log("Processing article: %s", article.text());
 
         String articleUrl = getUrl(article);
-        if(articleUrl != null) {
+        getLogger().log("%s", "Found url " + articleUrl);
+        if (articleUrl != null) {
             Document document = openDocument(articleUrl);
-            if(document != null) {
-                String title = getTitle(document);
-                if(title != null) {
+            if (document != null) {
+                String title = getTitle(document);                
+                if (title != null) {
+                    getLogger().log("%s", "Found title " + title);
                     String imageUrl = getImageUrl(document);
+                    getLogger().log("%s", "Found image " + imageUrl);
                     String description = getContent(document);
+                    getLogger().log("%s", "Found description " + description);
                     Date date = getPublishedAt(document);
+                    getLogger().log("%s", "Found date " + date);
                     Set<NewsAuthor> authors = getNewsAuthors(getAuthors(document), source);
+                    getLogger().log("%s", "Found authors " + authors);
                     saveArticle(articleUrl, title, imageUrl, description, date, authors, source);
                 }
             }
@@ -121,29 +122,25 @@ public abstract class FlexNewsCrawler {
             newsArticle.setImageUrl(imageUrl);
             newsArticle.setPublishedAt(date);
             newsArticle.setDescription(description);
-            
+
             PublishedBy publishedBy = new PublishedBy();
             publishedBy.setArticle(newsArticle);
             publishedBy.setSource(source);
-            
-            Tag tag = new Tag();
-            tag.setTag(source.getCategory());
-            
-            TaggedAs taggedAs = new TaggedAs();
-            taggedAs.setArticle(newsArticle);
-            taggedAs.setTag(tag);
-            
+
             AuthoredBy authoredBy = new AuthoredBy();
             authoredBy.setArticle(newsArticle);
-            for(NewsAuthor na: authors) {
-                authoredBy.setAuthor(na);
-                EditedBy editedBy = new EditedBy();
-                editedBy.setAuthor(na);
-                editedBy.setSource(source);
+            for (NewsAuthor na : authors) {
+                if (na != null) {
+                    authoredBy.setAuthor(na);
+                    EditedBy editedBy = new EditedBy();
+                    editedBy.setAuthor(na);
+                    editedBy.setSource(source);
+                }
             }
 
-            sessionFactory.getNeo4jSession().save(newsArticle);
-            logger.info("\tSaved new article: %s", newsArticle.getTitle());
+            logger.info("\t Start saving: %s", newsArticle.getUrl());
+            new NewsArticleService().save(newsArticle);
+            logger.info("\t Saved new article: %s", newsArticle.getUrl());
         } else {
             logger.info("\tIgnored old article: %s", title);
         }
@@ -153,11 +150,11 @@ public abstract class FlexNewsCrawler {
 
     protected abstract Elements getArticles(Document document) throws ArticlesNotFoundException;
 
-    public final String getUrl(Element article){
+    public final String getUrl(Element article) {
         return getUrlElement(article).getValue();
     }
 
-    public final UrlElement getUrlElement(Element article){
+    public final UrlElement getUrlElement(Element article) {
         return new UrlElement(getUrlValue(article));
     }
 
@@ -167,7 +164,7 @@ public abstract class FlexNewsCrawler {
         return getTitleElement(document).getValue();
     }
 
-    public final TitleElement getTitleElement(Document document)  {
+    public final TitleElement getTitleElement(Document document) {
         return new TitleElement(getTitleValue(document));
     }
 
@@ -187,11 +184,11 @@ public abstract class FlexNewsCrawler {
         return DatabaseUtils.getInstance().wrapUp(getContentElement(document).getValue());
     }
 
-    public final ContentElement getContentElement(Document document)  {
+    public final ContentElement getContentElement(Document document) {
         return new ContentElement(getContentValue(document));
     }
 
-    protected abstract String getContentValue(Document document) ;
+    protected abstract String getContentValue(Document document);
 
     public final Set<String> getAuthors(Document document) {
         AuthorsElement authorsElement = getAuthorsElement(document);
@@ -199,7 +196,7 @@ public abstract class FlexNewsCrawler {
             return authorsElement.getAuthors();
         }
         Set<String> result = new HashSet<>();
-        result.add(getSource().getName());
+        result.add(getMySource().getName());
         return result;
     }
 
@@ -225,14 +222,14 @@ public abstract class FlexNewsCrawler {
         return new NewsAuthor(name);
     }
 
-    public final Date getPublishedAt(Document document) throws TimeNotFoundException {
+    public Date getPublishedAt(Document document) throws TimeNotFoundException {
         TimeElement timeElement = getTimeElement(document);
-        timeElement.setLanguage(getSource().getLanguage());
-        return timeElement.getDate();
+        Date date = timeElement.getDate();
+        return (date != null)? date : new Date();
     }
 
-    public final TimeElement getTimeElement(Document document) throws TimeNotFoundException {
-        return new TimeElement(getTimeValue(document), getSource().getLanguage());
+    public TimeElement getTimeElement(Document document) throws TimeNotFoundException {
+        return new TimeElement(getTimeValue(document), getMySource().getLanguage());
     }
 
     protected abstract String getTimeValue(Document document) throws TimeNotFoundException;
@@ -242,19 +239,8 @@ public abstract class FlexNewsCrawler {
     }
 
     private boolean notInBd(String title) {
-        String query = "MATCH (n:NewsArticle) WHERE n.title='" + title + "' RETURN n";
-        NewsArticle t = sessionFactory.getNeo4jSession().queryForObject(NewsArticle.class, query, new HashMap<String, Object>());
+        NewsArticle t = new NewsArticleService().find(title);
         return t == null;
-    }
-    
-    protected NewsSource saveReturnSource(NewsSource source) {
-        String query = "MATCH (s:NewsSource) WHERE s.sourceId='" + source.getSourceId() + "' RETURN s";
-        NewsSource db = sessionFactory.getNeo4jSession().queryForObject(NewsSource.class, query, new HashMap<>());
-        if(db != null) {
-            return db;
-        }
-        sessionFactory.getNeo4jSession().save(source);
-        return sessionFactory.getNeo4jSession().queryForObject(NewsSource.class, query, new HashMap<>());
     }
 
 }

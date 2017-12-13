@@ -5,14 +5,14 @@
  */
 package crawlers;
 
-import crawlers.aNacaoCv.ANacaoCVCrawler;
-import crawlers.aVerdadeOnline.AVerdadeOnlineCrawler;
-import crawlers.iolNews.IOLNewsIsolezweCrawler;
-import crawlers.iolNews.IOLNewsZACrawler;
-import crawlers.jornalDeAngola.JornalDeAngolaCrawler;
-import crawlers.makaAngola.MakaAngolaCrawler;
-import crawlers.telaNon.TelaNonCrawler;
-import crawlers.theBugleZa.TheBugleZACrawler;
+import crawlers.publishers.aNacaoCv.ANacaoCVCrawler;
+import crawlers.publishers.aVerdadeOnline.AVerdadeOnlineCrawler;
+import crawlers.publishers.iolNews.IOLNewsIsolezweCrawler;
+import crawlers.publishers.iolNews.IOLNewsZACrawler;
+import crawlers.publishers.jornalDeAngola.JornalDeAngolaCrawler;
+import crawlers.publishers.makaAngola.MakaAngolaCrawler;
+import crawlers.publishers.telaNon.TelaNonCrawler;
+import crawlers.publishers.theBugleZa.TheBugleZACrawler;
 
 /**
  *

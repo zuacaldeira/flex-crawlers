@@ -8,8 +8,8 @@ package crawlers.dbCompletion;
 import crawlers.Logos;
 import db.news.NewsSource;
 import org.neo4j.ogm.session.Session;
-import utils.FlexCrawlerLogger;
-import utils.Neo4jSessionFactoryForCrawlers;
+import crawlers.utils.FlexCrawlerLogger;
+import crawlers.utils.Neo4jSessionFactoryForCrawlers;
 
 /**
  *
