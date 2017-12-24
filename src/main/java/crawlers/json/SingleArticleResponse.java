@@ -8,8 +8,6 @@ package crawlers.json;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.relationships.AuthoredBy;
-import db.relationships.PublishedBy;
 import java.util.Date;
 import backend.utils.MyDateUtils;
 
@@ -104,13 +102,6 @@ public class SingleArticleResponse {
         article.setLanguage(language);
         article.setCountry(country);
         
-        PublishedBy publishedBy = new PublishedBy();
-        publishedBy.setArticle(article);
-        publishedBy.setSource(source);
-        
-        AuthoredBy authoredBy = new AuthoredBy();
-        authoredBy.setArticle(article);
-        authoredBy.setAuthor(convert2NewsAuthor(source));
         return article;
     }
 

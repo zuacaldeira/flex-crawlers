@@ -24,6 +24,7 @@ import crawlers.json.SingleArticleResponse;
 import crawlers.json.SingleSourceResponse;
 import crawlers.utils.FlexCrawlerLogger;
 import crawlers.utils.Neo4jSessionFactoryForCrawlers;
+import db.news.NewsAuthor;
 
 /**
  *
@@ -49,7 +50,7 @@ public class NewsOrgApiAggregator {
         try {
             loadAllData();
         } catch (final Exception e) {
-            logger.error("Found exception %s", e);
+            logger.error(String.format("Found exception %s", e));
         }
     }
 
@@ -108,34 +109,34 @@ public class NewsOrgApiAggregator {
     }
 
     public String makeApiCall(String url) throws IllegalArgumentException, ApiCallException {
-        if(url == null) {
+        if (url == null) {
             throw new IllegalArgumentException();
         }
         try (InputStream is = new URL(url).openConnection().getInputStream()) {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             return readAllData(rd);
         } catch (Exception e) {
-            logger.error("%s", "Error calling news api..." + e.getMessage());
+            logger.error(String.format("%s", "Error calling news api..." + e.getMessage()));
             throw new ApiCallException(url);
         }
     }
 
     protected void loadAllData() throws IOException, ApiCallException {
-        logger.info("%s", "Start loading data from " + SOURCES_URL);
+        logger.info(String.format("%s", "Start loading data from " + SOURCES_URL));
         String result = makeApiCall(getSourcesQuery(null, null, null));
-        logger.info("%s", "Answer: " + result);
+        logger.info(String.format("%s", "Answer: " + result));
 
         MultipleSourcesResponse sourcesResponse = read(result);
         if ("ok".equals(sourcesResponse.getStatus())) {
             for (SingleSourceResponse ssr : sourcesResponse.getSources()) {
                 NewsSource source = ssr.convert2NewsSource();
-                if(!source.getSourceId().equals("the-hindu")) {
+                if (!source.getSourceId().equals("the-hindu")) {
                     loadAllArticles(source);
                     saveReturnSource(source);
                 }
             }
         }
-        logger.info("%s", "Finished: " + SOURCES_URL);
+        logger.info(String.format("%s", "Finished: " + SOURCES_URL));
     }
 
     public void loadAllArticles(NewsSource source) {
@@ -144,20 +145,22 @@ public class NewsOrgApiAggregator {
 
             MultipleArticlesResponse articlesResponse = objectMapper.readValue(result, MultipleArticlesResponse.class);
             if ("ok".equals(articlesResponse.getStatus())) {
-                logger.info("%s", "Processing source " + source.getName());
+                logger.info(String.format("%s", "Processing source " + source.getName()));
                 for (SingleArticleResponse sar : articlesResponse.getArticles()) {
                     NewsArticle article = sar.convert2NewsArticle(source);
+                    NewsAuthor author = sar.convert2NewsAuthor(source);
                     boolean shouldSave = article.getTitle() != null
                             && !article.getTitle().isEmpty()
                             && notInBd(article.getTitle());
                     if (shouldSave) {
-                        sessionFactory.getNeo4jSession().save(article);
-                        logger.info("%s", "\tSaved new article " + article.getTitle());
+                        source.getAuthors().add(author);
+                        author.getAuthored().add(article);
+                        logger.info(String.format("%s", "\tSaved new article " + article.getTitle()));
                     }
                 }
             }
         } catch (ApiCallException | IOException ex) {
-            logger.error("%s", ex.getClass().getSimpleName());
+            logger.error(String.format("%s", ex.getClass().getSimpleName()));
         }
     }
 

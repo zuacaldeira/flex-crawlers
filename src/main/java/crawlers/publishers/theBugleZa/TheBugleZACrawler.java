@@ -37,7 +37,7 @@ public class TheBugleZACrawler extends FlexNewsCrawler {
         try {
             crawlWebsite(getUrl(), getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown: %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown: %s", e.getMessage()));
         }
     }
 
@@ -113,7 +113,6 @@ public class TheBugleZACrawler extends FlexNewsCrawler {
         }
         Elements images = document.select("div.top > div.image > a > img[src]");
         if (!images.isEmpty() && images.first() != null && !images.first().absUrl("src").isEmpty()) {
-            getLogger().log("%s", "Found image " + images.first().absUrl("src"));
             return images.first().absUrl("src");
         }
         return null;

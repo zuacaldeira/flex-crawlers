@@ -10,9 +10,6 @@ import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.relationships.AuthoredBy;
-import db.relationships.EditedBy;
-import db.relationships.PublishedBy;
 import crawlers.elements.TitleElement;
 import crawlers.elements.UrlElement;
 import crawlers.elements.AuthorsElement;
@@ -28,6 +25,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import backend.services.news.NewsArticleService;
+import backend.services.news.NewsSourceService;
 import backend.utils.DatabaseUtils;
 import crawlers.utils.FlexCrawlerLogger;
 
@@ -46,12 +44,11 @@ public abstract class FlexNewsCrawler {
     public abstract void crawl();
 
     protected void crawlWebsite(String url, NewsSource source) {
-        logger.info("Processing source %s (%s)", source.getName(), url);
+        logger.info(String.format("Processing source %s (%s)", source.getName(), url));
         Document document = openDocument(url);
-        if (document != null) {
+        if (document != null && source != null) {
             crawlUrl(document, source);
-            //new NewsSourceService().save(source);
-            logger.info("Saved and Finished: %s", source.getName());
+            new NewsSourceService().save(source);
         } else {
             logger.info("Document not found");
         }
@@ -69,7 +66,7 @@ public abstract class FlexNewsCrawler {
         try {
             return Jsoup.connect(url).userAgent("Mozilla").get();
         } catch (IOException | NullPointerException | IllegalArgumentException e) {
-            logger.error("Could not open url %s: ", url);
+            logger.error(String.format("Could not open url %s: ", url));
             return null;
         }
     }
@@ -88,24 +85,16 @@ public abstract class FlexNewsCrawler {
 
     protected void importArticle(Element article, NewsSource source) {
         //prettyPrint(article);
-        logger.log("Processing article: %s", article.text());
-
         String articleUrl = getUrl(article);
-        getLogger().log("%s", "Found url " + articleUrl);
         if (articleUrl != null) {
             Document document = openDocument(articleUrl);
             if (document != null) {
                 String title = getTitle(document);                
                 if (title != null) {
-                    getLogger().log("%s", "Found title " + title);
                     String imageUrl = getImageUrl(document);
-                    getLogger().log("%s", "Found image " + imageUrl);
                     String description = getContent(document);
-                    getLogger().log("%s", "Found description " + description);
                     Date date = getPublishedAt(document);
-                    getLogger().log("%s", "Found date " + date);
                     Set<NewsAuthor> authors = getNewsAuthors(getAuthors(document), source);
-                    getLogger().log("%s", "Found authors " + authors);
                     saveArticle(articleUrl, title, imageUrl, description, date, authors, source);
                 }
             }
@@ -123,26 +112,16 @@ public abstract class FlexNewsCrawler {
             newsArticle.setPublishedAt(date);
             newsArticle.setDescription(description);
 
-            PublishedBy publishedBy = new PublishedBy();
-            publishedBy.setArticle(newsArticle);
-            publishedBy.setSource(source);
-
-            AuthoredBy authoredBy = new AuthoredBy();
-            authoredBy.setArticle(newsArticle);
+            
             for (NewsAuthor na : authors) {
                 if (na != null) {
-                    authoredBy.setAuthor(na);
-                    EditedBy editedBy = new EditedBy();
-                    editedBy.setAuthor(na);
-                    editedBy.setSource(source);
+                    source.getAuthors().add(na);
+                    na.getAuthored().add(newsArticle);
                 }
             }
-
-            logger.info("\t Start saving: %s", newsArticle.getUrl());
-            new NewsArticleService().save(newsArticle);
-            logger.info("\t Saved new article: %s", newsArticle.getUrl());
+            logger.info(String.format("\t Saved: %s", title));
         } else {
-            logger.info("\tIgnored old article: %s", title);
+            logger.log(String.format("\tIgnored old article: %s", title));
         }
     }
 

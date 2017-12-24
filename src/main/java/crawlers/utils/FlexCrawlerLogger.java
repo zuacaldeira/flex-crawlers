@@ -5,9 +5,6 @@
  */
 package crawlers.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  *
  * @author zua
@@ -15,22 +12,22 @@ import java.util.Date;
 public class FlexCrawlerLogger {
 
     private boolean isOn = false;
-    private Class<?> aClass;
 
     public FlexCrawlerLogger(Class<?> aClass) {
-        this.aClass = aClass;
     }
 
-    public void log(String format, Object... values) {
-        sout(format, values);
+    public void log(String message) {
+        if (isOn()) {
+            sout(message);
+        }
     }
 
-    public void info(String format, Object... values) {
-        sout(format, values);
+    public void info(String message) {
+        sout(message);
     }
 
-    public void error(String format, Object... values) {
-        serr(format, values);
+    public void error(String message) {
+        serr(message);
     }
 
     public void on() {
@@ -45,31 +42,11 @@ public class FlexCrawlerLogger {
         return isOn;
     }
 
-    private void sout(String format, Object[] values) {
-        String newFormat = "[%s] %25s: " + format;
-        Object[] newValues = new Object[values.length + 2];
-        newValues[0] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
-        newValues[1] = aClass.getSimpleName();
-        int i = 2;
-        for (Object o : values) {
-            newValues[i] = o;
-            i++;
-        }
-        String result = String.format(newFormat, newValues);
-        System.out.println(result);
+    private void sout(String message) {
+        System.out.println(message);
     }
 
-    private void serr(String format, Object[] values) {
-        String newFormat = "[%s] %25s: " + format;
-        Object[] newValues = new Object[values.length + 2];
-        newValues[0] = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
-        newValues[1] = aClass.getSimpleName();
-        int i = 2;
-        for (Object o : values) {
-            newValues[i] = o;
-            i++;
-        }
-        String result = String.format(newFormat, newValues);
-        System.err.println(result);
+    private void serr(String message) {
+        System.err.println(message);
     }
 }

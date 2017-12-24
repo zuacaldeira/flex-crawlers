@@ -5,7 +5,6 @@
  */
 package crawlers.json;
 
-import crawlers.json.SingleArticleResponse;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
 import java.text.ParseException;
@@ -196,7 +195,6 @@ public class SingleArticleResponseTest {
         
         assertEquals("title", instance.convert2NewsArticle(source).getTitle());
         assertEquals("description", instance.convert2NewsArticle(source).getDescription());
-        assertEquals("my-source", instance.convert2NewsArticle(source).getPublishedBy().getSource().getSourceId());
     }
 
     /**

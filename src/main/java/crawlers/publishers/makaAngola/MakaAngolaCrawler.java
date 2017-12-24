@@ -36,7 +36,7 @@ public class MakaAngolaCrawler extends FlexNewsCrawler {
         try {
             crawlWebsite(getUrl(), getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
     }
 

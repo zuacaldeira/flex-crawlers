@@ -5,51 +5,23 @@
  */
 package crawlers.publishers.globalVoices;
 
-import crawlers.Logos;
-import db.news.NewsSource;
-import db.news.Tag;
-import db.relationships.TaggedSourceAs;
-
-
 /**
  *
  * @author zua
  */
-
- public class GlobalVoicesCrawlerUR extends GlobalVoicesAbstractCrawler {
+public class GlobalVoicesCrawlerUR extends GlobalVoicesAbstractCrawler {
 
     public GlobalVoicesCrawlerUR() {
     }
 
     @Override
-    public NewsSource getMySource() {
-        String sourceId = "global-voices-ur";
-        String name = "Global Voices (UR)";
-        String description = "";
-        String url = "https://ur.globalvoices.org";
-        String category = "general";
-        String language = "ur";
-        String country = "IN";
-
-        db.news.NewsSource source = new db.news.NewsSource();
-        TaggedSourceAs tagged = new TaggedSourceAs();
-        tagged.setSource(source);
-        tagged.setTag(new Tag(category));
-        source.setCountry(country);
-        source.setDescription(description);
-        source.setLanguage(language);
-        source.setLogoUrl(Logos.getLogo(sourceId));
-        source.setName(name);
-        source.setSourceId(sourceId);
-        source.setUrl(url);
-
-        source.setLogoUrl(Logos.getLogo("global-voices"));
-        return source;
+    protected String getSourceCountry() {
+        return "IN";
     }
 
     @Override
-    
-    public void crawl() {
-        super.crawl(); //To change body of generated methods, choose Tools | Templates.
+    protected String getSourceLanguage() {
+        return "ur";
     }
+
 }

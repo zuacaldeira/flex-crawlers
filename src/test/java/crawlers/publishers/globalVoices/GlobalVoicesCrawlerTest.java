@@ -44,11 +44,11 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         FlexNewsCrawler crawler = getCrawler();
         NewsSource source = crawler.getMySource();
         assertEquals("global-voices-en", source.getSourceId());
-        assertEquals("Global Voices (EN)", source.getName());
+        assertEquals("Global Voices - en", source.getName());
         assertEquals("en", source.getLanguage());
         assertEquals("GB", source.getCountry());
         assertEquals("https://en.globalvoices.org", source.getUrl());
-        assertEquals("general", source.getCategory().getTag().getTag());
+        assertEquals("community", source.getCategory().getTag().getTag());
         assertEquals(Logos.getLogo("global-voices"), source.getLogoUrl());
     }
 
@@ -57,10 +57,10 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         GlobalVoicesCrawlerEN crawler = (GlobalVoicesCrawlerEN) getCrawler();
         NewsSource source = crawler.getMySource();
         assertEquals("global-voices-" + language, source.getSourceId());
-        assertEquals("Global Voices (" + language.toUpperCase() + ")", source.getName());
+        assertEquals("Global Voices - en", source.getName());
         assertEquals(language, source.getLanguage());
         assertEquals("https://" + language + ".globalvoices.org", source.getUrl());
-        assertEquals("general", source.getCategory().getTag().getTag());
+        assertEquals("community", source.getCategory().getTag().getTag());
         assertEquals(Logos.getLogo("global-voices"), source.getLogoUrl());
     }
 
@@ -69,11 +69,11 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         GlobalVoicesCrawlerEN crawler = (GlobalVoicesCrawlerEN) getCrawler();
         NewsSource source = crawler.getMySource();
         assertEquals("global-voices-" + language, source.getSourceId());
-        assertEquals("Global Voices (" + language.toUpperCase() + ")", source.getName());
+        assertEquals("Global Voices - en", source.getName());
         assertEquals(language, source.getLanguage());
         assertEquals(country, source.getCountry());
         assertEquals("https://" + language + ".globalvoices.org", source.getUrl());
-        assertEquals("general", source.getCategory().getTag().getTag());
+        assertEquals("community", source.getCategory().getTag().getTag());
         assertEquals(Logos.getLogo("global-voices"), source.getLogoUrl());
     }
 

@@ -20,7 +20,6 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-
 public class ANacaoCVCrawler extends FlexNewsCrawler {
 
     public ANacaoCVCrawler() {
@@ -30,8 +29,8 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
     public void crawl() {
         try {
             crawlWebsite(getMySource().getUrl(), getMySource());
-        } catch(Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+        } catch (Exception e) {
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
     }
 
@@ -68,7 +67,6 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         }
         Elements articles = document.select("div.masonry_post");
         if (!articles.isEmpty()) {
-            getLogger().log("%s %d %s", "Found ", articles.size(), " articles");
             return articles;
         }
         throw new ArticlesNotFoundException();
@@ -81,7 +79,6 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         }
         Elements urls = article.select("a.link_title");
         if (!urls.isEmpty() && !urls.attr("href").isEmpty()) {
-            getLogger().log("%s %s", "Found url ", urls.attr("href"));
             return urls.attr("href");
         }
         return null;
@@ -94,7 +91,6 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         }
         Elements titles = document.select("div.single_title > h1");
         if (!titles.isEmpty() && !titles.text().isEmpty()) {
-            getLogger().log("%s %s", "Found Titles ", titles.text());
             return titles.text();
         }
         return null;
@@ -107,7 +103,6 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         }
         Elements images = document.select("div.single_thumbnail > a");
         if (!images.isEmpty() && !images.attr("href").isEmpty()) {
-            getLogger().log("%s %s", "Found Images ", images.attr("href"));
             return images.attr("href");
         }
         return null;
@@ -120,7 +115,6 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         }
         Elements contents = document.select("#single_excerpt_post_title");
         if (!contents.isEmpty() && !contents.text().isEmpty()) {
-            getLogger().log("%s %s", "Found content ", contents.text());
             return contents.text();
         }
         return null;
@@ -133,25 +127,21 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         }
         Elements paragraphs = document.select("div.single_text > p");
         if (!paragraphs.isEmpty() && paragraphs.last() != null && !paragraphs.last().text().isEmpty()) {
-            getLogger().log("%s %s", "Found author", paragraphs.last().text());
             return paragraphs.last().text();
         }
         return getMySource().getName();
     }
 
     @Override
-    protected String getTimeValue(Document document)  {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
         Elements times = document.select("div.post_meta_line div.post_time");
         if (!times.isEmpty() && times.first() != null && !times.first().text().isEmpty()) {
-            getLogger().log("%s %s", "Found time ", times.first().text());
             return times.first().text();
         }
         return null;
     }
-    
-    
 
 }

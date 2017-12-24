@@ -25,7 +25,7 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
         try {
             crawlWebsite(getMySource().getUrl(), getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getUrlValue(Element article)  {
+    protected String getUrlValue(Element article) {
         // Check argument
         if (article == null) {
             throw new IllegalArgumentException("Article cannot be null");
@@ -82,7 +82,7 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getContentValue(Document document){
+    protected String getContentValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }
@@ -106,7 +106,7 @@ public abstract class AbstactIOLNewsCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getTimeValue(Document document)  {
+    protected String getTimeValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }

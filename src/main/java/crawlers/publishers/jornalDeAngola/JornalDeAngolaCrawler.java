@@ -36,57 +36,57 @@ public class JornalDeAngolaCrawler extends FlexNewsCrawler {
         try {
             crawlWebsite(getUrl(), getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/cultura", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/desporto", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/economia", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/gente", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/mundo", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/opiniao", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/politica", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/provincias", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/reportagem", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/sociedade", getMySource());
         } catch (Throwable e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
 
     }
@@ -201,7 +201,7 @@ public class JornalDeAngolaCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected String getContentValue(Document document)  {
+    protected String getContentValue(Document document) {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }

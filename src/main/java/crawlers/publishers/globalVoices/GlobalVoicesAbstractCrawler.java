@@ -6,8 +6,12 @@
 package crawlers.publishers.globalVoices;
 
 import crawlers.FlexNewsCrawler;
+import crawlers.Logos;
 import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import crawlers.publishers.exceptions.TimeNotFoundException;
+import db.news.NewsSource;
+import db.news.Tag;
+import db.relationships.TaggedSourceAs;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -28,11 +32,34 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    public void crawl() {
+    public final NewsSource getMySource() {
+        String sourceId = "global-voices";
+        String name = "Global Voices";
+        String description = "";
+        String url = "https://globalvoices.org";
+        String category = "community";
+
+        NewsSource source = new NewsSource();
+        TaggedSourceAs tagged = new TaggedSourceAs();
+        tagged.setSource(source);
+        tagged.setTag(new Tag(category));
+        source.setCountry(getSourceCountry());
+        source.setDescription(description);
+        source.setLanguage(getSourceLanguage());
+        source.setName(name + " - " + source.getLanguage());
+        source.setSourceId(sourceId + "-" + source.getLanguage());
+        source.setUrl("https://" + getSubdomain() + ".globalvoices.org");
+
+        source.setLogoUrl(Logos.getLogo("global-voices"));
+        return source;
+    }
+
+    @Override
+    public final void crawl() {
         try {
             crawlWebsite(getMySource().getUrl(), getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
     }
 
@@ -123,8 +150,6 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
             String timeValue = getTimeValue(document).trim();
             //getLogger().log("##########################A %s", timeValue);
             Date date = DateUtils.parseDate(timeValue, new String[]{"yyyy-MM-dd"});
-
-            getLogger().log("##########################B %s", date);
             return date;
         } catch (ParseException ex) {
             Logger.getLogger(GlobalVoicesAbstractCrawler.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,5 +194,13 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
             }
         }
         return null;
+    }
+
+    protected abstract String getSourceCountry();
+
+    protected abstract String getSourceLanguage();
+
+    protected String getSubdomain() {
+        return getSourceLanguage();
     }
 }

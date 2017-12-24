@@ -37,52 +37,52 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
         try {
             crawlWebsite(getUrl(), getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/africa", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/democracia", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/economia", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/global-voices", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/internacional", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/nacional", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/tecnologias", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
         try {
             crawlWebsite(getUrl() + "/destaques/tema-de-fundo", getMySource());
         } catch (Exception e) {
-            getLogger().error("Exception thrown %s", e.getMessage());
+            getLogger().error(String.format("Exception thrown %s", e.getMessage()));
         }
     }
 

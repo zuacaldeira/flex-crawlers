@@ -26,17 +26,17 @@ public class LogoCompletionWorker {
             Iterable<NewsSource> sources = findAllSources();
             for (NewsSource s : sources) {
                 if (s.getLogoUrl() == null || s.getLogoUrl().isEmpty()) {
-                    logger.info("FFFFFFFFFF Found %s without logo", s.getSourceId());
+                    logger.info(String.format("FFFFFFFFFF Found %s without logo", s.getSourceId()));
                     s.setLogoUrl(Logos.getLogo(s.getSourceId()));
                     try {
                         saveSource(s);
                     } catch (Exception e) {
-                        logger.error("Found Exception %s", e);
+                        logger.error(String.format("Found Exception %s", e));
                     }
                 }
             }
         } catch (Exception e) {
-            logger.error("Found Exception %s", e);
+            logger.error(String.format("Found Exception %s", e));
         }
     }
 
