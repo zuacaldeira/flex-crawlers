@@ -44,7 +44,7 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         FlexNewsCrawler crawler = getCrawler();
         NewsSource source = crawler.getMySource();
         assertEquals("global-voices-en", source.getSourceId());
-        assertEquals("Global Voices - en", source.getName());
+        assertEquals("Global Voices (EN)", source.getName());
         assertEquals("en", source.getLanguage());
         assertEquals("GB", source.getCountry());
         assertEquals("https://en.globalvoices.org", source.getUrl());
@@ -57,7 +57,7 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         GlobalVoicesCrawlerEN crawler = (GlobalVoicesCrawlerEN) getCrawler();
         NewsSource source = crawler.getMySource();
         assertEquals("global-voices-" + language, source.getSourceId());
-        assertEquals("Global Voices - en", source.getName());
+        assertEquals("Global Voices (EN)", source.getName());
         assertEquals(language, source.getLanguage());
         assertEquals("https://" + language + ".globalvoices.org", source.getUrl());
         assertEquals("community", source.getCategory().getTag().getTag());
@@ -69,7 +69,7 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         GlobalVoicesCrawlerEN crawler = (GlobalVoicesCrawlerEN) getCrawler();
         NewsSource source = crawler.getMySource();
         assertEquals("global-voices-" + language, source.getSourceId());
-        assertEquals("Global Voices - en", source.getName());
+        assertEquals("Global Voices (EN)", source.getName());
         assertEquals(language, source.getLanguage());
         assertEquals(country, source.getCountry());
         assertEquals("https://" + language + ".globalvoices.org", source.getUrl());

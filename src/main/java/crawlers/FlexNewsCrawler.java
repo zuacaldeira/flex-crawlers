@@ -111,6 +111,7 @@ public abstract class FlexNewsCrawler {
             newsArticle.setImageUrl(imageUrl);
             newsArticle.setPublishedAt(date);
             newsArticle.setDescription(description);
+            newsArticle.setSourceId(source.getSourceId());
 
             
             for (NewsAuthor na : authors) {

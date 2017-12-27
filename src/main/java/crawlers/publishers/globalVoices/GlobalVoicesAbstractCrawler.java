@@ -46,7 +46,7 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
         source.setCountry(getSourceCountry());
         source.setDescription(description);
         source.setLanguage(getSourceLanguage());
-        source.setName(name + " - " + source.getLanguage());
+        source.setName(name + " (" + source.getLanguage().toUpperCase() + ")");
         source.setSourceId(sourceId + "-" + source.getLanguage());
         source.setUrl("https://" + getSubdomain() + ".globalvoices.org");
 

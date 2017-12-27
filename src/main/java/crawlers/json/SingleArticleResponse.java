@@ -101,7 +101,7 @@ public class SingleArticleResponse {
         article.setPublishedAt(date);
         article.setLanguage(language);
         article.setCountry(country);
-        
+        article.setSourceId(source.getSourceId());
         return article;
     }
 
