@@ -69,7 +69,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         if (!articles.isEmpty()) {
             return articles;
         }
-        throw new ArticlesNotFoundException();
+        return null;
     }
 
     @Override

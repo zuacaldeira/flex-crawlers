@@ -194,7 +194,7 @@ public abstract class AbstractCrawlerTest {
 
     @Test(expectedExceptions = ArticlesNotFoundException.class)
     public void testEmptygetArticles() throws ArticlesNotFoundException {
-        getCrawler().getArticles(new Document(""));
+        Elements articles = getCrawler().getArticles(new Document(""));
     }
 
     @Test

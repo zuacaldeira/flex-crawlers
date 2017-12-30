@@ -23,7 +23,7 @@ public class TimeElement extends ArticleElement {
     public Date getDate() throws TimeNotFoundException {
         try {
             return MyDateUtils.parseDate(getValue());
-        } catch (ParseException | IllegalArgumentException ex) {
+        } catch (Exception ex) {
             return null;
         }
     }
