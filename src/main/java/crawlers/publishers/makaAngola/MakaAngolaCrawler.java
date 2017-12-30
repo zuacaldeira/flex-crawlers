@@ -67,7 +67,7 @@ public class MakaAngolaCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected Elements getArticles(Document document) throws ArticlesNotFoundException {
+    public Elements getArticles(Document document) throws ArticlesNotFoundException {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }

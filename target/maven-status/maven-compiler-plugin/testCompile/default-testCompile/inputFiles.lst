@@ -13,6 +13,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/MultipleArticlesResponseTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/ContentNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/theBugleZa/TheBugleZACrawlerTestIT.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/dn/DiarioDeNoticiasCrawlerNGTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/elements/ImageUrlElementTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/elements/TitleElementTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/TitleNotFoundExceptionTest.java
@@ -26,6 +27,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/theBugleZa/TheBugleZACrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/LogosTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/SingleArticleResponseTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/dn/DiarioDeNoticiasCrawlerNGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/JsoupElementNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/jornalDeAngola/JornalDeAngolaCrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/AbstractCrawlerTest.java

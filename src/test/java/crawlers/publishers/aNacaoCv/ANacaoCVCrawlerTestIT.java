@@ -5,12 +5,9 @@
  */
 package crawlers.publishers.aNacaoCv;
 
-import crawlers.publishers.aNacaoCv.ANacaoCVCrawler;
 import crawlers.AbstractCrawlerTestIT;
 import crawlers.FlexNewsCrawler;
-import crawlers.publishers.exceptions.ContentNotFoundException;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Ignore;
 
 /**
  *

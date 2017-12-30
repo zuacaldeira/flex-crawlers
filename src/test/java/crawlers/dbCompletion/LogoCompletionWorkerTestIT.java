@@ -6,10 +6,10 @@
 package crawlers.dbCompletion;
 
 import db.news.NewsSource;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
 import backend.services.news.NewsSourceService;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import org.testng.annotations.Test;
 
 /**
  *

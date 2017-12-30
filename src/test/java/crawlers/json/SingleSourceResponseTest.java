@@ -5,12 +5,12 @@
  */
 package crawlers.json;
 
-import crawlers.json.SingleSourceResponse;
 import db.news.NewsSource;
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.Test;
 
 /**
  *

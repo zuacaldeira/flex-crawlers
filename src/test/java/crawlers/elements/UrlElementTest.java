@@ -5,7 +5,6 @@
  */
 package crawlers.elements;
 
-import crawlers.elements.UrlElement;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

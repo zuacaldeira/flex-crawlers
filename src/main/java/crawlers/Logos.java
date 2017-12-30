@@ -97,7 +97,8 @@ public final class Logos {
         logos.put("iol-news-za", "https://pbs.twimg.com/profile_images/824593266658213893/L5_ynJNM_400x400.jpg");
         logos.put("a-nacao", "http://anacao.cv/wp-content/uploads/2014/10/Logo-A-Na%C3%A7%C3%A3o-300x102.png");
         logos.put("tela-non", "https://pbs.twimg.com/profile_images/458228724802928641/ZNA1IeUv_400x400.png");
-    }
+        logos.put("diario-de-noticias-pt", "https://pbs.twimg.com/profile_images/1618752141/dn_avatar_400x400.jpg");
+        }
 
     public static String getLogo(String sourceId) {
         if(sourceId == null) {

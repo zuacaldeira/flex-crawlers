@@ -5,13 +5,12 @@
  */
 package crawlers.publishers.aNacaoCv;
 
-import crawlers.publishers.aNacaoCv.ANacaoCVCrawler;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import db.news.NewsSource;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Test;
 
 /**
  *
@@ -32,7 +31,7 @@ public class ANacaoCVCrawlerTest extends AbstractCrawlerTest {
         assertEquals("A Nação", source.getName());
         assertEquals("pt", source.getLanguage());
         assertEquals("CV", source.getCountry());
-        assertEquals("http://anacao.cv/", source.getUrl());
+        assertEquals("http://anacao.cv", source.getUrl());
         assertEquals("geral", source.getCategory().getTag().getTag());
         assertEquals(Logos.getLogo("a-nacao"), source.getLogoUrl());
     }

@@ -1,3 +1,4 @@
+crawlers/publishers/dn/DiarioDeNoticiasCrawler.class
 crawlers/publishers/globalVoices/GlobalVoicesCrawlerSQ.class
 crawlers/publishers/exceptions/ArticlesNotFoundException.class
 crawlers/publishers/exceptions/UrlNotFoundException.class

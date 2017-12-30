@@ -5,7 +5,6 @@
  */
 package crawlers.publishers.aVerdadeOnline;
 
-import crawlers.publishers.aVerdadeOnline.AVerdadeOnlineCrawler;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
@@ -15,10 +14,10 @@ import crawlers.publishers.exceptions.TitleNotFoundException;
 import db.news.NewsSource;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
+import org.testng.annotations.Test;
 
 /**
  *

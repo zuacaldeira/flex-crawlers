@@ -5,11 +5,8 @@
  */
 package crawlers.publishers.theBugleZa;
 
-import crawlers.publishers.theBugleZa.TheBugleZACrawler;
 import crawlers.AbstractCrawlerTestIT;
 import crawlers.FlexNewsCrawler;
-import crawlers.publishers.exceptions.AuthorsNotFoundException;
-import org.junit.Test;
 
 /**
  *

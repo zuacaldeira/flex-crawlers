@@ -52,7 +52,7 @@ public class TelaNonCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected Elements getArticles(Document document) throws crawlers.publishers.exceptions.ArticlesNotFoundException {
+    public Elements getArticles(Document document) throws crawlers.publishers.exceptions.ArticlesNotFoundException {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null.");
         }

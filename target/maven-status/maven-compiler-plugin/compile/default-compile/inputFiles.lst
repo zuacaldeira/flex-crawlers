@@ -42,6 +42,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/elements/TitleElement.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerFR.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerSR.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/dn/DiarioDeNoticiasCrawler.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerHE.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerUR.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesAbstractCrawler.java

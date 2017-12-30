@@ -5,7 +5,6 @@
  */
 package crawlers.publishers.theBugleZa;
 
-import crawlers.publishers.theBugleZa.TheBugleZACrawler;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
@@ -14,9 +13,9 @@ import crawlers.publishers.exceptions.AuthorsNotFoundException;
 import crawlers.publishers.exceptions.DocumentNotFoundException;
 import db.news.NewsSource;
 import org.jsoup.nodes.Document;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.Test;
 
 /**
  *

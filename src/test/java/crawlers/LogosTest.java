@@ -5,8 +5,10 @@
  */
 package crawlers;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import org.testng.annotations.Test;
+
 
 /**
  *

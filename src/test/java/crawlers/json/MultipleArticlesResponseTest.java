@@ -5,11 +5,10 @@
  */
 package crawlers.json;
 
-import crawlers.json.MultipleArticlesResponse;
-import crawlers.json.SingleArticleResponse;
 import java.util.LinkedList;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.Test;
 
 /**
  *

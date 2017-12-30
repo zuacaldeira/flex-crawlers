@@ -7,8 +7,8 @@ package crawlers;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Test;
 
 /**
  *

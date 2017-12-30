@@ -5,7 +5,6 @@
  */
 package crawlers.publishers.jornalDeAngola;
 
-import crawlers.publishers.jornalDeAngola.JornalDeAngolaCrawler;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
@@ -13,8 +12,8 @@ import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import crawlers.publishers.exceptions.AuthorsNotFoundException;
 import crawlers.publishers.exceptions.DocumentNotFoundException;
 import db.news.NewsSource;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Test;
 
 /**
  *

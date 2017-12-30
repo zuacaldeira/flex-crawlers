@@ -5,11 +5,8 @@
  */
 package crawlers.publishers.iolNews;
 
-import crawlers.publishers.iolNews.IOLNewsIsolezweCrawler;
 import crawlers.AbstractCrawlerTestIT;
 import crawlers.FlexNewsCrawler;
-import crawlers.publishers.exceptions.ContentNotFoundException;
-import org.junit.Test;
 
 /**
  *

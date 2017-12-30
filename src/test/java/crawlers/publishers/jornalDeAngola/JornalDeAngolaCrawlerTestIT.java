@@ -5,10 +5,9 @@
  */
 package crawlers.publishers.jornalDeAngola;
 
-import crawlers.publishers.jornalDeAngola.JornalDeAngolaCrawler;
 import crawlers.AbstractCrawlerTestIT;
 import crawlers.FlexNewsCrawler;
-import org.junit.Ignore;
+import org.testng.annotations.Ignore;
 
 /**
  *

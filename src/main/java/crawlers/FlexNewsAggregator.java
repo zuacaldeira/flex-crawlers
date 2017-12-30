@@ -7,6 +7,7 @@ package crawlers;
 
 import crawlers.publishers.aNacaoCv.ANacaoCVCrawler;
 import crawlers.publishers.aVerdadeOnline.AVerdadeOnlineCrawler;
+import crawlers.publishers.dn.DiarioDeNoticiasCrawler;
 import crawlers.publishers.iolNews.IOLNewsIsolezweCrawler;
 import crawlers.publishers.iolNews.IOLNewsZACrawler;
 import crawlers.publishers.jornalDeAngola.JornalDeAngolaCrawler;
@@ -18,8 +19,6 @@ import crawlers.publishers.theBugleZa.TheBugleZACrawler;
  *
  * @author zua
  */
-
-
 public class FlexNewsAggregator {
 
     // Add business logic below. (Right-click in editor and choose
@@ -29,13 +28,14 @@ public class FlexNewsAggregator {
             // Our crawlers and aggregators of crawlers 
             new ANacaoCVCrawler().crawl();
             new AVerdadeOnlineCrawler().crawl();
+            new DiarioDeNoticiasCrawler().crawl();
             new IOLNewsIsolezweCrawler().crawl();
             new IOLNewsZACrawler().crawl();
             new JornalDeAngolaCrawler().crawl();
             new MakaAngolaCrawler().crawl();
             new TelaNonCrawler().crawl();
             new TheBugleZACrawler().crawl();
-            //new DBCompletionCrawler().crawl();
-        } catch(Throwable t) {}
+        } catch (Throwable t) {
+        }
     }
 }

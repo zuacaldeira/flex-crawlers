@@ -8,6 +8,7 @@ package crawlers.elements;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import java.util.Date;
 import backend.utils.MyDateUtils;
+import java.text.ParseException;
 
 /**
  *
@@ -15,23 +16,14 @@ import backend.utils.MyDateUtils;
  */
 public class TimeElement extends ArticleElement {
 
-    private final String language;
-
     public TimeElement(String value, String language) {
         super(value);
-        this.language = language;
     }
 
     public Date getDate() throws TimeNotFoundException {
         try {
-            if (language != null && getValue() != null) {
-                return MyDateUtils.parseDate(getValue(), language);
-            } else if (getValue() != null) {
-                return MyDateUtils.parseDate(getValue());
-            } else {
-                return null;
-            }
-        } catch (Exception ex) {
+            return MyDateUtils.parseDate(getValue());
+        } catch (ParseException | IllegalArgumentException ex) {
             return null;
         }
     }

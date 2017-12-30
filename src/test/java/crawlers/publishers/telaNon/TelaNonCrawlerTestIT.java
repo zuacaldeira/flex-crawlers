@@ -5,11 +5,10 @@
  */
 package crawlers.publishers.telaNon;
 
-import crawlers.publishers.telaNon.TelaNonCrawler;
 import crawlers.AbstractCrawlerTestIT;
 import crawlers.FlexNewsCrawler;
 import crawlers.publishers.exceptions.DocumentNotFoundException;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /**
  *
@@ -26,7 +25,7 @@ public class TelaNonCrawlerTestIT extends AbstractCrawlerTestIT {
     }
     
     @Override
-    @Test(expected=DocumentNotFoundException.class)
+    @Test(expectedExceptions = DocumentNotFoundException.class)
     public void testImportArticle() {
         super.testImportArticle();
     }

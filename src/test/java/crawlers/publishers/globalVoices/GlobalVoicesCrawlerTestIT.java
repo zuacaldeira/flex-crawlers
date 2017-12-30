@@ -5,7 +5,6 @@
  */
 package crawlers.publishers.globalVoices;
 
-import crawlers.publishers.globalVoices.GlobalVoicesCrawlerEN;
 import crawlers.AbstractCrawlerTestIT;
 import crawlers.FlexNewsCrawler;
 

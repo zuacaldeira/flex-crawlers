@@ -5,7 +5,6 @@
  */
 package crawlers.elements;
 
-import crawlers.elements.TimeElement;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
@@ -45,14 +44,14 @@ public class TimeElementTest {
      */
     @Test(dataProvider = "timeData")
     public void testGetDate(String dateString, String language) throws TimeNotFoundException {
-        System.out.println("getDate");
+        System.out.println("getDate()");
         TimeElement instance = new TimeElement(dateString, language);
         assertNotNull(instance.getDate());
     }
 
     @Test(dataProvider = "timeFailData")
     public void testGetDateFail(String dateString, String language) throws TimeNotFoundException {
-        System.out.println("getDate");
+        System.out.println("getDateFail()");
         TimeElement instance = new TimeElement(dateString, language);
         assertNull(instance.getDate());
     }

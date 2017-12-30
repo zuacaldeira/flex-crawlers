@@ -39,7 +39,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         String sourceId = "a-nacao";
         String name = "A Nação";
         String description = "";
-        String url = "http://anacao.cv/";
+        String url = "http://anacao.cv";
         String category = "geral";
         String language = "pt";
         String country = "CV";
@@ -61,7 +61,7 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
     }
 
     @Override
-    protected Elements getArticles(Document document) throws ArticlesNotFoundException {
+    public Elements getArticles(Document document) throws ArticlesNotFoundException {
         if (document == null) {
             throw new IllegalArgumentException("Document cannot be null");
         }

@@ -5,7 +5,6 @@
  */
 package crawlers.publishers.telaNon;
 
-import crawlers.publishers.telaNon.TelaNonCrawler;
 import crawlers.AbstractCrawlerTest;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
@@ -14,9 +13,9 @@ import crawlers.publishers.exceptions.AuthorsNotFoundException;
 import crawlers.publishers.exceptions.DocumentNotFoundException;
 import crawlers.publishers.exceptions.JsoupElementNotFoundException;
 import db.news.NewsSource;
-import static org.junit.Assert.assertEquals;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Test;
 
 /**
  *
@@ -49,7 +48,7 @@ public class TelaNonCrawlerTest extends AbstractCrawlerTest {
     }
 
     @Override
-    @Test(expected = JsoupElementNotFoundException.class)
+    @Test(expectedExceptions = JsoupElementNotFoundException.class)
     public void testGetAuthors() throws AuthorsNotFoundException, DocumentNotFoundException, ArticlesNotFoundException {
         super.testGetAuthors();
     }

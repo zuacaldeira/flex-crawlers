@@ -5,10 +5,9 @@
  */
 package crawlers.publishers.exceptions;
 
-import crawlers.publishers.exceptions.UrlNotFoundException;
-import crawlers.publishers.exceptions.JsoupElementNotFoundException;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.Test;
 
 /**
  *

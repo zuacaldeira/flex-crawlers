@@ -48,7 +48,6 @@ public abstract class FlexNewsCrawler {
         Document document = openDocument(url);
         if (document != null && source != null) {
             crawlUrl(document, source);
-            new NewsSourceService().save(source);
         } else {
             logger.info("Document not found");
         }
@@ -62,9 +61,9 @@ public abstract class FlexNewsCrawler {
      * @throws crawlers.publishers.exceptions.DocumentNotFoundException It no corresponding
      * document exists for the given url.
      */
-    protected Document openDocument(String url) {
+    public Document openDocument(String url) {
         try {
-            return Jsoup.connect(url).userAgent("Mozilla").get();
+            return Jsoup.connect(url).get();
         } catch (IOException | NullPointerException | IllegalArgumentException e) {
             logger.error(String.format("Could not open url %s: ", url));
             return null;
@@ -120,6 +119,7 @@ public abstract class FlexNewsCrawler {
                     na.getAuthored().add(newsArticle);
                 }
             }
+            new NewsSourceService().save(source);
             logger.info(String.format("\t Saved: %s", title));
         } else {
             logger.log(String.format("\tIgnored old article: %s", title));
@@ -128,7 +128,7 @@ public abstract class FlexNewsCrawler {
 
     public abstract NewsSource getMySource();
 
-    protected abstract Elements getArticles(Document document) throws ArticlesNotFoundException;
+    public abstract Elements getArticles(Document document) throws ArticlesNotFoundException;
 
     public final String getUrl(Element article) {
         return getUrlElement(article).getValue();
@@ -219,7 +219,7 @@ public abstract class FlexNewsCrawler {
     }
 
     private boolean notInBd(String title) {
-        NewsArticle t = new NewsArticleService().find(title);
+        NewsArticle t = new NewsArticleService().find(title.trim());
         return t == null;
     }
 
