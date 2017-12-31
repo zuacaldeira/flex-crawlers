@@ -102,6 +102,7 @@ public class SingleArticleResponse {
         article.setLanguage(language);
         article.setCountry(country);
         article.setSourceId(source.getSourceId());
+        article.getTags().add(source.getCategory());
         return article;
     }
 

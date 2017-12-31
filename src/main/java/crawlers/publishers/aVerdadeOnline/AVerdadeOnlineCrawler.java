@@ -11,7 +11,6 @@ import crawlers.Logos;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import db.news.NewsSource;
 import db.news.Tag;
-import db.relationships.TaggedSourceAs;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -97,9 +96,7 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
         String country = "MZ";
 
         NewsSource source = new NewsSource();
-        TaggedSourceAs tagged = new TaggedSourceAs();
-        tagged.setSource(source);
-        tagged.setTag(new Tag(category));
+        source.setCategory(new Tag(category));
         source.setCountry(country);
         source.setDescription(description);
         source.setLanguage(language);

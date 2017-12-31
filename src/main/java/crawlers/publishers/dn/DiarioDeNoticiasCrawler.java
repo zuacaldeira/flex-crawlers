@@ -11,7 +11,6 @@ import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import db.news.NewsSource;
 import db.news.Tag;
-import db.relationships.TaggedSourceAs;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -36,11 +35,7 @@ public class DiarioDeNoticiasCrawler extends FlexNewsCrawler {
         source.setLanguage("pt");
         source.setLogoUrl(Logos.getLogo(source.getSourceId()));
         source.setUrl("https://www.dn.pt");
-
-        TaggedSourceAs tag = new TaggedSourceAs();
-        tag.setSource(source);
-        tag.setTag(new Tag("geral"));
-        source.setCategory(tag);
+        source.setCategory(new Tag("geral"));
         
         return source;
     }

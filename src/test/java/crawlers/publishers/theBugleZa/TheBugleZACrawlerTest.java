@@ -42,10 +42,10 @@ public class TheBugleZACrawlerTest extends AbstractCrawlerTest {
         assertEquals("en", source.getLanguage());
         assertEquals("ZA", source.getCountry());
         assertEquals("http://thebugle.co.za/home.php", source.getUrl());
-        assertEquals("lifestyle", source.getCategory().getTag().getTag());
+        assertEquals("lifestyle", source.getCategory().getTag());
         assertEquals(Logos.getLogo("the-bugle"), source.getLogoUrl());
     }
-    
+
     @Override
     @Test
     public void testGetAuthors() throws AuthorsNotFoundException, DocumentNotFoundException, ArticlesNotFoundException {

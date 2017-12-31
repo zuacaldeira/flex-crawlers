@@ -10,7 +10,6 @@ import crawlers.Logos;
 import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import db.news.NewsSource;
 import db.news.Tag;
-import db.relationships.TaggedSourceAs;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -102,9 +101,7 @@ public class JornalDeAngolaCrawler extends FlexNewsCrawler {
         String country = "AO";
 
         NewsSource source = new NewsSource();
-        TaggedSourceAs tagged = new TaggedSourceAs();
-        tagged.setSource(source);
-        tagged.setTag(new Tag(category));
+        source.setCategory(new Tag(category));
         source.setCountry(country);
         source.setDescription(description);
         source.setLanguage(language);

@@ -41,7 +41,7 @@ public class ANacaoCVCrawlerTest extends AbstractCrawlerTest {
         assertEquals("pt", source.getLanguage());
         assertEquals("CV", source.getCountry());
         assertEquals("http://anacao.cv", source.getUrl());
-        assertEquals("geral", source.getCategory().getTag().getTag());
+        assertEquals("geral", source.getCategory().getTag());
         assertEquals(Logos.getLogo("a-nacao"), source.getLogoUrl());
     }
 
@@ -62,7 +62,7 @@ public class ANacaoCVCrawlerTest extends AbstractCrawlerTest {
             assertNull(time.getDate());
         }
     }
-    
+
     @Test
     @Override
     public void testGetTitle() throws TitleNotFoundException, DocumentNotFoundException, ArticlesNotFoundException {
@@ -74,12 +74,10 @@ public class ANacaoCVCrawlerTest extends AbstractCrawlerTest {
             //assertNotNull(title);
         }
     }
-    
+
     @Test
     public void testEmptygetArticles() throws ArticlesNotFoundException {
         Elements articles = getCrawler().getArticles(new Document(""));
     }
-    
-    
 
 }

@@ -11,7 +11,6 @@ import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import db.news.NewsSource;
 import db.news.Tag;
-import db.relationships.TaggedSourceAs;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -40,9 +39,7 @@ public abstract class GlobalVoicesAbstractCrawler extends FlexNewsCrawler {
         String category = "community";
 
         NewsSource source = new NewsSource();
-        TaggedSourceAs tagged = new TaggedSourceAs();
-        tagged.setSource(source);
-        tagged.setTag(new Tag(category));
+        source.setCategory(new Tag(category));
         source.setCountry(getSourceCountry());
         source.setDescription(description);
         source.setLanguage(getSourceLanguage());

@@ -58,8 +58,8 @@ public abstract class FlexNewsCrawler {
      *
      * @param url A web address url, starting with http(s).
      * @return The top document representing the content of web address.
-     * @throws crawlers.publishers.exceptions.DocumentNotFoundException It no corresponding
-     * document exists for the given url.
+     * @throws crawlers.publishers.exceptions.DocumentNotFoundException It no
+     * corresponding document exists for the given url.
      */
     public Document openDocument(String url) {
         try {
@@ -76,7 +76,7 @@ public abstract class FlexNewsCrawler {
             Element article = articles.get(i);
             try {
                 importArticle(article, source);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
@@ -88,7 +88,7 @@ public abstract class FlexNewsCrawler {
         if (articleUrl != null) {
             Document document = openDocument(articleUrl);
             if (document != null) {
-                String title = getTitle(document);                
+                String title = getTitle(document);
                 if (title != null) {
                     String imageUrl = getImageUrl(document);
                     String description = getContent(document);
@@ -111,8 +111,8 @@ public abstract class FlexNewsCrawler {
             newsArticle.setPublishedAt(date);
             newsArticle.setDescription(description);
             newsArticle.setSourceId(source.getSourceId());
+            newsArticle.getTags().add(source.getCategory());
 
-            
             for (NewsAuthor na : authors) {
                 if (na != null) {
                     source.getAuthors().add(na);
@@ -205,7 +205,7 @@ public abstract class FlexNewsCrawler {
     public Date getPublishedAt(Document document) throws TimeNotFoundException {
         TimeElement timeElement = getTimeElement(document);
         Date date = timeElement.getDate();
-        return (date != null)? date : new Date();
+        return (date != null) ? date : new Date();
     }
 
     public TimeElement getTimeElement(Document document) throws TimeNotFoundException {
