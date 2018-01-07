@@ -5,12 +5,17 @@
  */
 package crawlers.publishers.aVerdadeOnline;
 
+import backend.utils.MyDateUtils;
 import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import db.news.NewsSource;
 import db.news.Tag;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -243,4 +248,19 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
         }
         return null;
     }
+
+    @Override
+    public Date getPublishedAt(Document document) throws TimeNotFoundException {
+        String timeValue = getTimeValue(document);
+        Date date = null;
+        try {
+            date = MyDateUtils.parseDate(timeValue, "pt");
+        } catch (ParseException ex) {
+            Logger.getLogger(AVerdadeOnlineCrawler.class.getName()).log(Level.SEVERE, null, ex);
+            date = new Date();
+        }
+        return date;
+    }
+    
+    
 }

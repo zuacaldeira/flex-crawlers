@@ -26,8 +26,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import backend.services.news.NewsArticleService;
 import backend.services.news.NewsSourceService;
-import backend.utils.DatabaseUtils;
 import crawlers.utils.FlexCrawlerLogger;
+import java.net.URLEncoder;
 
 /**
  *
@@ -161,7 +161,7 @@ public abstract class FlexNewsCrawler {
     protected abstract String getImageUrlValue(Document document);
 
     public final String getContent(Document document) {
-        return DatabaseUtils.getInstance().wrapUp(getContentElement(document).getValue());
+        return getContentElement(document).getValue();
     }
 
     public final ContentElement getContentElement(Document document) {

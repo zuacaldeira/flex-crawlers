@@ -123,10 +123,10 @@ public class DiarioDeNoticiasCrawlerNGTest {
         assertTrue(found);
     }
 
-    private String transform(String date) {
-        System.out.println("CONTAINS WHITESPACE " + date.contains("\u00a0"));
-        System.out.println("BEFORE " + date);
-        String result = date.replace("\u00a0", "T");
+    private String transform(String string) {
+        System.out.println("CONTAINS WHITESPACE " + string.contains("\u00a0"));
+        System.out.println("BEFORE " + string);
+        String result = string.replace("\u00a0", "T");
         System.out.println("AFTER " + result);
         return result;
     }

@@ -9,6 +9,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/elements/TimeElementTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/iolNews/IOLNewsIsolezweCrawlerTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/SingleSourceResponseTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/aVerdadeOnline/AVerdadeOnlineDateExtractorNGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/MultipleArticlesResponseTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/ContentNotFoundExceptionTest.java
