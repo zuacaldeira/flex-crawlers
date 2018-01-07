@@ -5,10 +5,9 @@
  */
 package crawlers.utils;
 
+import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
-
-
 
 /**
  *
@@ -19,21 +18,24 @@ public class Neo4jSessionFactoryForCrawlers {
     private static Neo4jSessionFactoryForCrawlers factory;
 
     private final SessionFactory sessionFactory;
-    
+
     private Neo4jSessionFactoryForCrawlers() {
         // We pass it as the first argument to a SessionFactory instance
-        sessionFactory = new SessionFactory("db");
+        Configuration configuration = new Configuration();
+        configuration.driverConfiguration().setURI(System.getenv("GRAPHENEDB_URL"));
+        configuration.autoIndexConfiguration().setAutoIndex("assert");
+        sessionFactory = new SessionFactory(configuration, "db");
     }
-    
+
     public static Neo4jSessionFactoryForCrawlers getInstance() {
-        if(factory == null) {
+        if (factory == null) {
             factory = new Neo4jSessionFactoryForCrawlers();
         }
         return factory;
     }
-    
+
     public Session getNeo4jSession() {
-	return sessionFactory.openSession();
+        return sessionFactory.openSession();
     }
 
 }
