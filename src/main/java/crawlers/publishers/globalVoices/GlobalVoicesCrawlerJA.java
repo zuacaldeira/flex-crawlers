@@ -26,7 +26,7 @@ public class GlobalVoicesCrawlerJA extends GlobalVoicesAbstractCrawler {
 
     @Override
     protected String getSubdomain() {
-        return "https://jp.globalvoices.org/";
+        return "jp";
     }
     
     
