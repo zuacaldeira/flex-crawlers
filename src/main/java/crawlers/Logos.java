@@ -33,7 +33,7 @@ public final class Logos {
         logos.put("buzzfeed", "https://pbs.twimg.com/profile_images/796353157576138752/H2xr-NkC_400x400.jpg");
         logos.put("cnbc", "https://pbs.twimg.com/profile_images/875399584477962241/CsazvyAF_400x400.jpg");
         logos.put("cnn", "https://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_400x400.png");
-        logos.put("daily-mail", "https://pbs.twimg.com/profile_images/907912182523981824/3vkEVuHh_400x400.jpg");
+        logos.put("daily-mail", "https://pbs.twimg.com/profile_images/930087648202575872/q4pq9RGV_400x400.jpg");
         logos.put("der-tagesspiegel", "https://pbs.twimg.com/profile_images/455980930293702658/V0W08c8o_400x400.png");
         logos.put("die-zeit", "https://pbs.twimg.com/profile_images/899901264942813184/_n5m0ro7_400x400.jpg");
         logos.put("engadget", "https://pbs.twimg.com/profile_images/655059892022022144/Pq3Q_1oU_400x400.png");
@@ -45,7 +45,7 @@ public final class Logos {
         logos.put("fortune", "https://pbs.twimg.com/profile_images/875382047216467972/3119VjuE_400x400.jpg");
         logos.put("four-four-two", "https://pbs.twimg.com/profile_images/904733221966970881/bLbUMB0G_400x400.jpg");
         logos.put("google-news", "https://pbs.twimg.com/profile_images/1843856587/news_icon_big_400x400.png");
-        logos.put("gruenderszene", "https://pbs.twimg.com/profile_images/892672174363955200/HYnmojGW_400x400.jpg");
+        logos.put("gruenderszene", "https://pbs.twimg.com/profile_images/941240896451997696/x5a6yojl_400x400.jpg");
         logos.put("hacker-news", "https://pbs.twimg.com/profile_images/469397708986269696/iUrYEOpJ_400x400.png");
         logos.put("handelsblatt", "https://pbs.twimg.com/profile_images/864850500088455169/RhrXxWdw_400x400.jpg");
         logos.put("ign", "https://pbs.twimg.com/profile_images/865351828111675393/It7GIxXW_400x400.jpg");
@@ -55,7 +55,7 @@ public final class Logos {
         logos.put("mirror", "https://pbs.twimg.com/profile_images/798143742205186048/PpRgSwh0_400x400.jpg");
         logos.put("mtv-news", "https://pbs.twimg.com/profile_images/871737880133197824/sGUD5ffo_400x400.jpg");
         logos.put("mtv-news-uk", "https://pbs.twimg.com/profile_images/1801520411/MTV_News_Logo_Black_400x400.png");
-        logos.put("national-geographic", "https://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_400x400.jpg");
+        logos.put("national-geographic", "https://pbs.twimg.com/profile_images/921336759979597825/VTSJ5mRt_400x400.jpg");
         logos.put("newsweek", "https://pbs.twimg.com/profile_images/741603495929905152/di0NxkFa_400x400.jpg");
         logos.put("new-york-magazine", "https://pbs.twimg.com/profile_images/2939680330/56f025f0104892f84a84c00bdb4ec812_400x400.png");
         logos.put("nfl-news", "https://pbs.twimg.com/profile_images/858754002384805888/wMBd6-dd_400x400.jpg");
@@ -76,7 +76,7 @@ public final class Logos {
         logos.put("the-new-york-times", "https://pbs.twimg.com/profile_images/905479981459013637/a6BbKh4k_400x400.jpg");
         logos.put("the-next-web", "https://pbs.twimg.com/profile_images/848832036169273344/p5J8QMn7_400x400.jpg");
         logos.put("the-sport-bible", "https://pbs.twimg.com/profile_images/2696805135/2140f5c4dc0845d17bc3e55e128a3a77_400x400.jpeg");
-        logos.put("t3n", "https://pbs.twimg.com/profile_images/898164995892154368/PtzxYWFo_400x400.jpg");
+        logos.put("t3n", "https://pbs.twimg.com/profile_images/964072513679581184/4YV1Q0mR_400x400.jpg");
         logos.put("the-times-of-india", "https://pbs.twimg.com/profile_images/651768664056696832/xht4j-S5_400x400.jpg");
         logos.put("the-verge", "https://pbs.twimg.com/profile_images/877903823133704194/Mqp1PXU8_400x400.jpg");
         logos.put("the-wall-street-journal", "https://pbs.twimg.com/profile_images/685113343204585473/jV72Zljq_400x400.jpg");
@@ -87,7 +87,7 @@ public final class Logos {
         logos.put("jornal-de-angola", "https://pbs.twimg.com/profile_images/894282213495382017/W7pj7SsU_400x400.jpg");
         
         logos.put("bild", "https://pbs.twimg.com/profile_images/872740902665674752/BrLl09Ut_400x400.jpg");
-        logos.put("usa-today", "https://pbs.twimg.com/profile_images/881124724776075264/HIaW0jIz_400x400.jpg");
+        logos.put("usa-today", "https://pbs.twimg.com/profile_images/924991591642796032/v90LrlR__400x400.jpg");
         logos.put("the-telegraph", "https://pbs.twimg.com/profile_images/704632088541134848/ypoRmbv__400x400.jpg");
         logos.put("fox-sports", "https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO_400x400.jpg");
         logos.put("espn-cric-info", "https://pbs.twimg.com/profile_images/888015358958940165/SmaHw6Rj_400x400.jpg");
