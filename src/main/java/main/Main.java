@@ -18,22 +18,23 @@ import java.util.logging.Logger;
 public class Main {
 
     public static void main(String... args) {
+        int deltaT = 2 * 60 * 1000;
         while (true) {
             new NewsOrgApiAggregator().aggregate();
             try {
-                Thread.sleep(60000);
+                Thread.sleep(deltaT);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
             new FlexNewsAggregator().aggregate();
             try {
-                Thread.sleep(60000);
+                Thread.sleep(deltaT);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
             new GlobalVoicesAggregator().aggregate();
             try {
-                Thread.sleep(60000);
+                Thread.sleep(deltaT);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
