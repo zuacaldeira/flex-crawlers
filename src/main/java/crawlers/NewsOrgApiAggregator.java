@@ -33,8 +33,8 @@ import db.news.NewsAuthor;
 public class NewsOrgApiAggregator {
 
     private final String API_KEY = "5b4e00f3046843138d8368211777a4f2";
-    private final String SOURCES_URL = "http://newsapi.org/v1/sources?";
-    private final String ARTICLES_URL = "http://newsapi.org/v1/articles?";
+    private final String SOURCES_URL = "http://newsapi.org/v2/sources?";
+    private final String ARTICLES_URL = "http://newsapi.org/v2/everything?";
 
     private ObjectMapper objectMapper;
     private FlexCrawlerLogger logger;
