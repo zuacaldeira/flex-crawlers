@@ -58,14 +58,14 @@ public final class Logos {
         logos.put("national-geographic", "https://pbs.twimg.com/profile_images/921336759979597825/VTSJ5mRt_400x400.jpg");
         logos.put("newsweek", "https://pbs.twimg.com/profile_images/741603495929905152/di0NxkFa_400x400.jpg");
         logos.put("new-york-magazine", "https://pbs.twimg.com/profile_images/2939680330/56f025f0104892f84a84c00bdb4ec812_400x400.png");
-        logos.put("nfl-news", "https://pbs.twimg.com/profile_images/858754002384805888/wMBd6-dd_400x400.jpg");
+        logos.put("nfl-news", "https://pbs.twimg.com/profile_images/971061480497041416/bib7cPuh_400x400.jpg");
         logos.put("polygon", "https://pbs.twimg.com/profile_images/877267279523741696/rzCAYZLP_400x400.jpg");
         logos.put("recode", "https://pbs.twimg.com/profile_images/729365899828989952/o0AuZCNW_400x400.jpg");
         logos.put("reddit-r-all", "https://pbs.twimg.com/profile_images/868147475852312577/fjCSPU-a_400x400.jpg");
         logos.put("reuters", "https://pbs.twimg.com/profile_images/877554927932891136/ZBEs235N_400x400.jpg");
         logos.put("spiegel-online", "https://pbs.twimg.com/profile_images/881743612404518912/ALb4Fxzg_400x400.jpg");
         logos.put("talksport", "https://pbs.twimg.com/profile_images/875645817381507074/zs6uOcf8_400x400.jpg");
-        logos.put("techcrunch", "https://pbs.twimg.com/profile_images/879359733936701440/sitcq7wY_400x400.jpg");
+        logos.put("techcrunch", "https://pbs.twimg.com/profile_images/969240943671955456/mGuud28F_400x400.jpg");
         logos.put("techradar", "https://pbs.twimg.com/profile_images/875421451653873664/P21KAcnr_400x400.jpg");
         logos.put("the-economist", "https://pbs.twimg.com/profile_images/879361767914262528/HdRauDM-_400x400.jpg");
         logos.put("the-guardian-au", "https://pbs.twimg.com/profile_images/952866338187423744/0hj7a-EH_400x400.jpg");
@@ -79,22 +79,22 @@ public final class Logos {
         logos.put("t3n", "https://pbs.twimg.com/profile_images/964072513679581184/4YV1Q0mR_400x400.jpg");
         logos.put("the-times-of-india", "https://pbs.twimg.com/profile_images/651768664056696832/xht4j-S5_400x400.jpg");
         logos.put("the-verge", "https://pbs.twimg.com/profile_images/877903823133704194/Mqp1PXU8_400x400.jpg");
-        logos.put("the-wall-street-journal", "https://pbs.twimg.com/profile_images/685113343204585473/jV72Zljq_400x400.jpg");
+        logos.put("the-wall-street-journal", "https://pbs.twimg.com/profile_images/971415515754266624/zCX0q9d5_400x400.jpg");
         logos.put("the-washington-post", "https://pbs.twimg.com/profile_images/875440182501277696/n-Ic9nBO_400x400.jpg");
         logos.put("time", "https://pbs.twimg.com/profile_images/1700796190/Picture_24_400x400.png");
         logos.put("wired-de", "https://pbs.twimg.com/profile_images/615598832726970372/jsK-gBSt_400x400.png");
         logos.put("wirtschafts-woche", "https://pbs.twimg.com/profile_images/596378323128836096/23C3DVmy_400x400.jpg");
         logos.put("jornal-de-angola", "https://pbs.twimg.com/profile_images/894282213495382017/W7pj7SsU_400x400.jpg");
         
-        logos.put("bild", "https://pbs.twimg.com/profile_images/872740902665674752/BrLl09Ut_400x400.jpg");
+        logos.put("bild", "https://pbs.twimg.com/profile_images/916254721274515458/72vChEJI_400x400.jpg");
         logos.put("usa-today", "https://pbs.twimg.com/profile_images/924991591642796032/v90LrlR__400x400.jpg");
         logos.put("the-telegraph", "https://pbs.twimg.com/profile_images/704632088541134848/ypoRmbv__400x400.jpg");
         logos.put("fox-sports", "https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO_400x400.jpg");
         logos.put("espn-cric-info", "https://pbs.twimg.com/profile_images/888015358958940165/SmaHw6Rj_400x400.jpg");
-        logos.put("new-scientist", "https://pbs.twimg.com/profile_images/843789564074496001/m34mTHmg_400x400.jpg");
+        logos.put("new-scientist", "https://pbs.twimg.com/profile_images/960860144329469953/Tc-GOIGJ_400x400.jpg");
        
         logos.put("the-buggle", "http://thebugle.co.za/images/ui/ban.png");
-        logos.put("iol-news-za", "https://pbs.twimg.com/profile_images/824593266658213893/L5_ynJNM_400x400.jpg");
+        logos.put("iol-news-za", "https://pbs.twimg.com/profile_images/941569804137385989/m_1r5MV6_400x400.jpg");
         logos.put("a-nacao", "http://anacao.cv/wp-content/uploads/2014/10/Logo-A-Na%C3%A7%C3%A3o-300x102.png");
         logos.put("tela-non", "https://pbs.twimg.com/profile_images/458228724802928641/ZNA1IeUv_400x400.png");
         logos.put("diario-de-noticias-pt", "https://pbs.twimg.com/profile_images/1618752141/dn_avatar_400x400.jpg");
