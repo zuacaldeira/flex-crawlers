@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>flex-crawlers</name>
-    <description>Flex Web App for African Languages</description>
+    <description>Mining news for NLP</description>
     <developers>
         <developer>
             <name>Alexandre Zua Caldeira</name>
