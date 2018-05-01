@@ -95,7 +95,7 @@ public class NewsOrgApiAggregator {
         StringBuilder builder = new StringBuilder(ARTICLES_URL);
 
         if (hasSourceId) {
-            builder.append("source=");
+            builder.append("sources=");
             builder.append(sourceId);
             builder.append("&");
         }
