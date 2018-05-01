@@ -28,7 +28,6 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/theBugleZa/TheBugleZACrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/LogosTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/SingleArticleResponseTest.java
-/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/dn/DiarioDeNoticiasCrawlerNGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/JsoupElementNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/jornalDeAngola/JornalDeAngolaCrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/AbstractCrawlerTest.java
