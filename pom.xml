@@ -142,8 +142,13 @@
                 <configuration>
                     <archive>
                         <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addClasspath>true</addClasspath>
                             <mainClass>main.Main</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <Class-Path>target/dependency/</Class-Path>
+                        </manifestEntries>                    
                     </archive>
                 </configuration>
             </plugin>            
