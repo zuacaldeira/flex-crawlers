@@ -1,1 +1,1 @@
-worker: java $JAVA_OPTS -cp target/classes:target/dependency/* main.Main
+worker: java $JAVA_OPTS -cp target/classes:target/dependency/* main.BoomMain
