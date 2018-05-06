@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crawlers.json;
+package json;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class MultipleArticlesResponse {
     private String source;
     private String sortBy;
     private List<SingleArticleResponse> articles;
+    private int totalResults;
 
     public String getStatus() {
         return status;
@@ -49,6 +50,15 @@ public class MultipleArticlesResponse {
     public void setArticles(List<SingleArticleResponse> articles) {
         this.articles = articles;
     }
+
+    public int getTotalResults() {
+        return totalResults;
+    }
+
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
+    }
+    
 
     
     

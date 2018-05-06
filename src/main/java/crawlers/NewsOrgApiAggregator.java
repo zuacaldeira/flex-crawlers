@@ -6,8 +6,6 @@
 package crawlers;
 
 import crawlers.publishers.exceptions.ApiCallException;
-import crawlers.json.MultipleSourcesResponse;
-import crawlers.json.MultipleArticlesResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import db.news.NewsArticle;
 import db.news.NewsSource;
@@ -20,11 +18,13 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import crawlers.utils.CrawlerDBUtils;
-import crawlers.json.SingleArticleResponse;
-import crawlers.json.SingleSourceResponse;
 import crawlers.utils.FlexCrawlerLogger;
 import crawlers.utils.Neo4jSessionFactoryForCrawlers;
 import db.news.NewsAuthor;
+import json.MultipleArticlesResponse;
+import json.MultipleSourcesResponse;
+import json.SingleArticleResponse;
+import json.SingleSourceResponse;
 
 /**
  *
@@ -33,8 +33,8 @@ import db.news.NewsAuthor;
 public class NewsOrgApiAggregator {
 
     private final String API_KEY = "a948013d33444ec9bb4ab8409821a3ef";
-    private final String SOURCES_URL = "https://newsapi.org/v2/sources?";
-    private final String ARTICLES_URL = "https://newsapi.org/v2/everything?";
+    private final String SOURCES_URL = "http://newsapi.org/v2/sources";
+    private final String ARTICLES_URL = "http://newsapi.org/v2/everything?";
 
     private ObjectMapper objectMapper;
     private FlexCrawlerLogger logger;
@@ -61,7 +61,10 @@ public class NewsOrgApiAggregator {
         boolean hasApiKey = API_KEY != null && !API_KEY.isEmpty();
 
         StringBuilder builder = new StringBuilder(SOURCES_URL);
-
+        if(hasCategory || haslanguage || hasCountry || hasApiKey) {
+            builder.append("?");
+        }
+        
         if (hasCategory) {
             builder.append("category=");
             builder.append(category);

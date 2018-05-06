@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crawlers.json;
+package json;
 
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
@@ -23,7 +23,7 @@ public class SingleArticleResponse {
     private String url;
     private String urlToImage;
     private String publishedAt;
-    private String source;
+    private ArticleSourceInfo source;
 
     public String getAuthor() {
         return author;
@@ -73,13 +73,14 @@ public class SingleArticleResponse {
         this.publishedAt = publishedAt;
     }
 
-    public String getSource() {
+    public ArticleSourceInfo getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(ArticleSourceInfo source) {
         this.source = source;
     }
+
     
     
 

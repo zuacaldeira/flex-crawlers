@@ -1,6 +1,9 @@
+/Users/zua/Work/apps/flex-crawlers/src/test/java/json/MultipleArticlesResponseTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/dbCompletion/LogoCompletionWorkerTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/elements/AuthorsElementTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/json/SingleSourceResponseTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/iolNews/IOLNewsIsolezweCrawlerTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlersV2/BoomAngopNGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/iolNews/IOLNewsZACrawlerTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/NewsOrgApiAggregatorTestIT.java
@@ -8,10 +11,9 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/iolNews/IOLNewsZACrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/elements/TimeElementTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/iolNews/IOLNewsIsolezweCrawlerTestIT.java
-/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/SingleSourceResponseTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/aVerdadeOnline/AVerdadeOnlineDateExtractorNGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerTestIT.java
-/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/MultipleArticlesResponseTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/json/SingleArticleResponseTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/ContentNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/theBugleZa/TheBugleZACrawlerTestIT.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/dn/DiarioDeNoticiasCrawlerNGTestIT.java
@@ -25,9 +27,12 @@
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/DocumentNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/aVerdadeOnline/AVerdadeOnlineCrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/AuthorsNotFoundExceptionTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlersV2/BoomJonalDeAngolaNGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/theBugleZa/TheBugleZACrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/LogosTest.java
-/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/json/SingleArticleResponseTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlersV2/TestHelper.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlersV2/NewsApiOrgClientNGTest.java
+/Users/zua/Work/apps/flex-crawlers/src/test/java/crawlersV2/BoomIOLSANGTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/exceptions/JsoupElementNotFoundExceptionTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/publishers/jornalDeAngola/JornalDeAngolaCrawlerTest.java
 /Users/zua/Work/apps/flex-crawlers/src/test/java/crawlers/AbstractCrawlerTest.java

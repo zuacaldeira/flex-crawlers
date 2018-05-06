@@ -5,7 +5,6 @@ package crawlers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,9 +13,10 @@ import java.util.Map;
  * @author zua
  */
 public final class Logos {
+
     private static final Map<String, String> logos = new HashMap<>();
-    
-    static{
+
+    static {
         logos.put("global-voices", "https://pbs.twimg.com/profile_images/469223261323018240/OvCrbQzO_400x400.png");
         logos.put("abc-news-au", "https://pbs.twimg.com/profile_images/851166911245107200/4xsqBmY5_400x400.jpg");
         logos.put("maka-angola", "https://pbs.twimg.com/profile_images/437691631840415744/WAqRENf9_400x400.png");
@@ -85,34 +85,37 @@ public final class Logos {
         logos.put("wired-de", "https://pbs.twimg.com/profile_images/615598832726970372/jsK-gBSt_400x400.png");
         logos.put("wirtschafts-woche", "https://pbs.twimg.com/profile_images/596378323128836096/23C3DVmy_400x400.jpg");
         logos.put("jornal-de-angola", "https://pbs.twimg.com/profile_images/894282213495382017/W7pj7SsU_400x400.jpg");
-        
+
         logos.put("bild", "https://pbs.twimg.com/profile_images/916254721274515458/72vChEJI_400x400.jpg");
         logos.put("usa-today", "https://pbs.twimg.com/profile_images/924991591642796032/v90LrlR__400x400.jpg");
         logos.put("the-telegraph", "https://pbs.twimg.com/profile_images/704632088541134848/ypoRmbv__400x400.jpg");
         logos.put("fox-sports", "https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO_400x400.jpg");
         logos.put("espn-cric-info", "https://pbs.twimg.com/profile_images/888015358958940165/SmaHw6Rj_400x400.jpg");
         logos.put("new-scientist", "https://pbs.twimg.com/profile_images/960860144329469953/Tc-GOIGJ_400x400.jpg");
-       
+
         logos.put("the-buggle", "http://thebugle.co.za/images/ui/ban.png");
         logos.put("iol-news-za", "https://pbs.twimg.com/profile_images/941569804137385989/m_1r5MV6_400x400.jpg");
         logos.put("a-nacao", "http://anacao.cv/wp-content/uploads/2014/10/Logo-A-Na%C3%A7%C3%A3o-300x102.png");
         logos.put("tela-non", "https://pbs.twimg.com/profile_images/458228724802928641/ZNA1IeUv_400x400.png");
         logos.put("diario-de-noticias-pt", "https://pbs.twimg.com/profile_images/1618752141/dn_avatar_400x400.jpg");
-        }
+
+        logos.put("angop", "https://pbs.twimg.com/profile_images/2548591418/portal5_400x400.jpg");
+        logos.put("angonoticias", "https://pbs.twimg.com/profile_images/1553392423/angonoticias_og_400x400.jpg");
+    }
 
     public static String getLogo(String sourceId) {
-        if(sourceId == null) {
+        if (sourceId == null) {
             return null;
         }
-        
-        if(sourceId.startsWith("global-voices")) {
+
+        if (sourceId.startsWith("global-voices")) {
             return logos.get("global-voices");
         }
         return logos.get(sourceId);
     }
-    
+
     public static Map<String, String> getLogos() {
         return logos;
     }
-    
+
 }

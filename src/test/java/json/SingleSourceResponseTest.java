@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crawlers.json;
+package json;
 
 import db.news.NewsSource;
 import java.util.HashMap;
