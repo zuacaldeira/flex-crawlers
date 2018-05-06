@@ -101,6 +101,7 @@ public final class Logos {
 
         logos.put("angop", "https://pbs.twimg.com/profile_images/2548591418/portal5_400x400.jpg");
         logos.put("angonoticias", "https://pbs.twimg.com/profile_images/1553392423/angonoticias_og_400x400.jpg");
+        logos.put("folha8", "https://pbs.twimg.com/profile_images/465810431387246594/aTgnnt5H_400x400.png");
     }
 
     public static String getLogo(String sourceId) {
