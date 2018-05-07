@@ -30,9 +30,11 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-public class BoomAngop {
+public class BoomFolha8 {
 
-    private final String SOURCES_URL = "http://www.angop.ao/";
+    private final String SOURCES_URL = "http://jornalf8.net/";
+    private final String SOURCE_ID = "folha8";
+    private final String SOURCE_NAME = "Folha 8";
     private final String COUNTRY = "AO";
     private final String LANGUAGE = "pt";
 
@@ -76,7 +78,7 @@ public class BoomAngop {
 
     public boolean isArticleLink(String link) {
         System.out.println("---------------------------------");
-        Elements article = selectArticle(link);
+        Element article = selectArticle(link);
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
@@ -115,10 +117,6 @@ public class BoomAngop {
             }
 
             String author = getArticleAuthor(article);
-            if (author == null || author.isEmpty()) {
-                System.out.println("Empty author");
-                author = "Angop";
-            }
 
             System.out.println("title       : " + title);
             System.out.println("description : " + description);
@@ -136,7 +134,7 @@ public class BoomAngop {
     }
 
     public NewsArticle toArticle(String articleUrl) {
-        Elements article = selectArticle(articleUrl);
+        Element article = selectArticle(articleUrl);
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
@@ -189,30 +187,32 @@ public class BoomAngop {
 
         return null;
 
-    }   
+    }
 
     private Elements selectAnchorTags(String url) {
         Connection connection = Jsoup.connect(url);
         if (connection != null) {
             try {
+                connection.validateTLSCertificates(false);
                 Document document = connection.get();
                 Elements anchorTags = document.body().select("a");
                 System.out.println(anchorTags.size());
                 return anchorTags;
             } catch (IOException ex) {
-                Logger.getLogger(BoomAngop.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BoomFolha8.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
     }
 
-    private Elements selectArticle(String articlePage) {
+    private Element selectArticle(String articlePage) {
         Connection connection = Jsoup.connect(articlePage);
         try {
+            connection.validateTLSCertificates(false);
             Document document = connection.get();
             Element body = document.body();
-            Elements articles = body.select("article");
-            return articles;
+            Elements articles = body.select("div>article");
+            return articles.first();
         } catch (Exception iox) {
             iox.printStackTrace();
         }
@@ -224,7 +224,7 @@ public class BoomAngop {
         newsArticle.setTitle(title);
         newsArticle.setDescription(description);
         try {
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("pt", "AO"));
+            SimpleDateFormat format = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new Locale("pt", "AO"));
             newsArticle.setPublishedAt(format.parse(dateString));
         } catch (ParseException ex) {
             System.err.println("Could't parse date string");
@@ -234,24 +234,24 @@ public class BoomAngop {
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId("angop");
+        newsArticle.setSourceId(SOURCE_ID);
         return newsArticle;
     }
     
     public NewsAuthor toAuthor(String articleUrl) {
-        Elements article = selectArticle(articleUrl);
+        Element article = selectArticle(articleUrl);
         String author = getArticleAuthor(article);
         return new NewsAuthor(author);
     }
 
     private NewsSource toSource() {
         // If there is a source corresponding to IOL SA, return it
-        NewsSource source = getSourceFromDb("Angop");
+        NewsSource source = getSourceFromDb(SOURCE_NAME);
         // Else create a new one
         if(source == null){
             source = new NewsSource();
-            source.setName("Angop");
-            source.setSourceId("angop");
+            source.setName(SOURCE_NAME);
+            source.setSourceId(SOURCE_ID);
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
@@ -276,35 +276,37 @@ public class BoomAngop {
         return new NewsArticleService().findArticlesWithUrl(next).iterator().hasNext();
     }
 
-    private String getArticleTitle(Elements article) {
-        Elements h1s = article.select("div.box-titulo h2");
-        if(h1s != null && !h1s.isEmpty()) {
-            Element first = h1s.first();
-            if(first != null) {
-                return first.text();
+    private String getArticleTitle(Element article) {
+        Elements titles = article.select("h1.title");
+        if(titles != null && !titles.isEmpty()) {
+            Element title = titles.first();
+            if(title != null) {
+                return title.text();
             }
         }
         return null;
     }
 
-    private String getArticleAuthor(Elements article) {
-        String author = article.select("p.info-autor").text();
+    private String getArticleAuthor(Element article) {
+        String author = article.select("a.author-name").first().text();
         if (author == null || author.isEmpty()) {
             System.out.println("Empty author");
-            author = "Angop";
+            author = SOURCE_NAME;
         }
         return author;
     }
 
-    private String getArticleDate(Elements article) {
-        return article.select("div.box-titulo > p > strong").attr("datetime");        
+    private String getArticleDate(Element article) {
+        return  article.select("a.post-date").first().text();
     }
 
-    private String getArticleDescription(Elements article) {
-        return article.select("div.box-titulo h3").text();
+    private String getArticleDescription(Element article) {
+        String text = article.select("div.post-content > h2").text();
+        System.out.println("FOUND TEXT: " + text);
+        return text;
     }
 
-    private String getArticleImageSource(Elements article) {
+    private String getArticleImageSource(Element article) {
         Elements images = getArticleImages(article);
         Element first = null;
         if (images != null && !images.isEmpty()) {
@@ -316,12 +318,12 @@ public class BoomAngop {
         return null;
     }
 
-    private Elements getArticleImages(Elements article) {
-        return article.select("div.foto-galeria > img.fl, div.texto-noticia:first-child > div.img-noticia > img.fl");
+    private Elements getArticleImages(Element article) {
+        return article.select("div.post-thumbnail-wrapper img");
     }
 
-    private String getArticleImageCopyright(Elements article) {
-        return article.select("div.legenda-foto").text();
+    private String getArticleImageCopyright(Element article) {
+        return null;
     }
 
 }

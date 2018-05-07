@@ -7,12 +7,10 @@ package main;
 
 import crawlersV2.BoomAngonoticias;
 import crawlersV2.BoomAngop;
+import crawlersV2.BoomFolha8;
 import crawlersV2.BoomIOLSA;
 import crawlersV2.BoomJornalDeAngola;
-import crawlersV2.NewsApiOrgClient;
-import db.news.NewsSource;
 import java.util.Date;
-import java.util.TreeSet;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +42,10 @@ public class BoomMain {
 
         scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomAngonoticias().loadArticles());
+        }, 1, 25, TimeUnit.MINUTES);
+
+        scheduler.scheduleAtFixedRate(() -> {
+            System.out.println(new Date().toString() + " Articles: " + new BoomFolha8().loadArticles());
         }, 1, 25, TimeUnit.MINUTES);
 
         /*scheduler.scheduleAtFixedRate(() -> {
