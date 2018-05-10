@@ -14,7 +14,9 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/exceptions/ContentNotFoundException.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/utils/CrawlerDBUtils.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerRO.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/BoomNovoJornal.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerBN.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/BoomCorreioAngolense.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerEL.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/exceptions/UrlNotFoundException.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/Logos.java
@@ -32,6 +34,7 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/aNacaoCv/ANacaoCVCrawler.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/elements/ArticleElement.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/elements/AuthorsElement.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/BoomFolha8.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/NewsApiOrgClient.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerZHS.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/iolNews/AbstactIOLNewsCrawler.java
@@ -55,7 +58,6 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/dbCompletion/LogoCompletionWorker.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/elements/ImageUrlElement.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/exceptions/TitleNotFoundException.java
-/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/BoomIOLSA.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/exceptions/ApiCallException.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerOR.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/utils/Neo4jSessionFactoryForCrawlers.java
@@ -80,7 +82,9 @@
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/telaNon/TelaNonCrawler.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerAR.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/json/MultipleSourcesResponse.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/BoomAngonoticias.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerMK.java
+/Users/zua/Work/apps/flex-crawlers/src/main/java/crawlersV2/BoomIOLZA.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/publishers/globalVoices/GlobalVoicesCrawlerHU.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/utils/FlexCrawlerLogger.java
 /Users/zua/Work/apps/flex-crawlers/src/main/java/crawlers/elements/TimeElement.java
