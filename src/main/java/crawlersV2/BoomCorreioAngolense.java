@@ -7,7 +7,6 @@ package crawlersV2;
 
 import backend.services.news.NewsArticleService;
 import backend.services.news.NewsSourceService;
-import backend.utils.MyDateUtils;
 import crawlers.Logos;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
@@ -15,7 +14,9 @@ import db.news.NewsSource;
 import db.news.Tag;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ListIterator;
+import java.util.Locale;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,11 +30,13 @@ import org.jsoup.select.Elements;
  *
  * @author zua
  */
-public class BoomIOLSA {
+public class BoomCorreioAngolense {
 
-    private final String SOURCES_URL = "https://www.iol.co.za/";
-    private final String COUNTRY = "ZA";
-    private final String LANGUAGE = "en";
+    private final String SOURCES_URL = "https://www.correioangolense.com/";
+    private final String SOURCE_ID = "correio-angolense";
+    private final String SOURCE_NAME = "Correio Angolense";
+    private final String COUNTRY = "AO";
+    private final String LANGUAGE = "pt";
 
     public TreeSet<String> loadLinks() {
         TreeSet<String> result = new TreeSet();
@@ -42,6 +45,7 @@ public class BoomIOLSA {
         for (int i = 0; it.hasNext(); i++) {
             String next = it.next().absUrl("href");
             if (next != null && !next.isEmpty()) {
+                System.out.print(next + ": ");
                 if (toArticle(next) != null) {
                     result.add(next);
                 }
@@ -70,19 +74,17 @@ public class BoomIOLSA {
         return result;
     }
 
-
-
     public boolean isArticleLink(String link) {
         System.out.println("---------------------------------");
-        Elements article = selectArticle(link);
+        Element article = selectArticle(link);
         if (article != null) {
-            String title = article.select("meta[itemprop=headline]").attr("content");
+            String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
                 System.out.println("Empty title");
                 return false;
             }
 
-            String description = article.select("meta[itemprop=description]").attr("content");
+            String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
                 System.out.println("Empty description");
                 return false;
@@ -94,47 +96,25 @@ public class BoomIOLSA {
                 return false;
             }
 
-            Elements images = article.select("figure img");
-            Element first = null;
-            String src = null;
-            if (images != null && !images.isEmpty()) {
-                first = images.first();
-                if (first != null) {
-                    src = first.attr("src");
-                    if (src == null || src.isEmpty()) {
-                        System.out.println("Empty image");
-                        return false;
-                    }
-                }
-
-            }
-
-            String imageCaption = article.select("span.imageCaption").text();
-            if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+            String src = getArticleImageSource(article);
+            if (src == null || src.isEmpty()) {
+                System.out.println("Empty image");
                 return false;
             }
 
-            String dateString = article.select("p.meta span[itemprop=datePublished]").attr("content");
+            String imageCaption = getArticleImageCopyright(article);
+            if (imageCaption == null || imageCaption.isEmpty()) {
+                System.out.println("Empty image copyright");
+                //return false;
+            }
+
+            String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
                 System.out.println("Empty date");
                 return false;
             }
 
-            String author = article.select("p.meta span[itemprop=author] strong[itemprop=name]").text();
-            if (author == null || author.isEmpty()) {
-                System.out.println("Empty author");
-                return false;
-            }
-
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
-
+            String author = getArticleAuthor(article);
             return true;
         }
 
@@ -143,15 +123,15 @@ public class BoomIOLSA {
     }
 
     public NewsArticle toArticle(String articleUrl) {
-        Elements article = selectArticle(articleUrl);
+        Element article = selectArticle(articleUrl);
         if (article != null) {
-            String title = article.select("meta[itemprop=headline]").attr("content");
+            String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
                 System.out.println("Empty title");
                 return null;
             }
 
-            String description = article.select("meta[itemprop=description]").attr("content");
+            String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
                 System.out.println("Empty description");
                 return null;
@@ -163,50 +143,25 @@ public class BoomIOLSA {
                 return null;
             }
 
-            Elements images = article.select("figure img");
-            Element first = null;
-            String src = null;
-            if (images != null && !images.isEmpty()) {
-                first = images.first();
-                if (first != null) {
-                    src = first.attr("src");
-                    if (src == null || src.isEmpty()) {
-                        System.out.println("Empty image");
-                        return null;
-                    }
-                } else {
-                    return null;
-                }
-            } else {
+            String src = getArticleImageSource(article);
+            if (src == null || src.isEmpty()) {
+                System.out.println("Empty image");
                 return null;
             }
 
-            String imageCaption = article.select("span.imageCaption").text();
+            String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
                 System.out.println("Empty image copyright");
-                return null;
+                //return null;
             }
 
-            String dateString = article.select("p.meta span[itemprop=datePublished]").attr("content");
+            String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
                 System.out.println("Empty date");
                 return null;
             }
 
-            String author = article.select("p.meta span[itemprop=author] strong[itemprop=name]").text();
-            if (author == null || author.isEmpty()) {
-                System.out.println("Empty author");
-                return null;
-            }
-
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
-
+            String author = getArticleAuthor(article);
             return toArticle(title, description, url, src, imageCaption, dateString, author);
         }
 
@@ -218,24 +173,29 @@ public class BoomIOLSA {
         Connection connection = Jsoup.connect(url);
         if (connection != null) {
             try {
+                connection.validateTLSCertificates(false);
                 Document document = connection.get();
-                Elements anchorTags = document.body().getElementsByTag("a");
+                Elements anchorTags = document.body().select("a");
                 System.out.println(anchorTags.size());
                 return anchorTags;
             } catch (IOException ex) {
-                Logger.getLogger(BoomIOLSA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BoomCorreioAngolense.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
     }
 
-    private Elements selectArticle(String articlePage) {
+    private Element selectArticle(String articlePage) {
         Connection connection = Jsoup.connect(articlePage);
         try {
+            connection.validateTLSCertificates(false);
             Document document = connection.get();
             Element body = document.body();
-            Elements articles = body.select("article");
-            return articles;
+            Elements articles = body.select("div.single-post");
+            String type = document.head().select("meta[property=og:type]").attr("content");
+            if(type != null && type.equals("article")) {
+                return articles.first();
+            }
         } catch (Exception iox) {
             iox.printStackTrace();
         }
@@ -247,39 +207,39 @@ public class BoomIOLSA {
         newsArticle.setTitle(title);
         newsArticle.setDescription(description);
         try {
-            newsArticle.setPublishedAt(MyDateUtils.parseDate(dateString));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("pt", "AO"));
+            newsArticle.setPublishedAt(format.parse(dateString));
         } catch (ParseException ex) {
+            System.err.println("Could't parse date string");
             return null;
         }
         newsArticle.setUrl(url);
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId("iol-news-za");
+        newsArticle.setSourceId(SOURCE_ID);
         return newsArticle;
     }
     
     public NewsAuthor toAuthor(String articleUrl) {
-        Elements article = selectArticle(articleUrl);
-        String author = article.select("p.meta span[itemprop=author] strong[itemprop=name]").text();
-        if (author == null || author.isEmpty()) {
-            System.out.println("Empty author");
-            return null;
-        }
-        else {
+        Element article = selectArticle(articleUrl);
+        String author = getArticleAuthor(article);
+        if(author != null) {
             return new NewsAuthor(author);
         }
-
+        else {
+            return new NewsAuthor(SOURCE_NAME);
+        }
     }
 
     private NewsSource toSource() {
         // If there is a source corresponding to IOL SA, return it
-        NewsSource source = getSourceFromDb("IOL South Africa");
+        NewsSource source = getSourceFromDb(SOURCE_NAME);
         // Else create a new one
         if(source == null){
             source = new NewsSource();
-            source.setName("IOL South Africa");
-            source.setSourceId("iol-news-za");
+            source.setName(SOURCE_NAME);
+            source.setSourceId(SOURCE_ID);
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
@@ -297,11 +257,91 @@ public class BoomIOLSA {
     private void store(NewsArticle newsArticle, NewsAuthor author, NewsSource source) {
         author.getAuthored().add(newsArticle);
         source.getAuthors().add(author);
+        System.out.println("SOURCE NAME -> " + source.getName());
+        System.out.println("AUTHOR NAME -> " + author.getName());
         new NewsSourceService().save(source);
     }
 
     private boolean inDb(String next) {
         return new NewsArticleService().findArticlesWithUrl(next).iterator().hasNext();
+    }
+
+    private String getArticleTitle(Element article) {
+        Elements titles = article.select("div.content > h3");
+        if(titles != null && !titles.isEmpty()) {
+            Element title = titles.first();
+            if(title != null) {
+                System.out.println("Found title " + title);
+                return title.text();
+            }
+        }
+        return null;
+    }
+    
+    private String getArticleDescription(Element article) {
+        Elements options = article.select("div>div>div>p>span");
+        Element first = options.first();
+        if(first != null) {
+            String text = first.text();
+            if(text != null && !text.isEmpty()) {
+                System.out.println("Found description: " + text);
+                return text;
+            }
+        }
+        return null;
+    }
+
+    private String getArticleAuthor(Element article) {
+        Elements authors = article.select("div.article-author h3");
+        if(authors != null && !authors.isEmpty()) {
+            Element author = authors.first();
+            if(author != null) {
+                System.out.println("Found author " + author);
+                return author.text();
+            }
+        }
+        return null;
+    }
+
+    private String getArticleDate(Element article) {
+        Document document = getDocument(article);
+        return document.select("head meta[property=article:published_time]").attr("content");
+    }
+
+    private String getArticleImageSource(Element article) {
+        Elements images = getArticleImages(article);
+        Element first = null;
+        if (images != null && !images.isEmpty()) {
+            first = images.first();
+            if (first != null) {
+                String src = first.attr("src");
+                System.out.println("Found image " + src);
+                return src;
+            }
+        }
+        return null;
+    }
+
+    private Elements getArticleImages(Element article) {
+        String selector1 = "div.img-container > img";
+        Elements images1 = article.select(selector1);
+        if(images1 != null && !images1.isEmpty()) {
+            return images1;
+        }
+        return null;
+    }
+
+    private String getArticleImageCopyright(Element article) {
+        return article.select("figure > figcaption").text();
+    }
+
+    private Document getDocument(Element article) {
+        if(article instanceof Document) {
+            return (Document) article;
+        }
+        else {
+            return getDocument(article.parent());
+        }
     }
 
 }

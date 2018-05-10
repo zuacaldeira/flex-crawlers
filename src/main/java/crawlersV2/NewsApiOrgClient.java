@@ -5,9 +5,11 @@
  */
 package crawlersV2;
 
+import backend.services.news.NewsSourceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import crawlers.utils.FlexCrawlerLogger;
 import db.news.NewsArticle;
+import db.news.NewsAuthor;
 import db.news.NewsSource;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,22 +35,12 @@ public class NewsApiOrgClient {
 
     private final String API_KEY = "a948013d33444ec9bb4ab8409821a3ef";
     private final String SOURCES_URL = "http://newsapi.org/v2/sources";
-    private final String ARTICLES_URL = "http://newsapi.org/v2/everything?from=2018-04-25&apiKey=" + API_KEY;
 
     private final FlexCrawlerLogger logger = new FlexCrawlerLogger(getClass());
 
-    public String requestApiSources() {
-        String url = SOURCES_URL + "?apiKey=" + API_KEY;
-        logger.info("Calling service... " + url);
-        try (InputStream is = new URL(url).openConnection().getInputStream()) {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            return readAllData(rd);
-        } catch (Exception e) {
-            logger.error(String.format("%s", "Error calling news api..." + e.getMessage()));
-            return null;
-        }
-    }
-
+    
+    // LOAD SOURCES DATA
+    
     public TreeSet<NewsSource> loadSources() {
         String apiSources = requestApiSources();
         if (apiSources != null) {
@@ -62,22 +54,18 @@ public class NewsApiOrgClient {
         return new TreeSet<>();
     }
 
-    protected MultipleSourcesResponse jsoToMultipleSourcesResponse(String json) throws IOException {
-        return new ObjectMapper().readValue(json, MultipleSourcesResponse.class);
-    }
-
-    public String loadArticles() {
-        String url = ARTICLES_URL;
+    public String requestApiSources() {
+        String url = SOURCES_URL + "?apiKey=" + API_KEY;
         logger.info("Calling service... " + url);
         try (InputStream is = new URL(url).openConnection().getInputStream()) {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             return readAllData(rd);
         } catch (Exception e) {
             logger.error(String.format("%s", "Error calling news api..." + e.getMessage()));
-            throw new RuntimeException(url);
+            return null;
         }
     }
-
+    
     private String readAllData(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -87,18 +75,8 @@ public class NewsApiOrgClient {
         return sb.toString();
     }
 
-    private TreeSet<NewsSource> toTreeSet(MultipleSourcesResponse multipleSources) {
-        TreeSet<NewsSource> set = new TreeSet<NewsSource>();
-        if (multipleSources.getStatus().equals("ok")) {
-            Iterator<SingleSourceResponse> it = multipleSources.getSources().iterator();
-            while (it.hasNext()) {
-                SingleSourceResponse single = it.next();
-                set.add(single.convert2NewsSource());
-            }
-        }
-        return set;
-    }
 
+    // LOAD ARTICLES DATA
     public TreeSet<NewsArticle> loadArticlesFromSource(NewsSource source) {
         try {
             String apiArticles = requestApiArticles(source);
@@ -109,7 +87,8 @@ public class NewsApiOrgClient {
         }
         return new TreeSet<>();
     }
-
+    
+    
     private String requestApiArticles(NewsSource source) {
         String url = "http://newsapi.org/v2/everything?sources=" + source.getSourceId() + "&apiKey=" + API_KEY;
         logger.info("Calling articles service... " + url);
@@ -122,8 +101,29 @@ public class NewsApiOrgClient {
         }
     }
 
+
+
+
+    // CONVERSION: json -> Multiple...Response
+    protected MultipleSourcesResponse jsoToMultipleSourcesResponse(String json) throws IOException {
+        return new ObjectMapper().readValue(json, MultipleSourcesResponse.class);
+    }
+
     private MultipleArticlesResponse jsoToMultipleArticlesResponse(String json) throws IOException {
         return new ObjectMapper().readValue(json, MultipleArticlesResponse.class);
+    }
+    
+    // CONVERSION: Multiple...Response -> TreeSet
+    private TreeSet<NewsSource> toTreeSet(MultipleSourcesResponse multipleSources) {
+        TreeSet<NewsSource> set = new TreeSet<NewsSource>();
+        if (multipleSources.getStatus().equals("ok")) {
+            Iterator<SingleSourceResponse> it = multipleSources.getSources().iterator();
+            while (it.hasNext()) {
+                SingleSourceResponse single = it.next();
+                set.add(single.convert2NewsSource());
+            }
+        }
+        return set;
     }
 
     private TreeSet<NewsArticle> toTreeSet(MultipleArticlesResponse multipleArticles, NewsSource source) {
@@ -132,10 +132,22 @@ public class NewsApiOrgClient {
             Iterator<SingleArticleResponse> it = multipleArticles.getArticles().iterator();
             while (it.hasNext()) {
                 SingleArticleResponse single = it.next();
-                set.add(single.convert2NewsArticle(source));
+                NewsArticle singleArticle = single.convert2NewsArticle(source);
+                NewsAuthor author = single.convert2NewsAuthor(source);
+                author.getAuthored().add(singleArticle);
+                source.getAuthors().add(author);
+                set.add(singleArticle);
+            }
+            
+            if(!source.getAuthors().isEmpty()) {
+                store(source);
             }
         }
         return set;
+    }
+
+    private void store(NewsSource source) {
+        new NewsSourceService().save(source);
     }
 
 }

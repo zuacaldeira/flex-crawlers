@@ -102,6 +102,82 @@ public final class Logos {
         logos.put("angop", "https://pbs.twimg.com/profile_images/2548591418/portal5_400x400.jpg");
         logos.put("angonoticias", "https://pbs.twimg.com/profile_images/1553392423/angonoticias_og_400x400.jpg");
         logos.put("folha8", "https://pbs.twimg.com/profile_images/465810431387246594/aTgnnt5H_400x400.png");
+        logos.put("novo-jornal", "https://pbs.twimg.com/profile_images/378800000249630847/8c676e9beb38644915c92e904050145a_400x400.jpeg");
+        logos.put("correio-angolense", "https://pbs.twimg.com/profile_images/854810761859936257/_FmCY3RJ_400x400.jpg");
+
+        logos.put("axios", "https://pbs.twimg.com/profile_images/920371293802733568/ZewRXgpe_400x400.jpg");
+        logos.put("xinhua-net", "https://pbs.twimg.com/profile_images/417488690714120192/_i50eUX3_400x400.jpeg");
+        logos.put("ynet", "https://pbs.twimg.com/profile_images/1679844840/logo_400x400.jpg");
+        logos.put("abc-news", "https://pbs.twimg.com/profile_images/877547979363758080/ny06RNTT_400x400.jpg");
+
+        logos.put("aftenposten", "https://pbs.twimg.com/profile_images/529260466657169408/o_fYiMaZ_400x400.jpeg");
+        logos.put("ansa", "https://pbs.twimg.com/profile_images/563351169460752384/VK18pD2I_400x400.png");
+        logos.put("argaam", "https://pbs.twimg.com/profile_images/867613052925071360/tpHot1zu_400x400.jpg");
+
+        logos.put("ary-news", "https://pbs.twimg.com/profile_images/914757678462881792/5Xng-KWa_400x400.jpg");
+
+        logos.put("australian-financial-review", "https://pbs.twimg.com/profile_images/818701236086018050/SlypZOjt_400x400.jpg");
+
+        logos.put("blasting-news-br", "https://pbs.twimg.com/profile_images/874179276874166272/055eiNEY_400x400.jpg");
+
+        logos.put("bleacher-report", "https://pbs.twimg.com/profile_images/854430488777379840/zFdLhwbT_400x400.jpg");
+        logos.put("cbc-news", "https://pbs.twimg.com/profile_images/957919598749323264/NuYdCE6a_400x400.jpg");
+
+        logos.put("cbs-news", "https://pbs.twimg.com/profile_images/645966750941626368/d0Q4voGK_400x400.jpg");
+        logos.put("cnn-es", "https://pbs.twimg.com/profile_images/589795319216504832/6a71ZHkx_400x400.jpg");
+        logos.put("crypto-coins-news", "https://pbs.twimg.com/profile_images/942304759561768960/Gel04P4M_400x400.jpg");
+        logos.put("el-mundo", "https://pbs.twimg.com/profile_images/959947259780747265/ez18J78k_400x400.jpg");
+        logos.put("financial-post", "https://pbs.twimg.com/profile_images/877097420882034689/MTfB8m72_400x400.jpg");
+        logos.put("fox-news", "https://pbs.twimg.com/profile_images/918480715158716419/4X8oCbge_400x400.jpg");
+        logos.put("globo", "https://pbs.twimg.com/profile_images/936279870488895488/15t1ZHho_400x400.jpg");
+        logos.put("google-news-ar", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-au", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-br", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-ca", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-fr", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-in", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-is", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-it", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-ru", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-sa", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("google-news-uk", "https://pbs.twimg.com/profile_images/993911709357162496/NWRtL2J__400x400.jpg");
+        logos.put("il-sole-24-ore", "https://pbs.twimg.com/profile_images/907573891240996864/Dt0vL4al_400x400.jpg");
+        logos.put("info-money", "https://pbs.twimg.com/profile_images/2626842133/mf2dqgt82kcknejy7scv_400x400.jpeg");
+        logos.put("infobae", "https://pbs.twimg.com/profile_images/989843885131206657/yvuwyAhg_400x400.jpg");
+        logos.put("la-gaceta", "https://pbs.twimg.com/profile_images/890208177580593152/SQpRuBm8_400x400.jpg");
+        logos.put("la-nacion", "https://pbs.twimg.com/profile_images/644564299948625921/ddfxyyqL_400x400.png");
+        logos.put("la-repubblica", "https://pbs.twimg.com/profile_images/559420141771829248/9sDOqcXf_400x400.png");
+        logos.put("le-monde", "https://pbs.twimg.com/profile_images/817042499134980096/LTpqSDMM_400x400.jpg");
+        logos.put("lenta", "https://pbs.twimg.com/profile_images/980506493475844101/-0h-6rWZ_400x400.jpg");
+        logos.put("lequipe", "https://pbs.twimg.com/profile_images/755312541363036160/fq4d1WN3_400x400.jpg");
+        logos.put("les-echos", "https://pbs.twimg.com/profile_images/917735975119441920/Otcve69W_400x400.jpg");
+        logos.put("liberation", "https://pbs.twimg.com/profile_images/854315131395878912/jZceoVi9_400x400.jpg");
+        logos.put("marca", "https://pbs.twimg.com/profile_images/921140653270208513/3_3K2tJn_400x400.jpg");
+        logos.put("medical-news-today", "https://pbs.twimg.com/profile_images/846771226483671040/Q352DFzt_400x400.jpg");
+        logos.put("msnbc", "https://pbs.twimg.com/profile_images/988382060443250689/DijesdNB_400x400.jpg");
+        logos.put("national-review", "https://pbs.twimg.com/profile_images/471722478822100992/slV_OilN_400x400.jpeg");
+        logos.put("nbc-news", "https://pbs.twimg.com/profile_images/875411730679173121/l9PSFLJb_400x400.jpg");
+        logos.put("news-com-au", "https://pbs.twimg.com/profile_images/629244933057032192/zJsuwh_O_400x400.png");
+        logos.put("news24", "https://pbs.twimg.com/profile_images/875715923793072128/rLqRwylP_400x400.jpg");
+        logos.put("next-big-future", "https://www.nextbigfuture.com/wp-content/uploads/2017/04/1761eac3b1967fa6e4cafb6af110abcc.png?x71037");
+        logos.put("nhl-news", "https://pbs.twimg.com/profile_images/136366459/bwpic_400x400.JPG");
+        logos.put("nrk", "https://pbs.twimg.com/profile_images/687276797776510984/i-qUX8GW_400x400.png");
+        logos.put("politico", "https://pbs.twimg.com/profile_images/677177503694237697/y6yTzWn6_400x400.png");
+        logos.put("rbc", "https://pbs.twimg.com/profile_images/1058357925/rbc_400x400.jpg");
+        logos.put("rt", "https://pbs.twimg.com/profile_images/875388705258831872/H4_uLagc_400x400.jpg");
+        logos.put("rte", "https://pbs.twimg.com/profile_images/950690125780078592/mjXCvHGQ_400x400.jpg");
+        logos.put("rtl-nieuws", "https://pbs.twimg.com/profile_images/948470929163800576/8yYXeZbK_400x400.jpg");
+        logos.put("sabq", "https://pbs.twimg.com/profile_images/548154985884561408/C2ne5SdF_400x400.jpeg");
+        logos.put("svenska-dagbladet", "https://pbs.twimg.com/profile_images/847728246619725826/jeEROkK-_400x400.jpg");
+        logos.put("techcrunch-cn", "https://pbs.twimg.com/profile_images/969240943671955456/mGuud28F_400x400.jpg");
+        logos.put("the-american-conservative", "https://pbs.twimg.com/profile_images/668879829983326208/JXrxthUA_400x400.jpg");
+        logos.put("the-globe-and-mail", "https://pbs.twimg.com/profile_images/742385672682512384/VfTAuqLg_400x400.jpg");
+        logos.put("the-hill", "https://pbs.twimg.com/profile_images/907330975587336193/tw7JPE5v_400x400.jpg");
+        logos.put("the-irish-times", "https://pbs.twimg.com/profile_images/2944517635/5492cf569e6b0b1a9326a7d388009b60_400x400.png");
+        logos.put("the-washington-times", "https://pbs.twimg.com/profile_images/880048880292941826/99fsdFko_400x400.jpg");
+        logos.put("vice-news", "https://pbs.twimg.com/profile_images/785208513177985024/Guc3ohmz_400x400.jpg");
+        logos.put("wired", "https://pbs.twimg.com/profile_images/615598832726970372/jsK-gBSt_400x400.png");
+
     }
 
     public static String getLogo(String sourceId) {

@@ -5,11 +5,10 @@
  */
 package crawlers.dbCompletion;
 
+import backend.services.news.NewsSourceService;
 import crawlers.Logos;
 import db.news.NewsSource;
-import org.neo4j.ogm.session.Session;
-import crawlers.utils.FlexCrawlerLogger;
-import crawlers.utils.Neo4jSessionFactoryForCrawlers;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,33 +17,29 @@ import crawlers.utils.Neo4jSessionFactoryForCrawlers;
 
 public class LogoCompletionWorker {
 
-    private final FlexCrawlerLogger logger = new FlexCrawlerLogger(LogoCompletionWorker.class);
-    private Session session = Neo4jSessionFactoryForCrawlers.getInstance().getNeo4jSession();
+    private static final Logger LOGGER = Logger.getLogger(LogoCompletionWorker.class.getSimpleName());
 
-    public void crawl() {
+    public static void main(String[] args) {
+        new LogoCompletionWorker().complete();
+    }
+    
+    public void complete() {
         try {
-            Iterable<NewsSource> sources = findAllSources();
+            Iterable<NewsSource> sources = new NewsSourceService().findAllSources();
             for (NewsSource s : sources) {
                 if (s.getLogoUrl() == null || s.getLogoUrl().isEmpty()) {
-                    logger.info(String.format("FFFFFFFFFF Found %s without logo", s.getSourceId()));
+                    LOGGER.info(String.format("Found %s without logo", s.getSourceId()));
                     s.setLogoUrl(Logos.getLogo(s.getSourceId()));
                     try {
-                        saveSource(s);
+                        new NewsSourceService().save(s);
                     } catch (Exception e) {
-                        logger.error(String.format("Found Exception %s", e));
+                        LOGGER.info(String.format("Found Exception %s", e));
                     }
                 }
             }
         } catch (Exception e) {
-            logger.error(String.format("Found Exception %s", e));
+            LOGGER.info(String.format("Found Exception %s", e));
         }
     }
 
-    private Iterable<NewsSource> findAllSources() {
-        return session.loadAll(NewsSource.class);
-    }
-
-    private void saveSource(NewsSource s) {
-        session.save(s);
-    }
 }

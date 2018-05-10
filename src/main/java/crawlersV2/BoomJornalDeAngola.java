@@ -71,8 +71,6 @@ public class BoomJornalDeAngola {
         return result;
     }
 
-
-
     public boolean isArticleLink(String link) {
         System.out.println("---------------------------------");
         Elements article = selectArticle(link);
@@ -147,12 +145,12 @@ public class BoomJornalDeAngola {
         Elements article = selectArticle(articleUrl);
         if (article != null) {
             Elements ts = article.select("h1");
-            if(ts == null) {
+            if (ts == null) {
                 System.out.println("Empty title");
                 return null;
             }
-            Element f = ts.first(); 
-            if(f == null) {
+            Element f = ts.first();
+            if (f == null) {
                 System.out.println("Empty title");
                 return null;
             }
@@ -243,7 +241,7 @@ public class BoomJornalDeAngola {
     private Elements selectArticle(String articlePage) {
         Connection connection = Jsoup.connect(articlePage);
         try {
-            Document document = connection.get();
+            Document document = connection.validateTLSCertificates(false).ignoreContentType(true).get();
             Element body = document.body();
             Elements articles = body.select("article");
             return articles;
@@ -269,7 +267,7 @@ public class BoomJornalDeAngola {
         newsArticle.setSourceId("jornal-de-angola");
         return newsArticle;
     }
-    
+
     public NewsAuthor toAuthor(String articleUrl) {
         Elements article = selectArticle(articleUrl);
         String author = article.select("p.info-autor").text();
@@ -284,7 +282,7 @@ public class BoomJornalDeAngola {
         // If there is a source corresponding, return it
         NewsSource source = getSourceFromDb("Jornal de Angola");
         // Else create a new one
-        if(source == null){
+        if (source == null) {
             source = new NewsSource();
             source.setName("Jornal de Angola");
             source.setSourceId("jornal-de-angola");
@@ -293,7 +291,7 @@ public class BoomJornalDeAngola {
             source.setLanguage(LANGUAGE);
             source.setCategory(new Tag("general"));
         }
-        
+
         return source;
     }
 

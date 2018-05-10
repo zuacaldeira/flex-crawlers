@@ -209,7 +209,7 @@ public class BoomAngonoticias {
     private Elements selectArticle(String articlePage) {
         Connection connection = Jsoup.connect(articlePage);
         try {
-            Document document = connection.get();
+            Document document = connection.validateTLSCertificates(false).ignoreContentType(true).get();
             Element body = document.body();
             Elements articles = body.select("#article_block");
             return articles;

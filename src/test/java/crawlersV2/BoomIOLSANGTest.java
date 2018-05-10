@@ -21,12 +21,12 @@ public class BoomIOLSANGTest {
     }
 
     /**
-     * Test of loadLinks method, of class BoomIOLSA.
+     * Test of loadLinks method, of class BoomIOLZA.
      */
     @Test
     public void testLoadLinks() throws IOException {
         System.out.println("loadLinks");
-        BoomIOLSA instance = new BoomIOLSA();
+        BoomIOLZA instance = new BoomIOLZA();
         TreeSet<String> expResult = new TreeSet<>();
         TreeSet<String> result = instance.loadLinks();
         assertTrue(result.size() >= expResult.size());
@@ -36,7 +36,7 @@ public class BoomIOLSANGTest {
     @Test
     public void testLoadArticles() throws IOException {
         System.out.println("loadArticles");
-        BoomIOLSA instance = new BoomIOLSA();
+        BoomIOLZA instance = new BoomIOLZA();
         TreeSet<NewsArticle> expResult = new TreeSet<>();
         TreeSet<NewsArticle> result = instance.loadArticles();
         assertTrue(result.size() >= expResult.size());
@@ -45,7 +45,7 @@ public class BoomIOLSANGTest {
 
     @Test
     public void isArticleLink() {
-        BoomIOLSA instance = new BoomIOLSA();
+        BoomIOLZA instance = new BoomIOLZA();
         boolean b = instance.isArticleLink("https://www.iol.co.za/travel/south-africa/eastern-cape/eastern-cape-tourism-is-ready-for-indaba2018-14744595");
         assertTrue(b);
     }

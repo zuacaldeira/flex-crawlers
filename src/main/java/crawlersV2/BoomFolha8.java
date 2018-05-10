@@ -37,6 +37,7 @@ public class BoomFolha8 {
     private final String SOURCE_NAME = "Folha 8";
     private final String COUNTRY = "AO";
     private final String LANGUAGE = "pt";
+    private final Logger logger = Logger.getLogger("Folha8");
 
     public TreeSet<String> loadLinks() {
         TreeSet<String> result = new TreeSet();
@@ -45,7 +46,6 @@ public class BoomFolha8 {
         for (int i = 0; it.hasNext(); i++) {
             String next = it.next().absUrl("href");
             if (next != null && !next.isEmpty()) {
-                System.out.print(next + ": ");
                 if (toArticle(next) != null) {
                     result.add(next);
                 }
@@ -82,50 +82,41 @@ public class BoomFolha8 {
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                logger.log(Level.WARNING, "Empty title");
                 return false;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                logger.log(Level.WARNING, "Empty description");
                 return false;
             }
 
             String url = link;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                logger.log(Level.WARNING, "Empty url");
                 return false;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                System.out.println("Empty image");
+                logger.log(Level.WARNING, "Empty image");
                 return false;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                logger.log(Level.WARNING, "Empty image copyright");
                 //return false;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                logger.log(Level.WARNING, "Empty date");
                 return false;
             }
 
-            String author = getArticleAuthor(article);
-
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
-
+            getArticleAuthor(article);
             return true;
         }
 
@@ -138,50 +129,41 @@ public class BoomFolha8 {
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                logger.log(Level.WARNING, "Empty title");
                 return null;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                logger.log(Level.WARNING, "Empty description");
                 return null;
             }
 
             String url = articleUrl;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                logger.log(Level.WARNING, "Empty url");
                 return null;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                System.out.println("Empty image");
+                logger.log(Level.WARNING, "Empty image");
                 return null;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                logger.log(Level.WARNING, "Empty image copyright");
                 //return null;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                logger.log(Level.WARNING, "Empty date");
                 return null;
             }
 
-            String author = getArticleAuthor(article);
-            
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
-
+            String author = getArticleAuthor(article);            
             return toArticle(title, description, url, src, imageCaption, dateString, author);
         }
 
@@ -196,7 +178,6 @@ public class BoomFolha8 {
                 connection.validateTLSCertificates(false);
                 Document document = connection.get();
                 Elements anchorTags = document.body().select("a");
-                System.out.println(anchorTags.size());
                 return anchorTags;
             } catch (IOException ex) {
                 Logger.getLogger(BoomFolha8.class.getName()).log(Level.SEVERE, null, ex);
@@ -290,7 +271,7 @@ public class BoomFolha8 {
     private String getArticleAuthor(Element article) {
         String author = article.select("a.author-name").first().text();
         if (author == null || author.isEmpty()) {
-            System.out.println("Empty author");
+            logger.log(Level.WARNING, "Empty author");
             author = SOURCE_NAME;
         }
         return author;
@@ -302,7 +283,6 @@ public class BoomFolha8 {
 
     private String getArticleDescription(Element article) {
         String text = article.select("div.post-content > h2").text();
-        System.out.println("FOUND TEXT: " + text);
         return text;
     }
 

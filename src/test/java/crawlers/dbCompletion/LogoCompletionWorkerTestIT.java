@@ -33,7 +33,7 @@ public class LogoCompletionWorkerTestIT {
         service.save(source);
         assertNotNull(service.find(source.getSourceId()));
         LogoCompletionWorker crawler = new LogoCompletionWorker();
-        crawler.crawl();
+        crawler.complete();
         assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().size());
     }
 
