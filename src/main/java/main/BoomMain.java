@@ -12,10 +12,7 @@ import crawlersV2.BoomFolha8;
 import crawlersV2.BoomIOLZA;
 import crawlersV2.BoomJornalDeAngola;
 import crawlersV2.BoomNovoJornal;
-import crawlersV2.NewsApiOrgClient;
-import db.news.NewsSource;
 import java.util.Date;
-import java.util.TreeSet;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -62,7 +59,7 @@ public class BoomMain {
             System.out.println(new Date().toString() + " Articles: " + new BoomNovoJornal().loadArticles());
         }, 1, 25, TimeUnit.MINUTES);
 
-        scheduler.scheduleAtFixedRate(() -> {
+        /*scheduler.scheduleAtFixedRate(() -> {
             NewsApiOrgClient client = new NewsApiOrgClient();
             TreeSet<NewsSource> sources = client.loadSources();
             scheduler.scheduleAtFixedRate(() -> {
@@ -73,7 +70,7 @@ public class BoomMain {
                     client.loadArticlesFromSource(next);
                 }
             }, 1, 2, TimeUnit.MINUTES);
-        }, 0, 1, TimeUnit.DAYS);
+        }, 0, 1, TimeUnit.DAYS);*/
 
     }
 
