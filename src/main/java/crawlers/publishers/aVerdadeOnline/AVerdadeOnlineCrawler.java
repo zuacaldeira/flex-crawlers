@@ -5,13 +5,11 @@
  */
 package crawlers.publishers.aVerdadeOnline;
 
-import backend.utils.MyDateUtils;
 import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import db.news.NewsSource;
-import db.news.Tag;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -19,6 +17,7 @@ import java.util.logging.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import utils.MyDateUtils;
 
 /**
  *
@@ -101,7 +100,6 @@ public class AVerdadeOnlineCrawler extends FlexNewsCrawler {
         String country = "MZ";
 
         NewsSource source = new NewsSource();
-        source.setCategory(new Tag(category));
         source.setCountry(country);
         source.setDescription(description);
         source.setLanguage(language);

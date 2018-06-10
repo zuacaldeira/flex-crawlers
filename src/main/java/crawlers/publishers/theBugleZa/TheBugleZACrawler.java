@@ -10,7 +10,6 @@ import crawlers.Logos;
 import crawlers.publishers.exceptions.AuthorsNotFoundException;
 import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import db.news.NewsSource;
-import db.news.Tag;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -54,7 +53,6 @@ public class TheBugleZACrawler extends FlexNewsCrawler {
         String country = "ZA";
 
         NewsSource source = new NewsSource();
-        source.setCategory(new Tag(category));
         source.setCountry(country);
         source.setDescription(description);
         source.setLanguage(language);

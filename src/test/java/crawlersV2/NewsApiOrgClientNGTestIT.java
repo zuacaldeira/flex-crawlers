@@ -12,9 +12,9 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class NewsApiOrgClientNGTest {
+public class NewsApiOrgClientNGTestIT {
     
-    public NewsApiOrgClientNGTest() {
+    public NewsApiOrgClientNGTestIT() {
     }
 
     /**

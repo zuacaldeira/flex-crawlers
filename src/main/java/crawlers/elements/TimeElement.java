@@ -7,8 +7,7 @@ package crawlers.elements;
 
 import crawlers.publishers.exceptions.TimeNotFoundException;
 import java.util.Date;
-import backend.utils.MyDateUtils;
-import java.text.ParseException;
+import utils.MyDateUtils;
 
 /**
  *

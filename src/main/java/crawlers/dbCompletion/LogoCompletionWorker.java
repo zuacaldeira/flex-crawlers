@@ -5,10 +5,10 @@
  */
 package crawlers.dbCompletion;
 
-import backend.services.news.NewsSourceService;
 import crawlers.Logos;
 import db.news.NewsSource;
 import java.util.logging.Logger;
+import services.news.NewsSourceService;
 
 /**
  *

@@ -10,7 +10,6 @@ import crawlers.publishers.exceptions.AuthorsNotFoundException;
 import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import db.news.NewsSource;
-import db.news.Tag;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -51,7 +50,6 @@ public class ANacaoCVCrawler extends FlexNewsCrawler {
         source.setName(name);
         source.setSourceId(sourceId);
         source.setUrl(url);
-        source.setCategory(new Tag(category));
 
         return source;
     }

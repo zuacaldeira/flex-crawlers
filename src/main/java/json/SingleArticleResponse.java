@@ -9,7 +9,7 @@ import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
 import java.util.Date;
-import backend.utils.MyDateUtils;
+import utils.MyDateUtils;
 
 /**
  *
@@ -102,8 +102,6 @@ public class SingleArticleResponse {
         article.setPublishedAt(date);
         article.setLanguage(language);
         article.setCountry(country);
-        article.setSourceId(source.getSourceId());
-        article.getTags().add(source.getCategory());
         return article;
     }
 

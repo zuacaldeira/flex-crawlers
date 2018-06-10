@@ -5,13 +5,12 @@
  */
 package crawlersV2;
 
-import backend.services.news.NewsArticleService;
-import backend.services.news.NewsSourceService;
 import crawlers.Logos;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.news.Tag;
+import db.news.Publish;
+import db.news.Writes;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +24,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import services.news.NewsArticleService;
+import services.news.NewsSourceService;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -35,7 +38,7 @@ public class BoomAngop {
     private final String SOURCES_URL = "http://www.angop.ao/";
     private final String COUNTRY = "AO";
     private final String LANGUAGE = "pt";
-    private final Logger logger = Logger.getLogger("Angop");
+    private final Logger LOGGER = Logger.getLogger("Angop");
 
     public TreeSet<String> loadLinks() {
         TreeSet<String> result = new TreeSet();
@@ -79,43 +82,43 @@ public class BoomAngop {
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                logger.log(Level.WARNING, "Empty title");
+                LOGGER.log(Level.WARNING, "Empty title");
                 return false;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                logger.log(Level.WARNING, "Empty description");
+                LOGGER.log(Level.WARNING, "Empty description");
                 return false;
             }
 
             String url = link;
             if (url == null || url.isEmpty()) {
-                logger.log(Level.WARNING, "Empty url");
+                LOGGER.log(Level.WARNING, "Empty url");
                 return false;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                logger.log(Level.WARNING, "Empty image");
+                LOGGER.log(Level.WARNING, "Empty image");
                 return false;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                logger.log(Level.WARNING, "Empty image copyright");
+                LOGGER.log(Level.WARNING, "Empty image copyright");
                 //return false;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                logger.log(Level.WARNING, "Empty date");
+                LOGGER.log(Level.WARNING, "Empty date");
                 return false;
             }
 
             String author = getArticleAuthor(article);
             if (author == null || author.isEmpty()) {
-                logger.log(Level.WARNING, "Empty author");
+                LOGGER.log(Level.WARNING, "Empty author");
                 author = "Angop";
             }
 
@@ -131,37 +134,37 @@ public class BoomAngop {
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                logger.log(Level.WARNING, "Empty title");
+                LOGGER.log(Level.WARNING, "Empty title");
                 return null;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                logger.log(Level.WARNING, "Empty description");
+                LOGGER.log(Level.WARNING, "Empty description");
                 return null;
             }
 
             String url = articleUrl;
             if (url == null || url.isEmpty()) {
-                logger.log(Level.WARNING, "Empty url");
+                LOGGER.log(Level.WARNING, "Empty url");
                 return null;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                logger.log(Level.WARNING, "Empty image");
+                LOGGER.log(Level.WARNING, "Empty image");
                 return null;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                logger.log(Level.WARNING, "Empty image copyright");
+                LOGGER.log(Level.WARNING, "Empty image copyright");
                 //return null;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                logger.log(Level.WARNING, "Empty date");
+                LOGGER.log(Level.WARNING, "Empty date");
                 return null;
             }
 
@@ -195,7 +198,7 @@ public class BoomAngop {
             Elements articles = body.select("article");
             return articles;
         } catch (Exception iox) {
-            logger.log(Level.WARNING, iox.getMessage());
+            LOGGER.log(Level.WARNING, iox.getMessage());
         }
         return null;
     }
@@ -215,7 +218,6 @@ public class BoomAngop {
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId("angop");
         return newsArticle;
     }
     
@@ -236,7 +238,7 @@ public class BoomAngop {
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
-            source.setCategory(new Tag("general"));
+            source.setUrl(SOURCES_URL);
         }
         
         return source;
@@ -248,9 +250,8 @@ public class BoomAngop {
     }
 
     private void store(NewsArticle newsArticle, NewsAuthor author, NewsSource source) {
-        author.getAuthored().add(newsArticle);
-        source.getAuthors().add(author);
-        new NewsSourceService().save(source);
+        new PublishService().save(new Publish(source, author));
+        new WriteService().save(new Writes(author, newsArticle));
     }
 
     private boolean inDb(String next) {
@@ -271,7 +272,7 @@ public class BoomAngop {
     private String getArticleAuthor(Elements article) {
         String author = article.select("p.info-autor").text();
         if (author == null || author.isEmpty()) {
-            logger.log(Level.WARNING, "Empty author");
+            LOGGER.log(Level.WARNING, "Empty author");
             author = "Angop";
         }
         return author;

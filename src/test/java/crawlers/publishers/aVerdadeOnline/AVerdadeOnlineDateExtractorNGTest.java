@@ -5,7 +5,6 @@
  */
 package crawlers.publishers.aVerdadeOnline;
 
-import backend.utils.MyDateUtils;
 import crawlers.FlexNewsCrawler;
 import crawlers.elements.TimeElement;
 import java.io.UnsupportedEncodingException;
@@ -19,6 +18,7 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.MyDateUtils;
 
 /**
  *
@@ -175,7 +175,6 @@ public class AVerdadeOnlineDateExtractorNGTest {
         assertFalse(authors.isEmpty());
         
         //
-        System.out.println("Looking up for " + articleAuthor);
         assertTrue(authors.contains(articleAuthor), "Missing a known author.");
     }
     
@@ -195,7 +194,6 @@ public class AVerdadeOnlineDateExtractorNGTest {
         assertFalse(time.getValue().isEmpty(), "Time value cannot be empty");
 
         
-        System.out.println("Looking up for " + date);
         assertEquals(time.getValue(), date, "Time do not match");
         
         Date toDate = MyDateUtils.parseDate(date, "pt");

@@ -17,6 +17,7 @@ crawlers/publishers/globalVoices/GlobalVoicesCrawlerZHT.class
 crawlers/publishers/globalVoices/GlobalVoicesCrawlerHI.class
 crawlers/publishers/globalVoices/GlobalVoicesCrawlerNE.class
 crawlers/utils/Neo4jSessionFactoryForCrawlers.class
+main/BoomMain2.class
 crawlers/dbCompletion/LogoCompletionWorker.class
 json/MultipleSourcesResponse.class
 crawlers/publishers/exceptions/TitleNotFoundException.class

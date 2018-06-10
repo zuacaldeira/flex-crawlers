@@ -24,10 +24,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import backend.services.news.NewsArticleService;
-import backend.services.news.NewsSourceService;
 import crawlers.utils.FlexCrawlerLogger;
-import java.net.URLEncoder;
+import db.news.LocaleInfo;
+import db.news.Located;
+import db.news.Publish;
+import db.news.Writes;
+import services.news.LocatedService;
+import services.news.NewsArticleService;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -93,37 +98,29 @@ public abstract class FlexNewsCrawler {
                     String imageUrl = getImageUrl(document);
                     String description = getContent(document);
                     Date date = getPublishedAt(document);
+                    
+                    NewsArticle newsArticle = getArticle(articleUrl, title, description, imageUrl, date);
                     Set<NewsAuthor> authors = getNewsAuthors(getAuthors(document), source);
-                    saveArticle(articleUrl, title, imageUrl, description, date, authors, source);
+                    
+                    savePublishRelationships(source, authors);
+                    saveWriteRelationships(authors, newsArticle);
+                    saveLocatedRelationships(newsArticle, source);
                 }
             }
         }
     }
 
-    private void saveArticle(String articleUrl, String title, String imageUrl, String description, Date date, Set<NewsAuthor> authors, NewsSource source) {
+    private NewsArticle getArticle(String articleUrl, String title, String description, String imageUrl, Date date) {
         if (title != null && !title.isEmpty() && notInBd(title)) {
             NewsArticle newsArticle = new NewsArticle();
-            newsArticle.setLanguage(source.getLanguage());
-            newsArticle.setCountry(source.getCountry());
             newsArticle.setTitle(title);
             newsArticle.setUrl(articleUrl);
             newsArticle.setImageUrl(imageUrl);
             newsArticle.setPublishedAt(date);
             newsArticle.setDescription(description);
-            newsArticle.setSourceId(source.getSourceId());
-            newsArticle.getTags().add(source.getCategory());
-
-            for (NewsAuthor na : authors) {
-                if (na != null) {
-                    source.getAuthors().add(na);
-                    na.getAuthored().add(newsArticle);
-                }
-            }
-            new NewsSourceService().save(source);
-            logger.info(String.format("\t Saved: %s", title));
-        } else {
-            logger.log(String.format("\tIgnored old article: %s", title));
+            return newsArticle;
         }
+        return null;
     }
 
     public abstract NewsSource getMySource();
@@ -219,8 +216,31 @@ public abstract class FlexNewsCrawler {
     }
 
     private boolean notInBd(String title) {
-        NewsArticle t = new NewsArticleService().find(title.trim());
+        NewsArticle t = new NewsArticleService().findByIndex(title.trim());
         return t == null;
     }
+
+    private void savePublishRelationships(NewsSource source, Set<NewsAuthor> authors) {
+        PublishService service = new PublishService();
+                
+        authors.forEach(a -> {
+            service.save(new Publish(source, a));
+        });
+    }
+
+    private void saveWriteRelationships(Set<NewsAuthor> authors, NewsArticle newsArticle) {
+        WriteService service = new WriteService();
+                
+        authors.forEach(a -> {
+            service.save(new Writes(a, newsArticle));
+        });
+    }
+
+    private void saveLocatedRelationships(NewsArticle newsArticle, NewsSource source) {
+        LocatedService service = new LocatedService();
+        LocaleInfo info = new LocaleInfo(source.getLanguage(), source.getCountry());
+        service.save(new Located(newsArticle, info));
+    }
+
 
 }

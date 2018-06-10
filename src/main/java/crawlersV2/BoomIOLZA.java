@@ -5,14 +5,12 @@
  */
 package crawlersV2;
 
-import backend.services.news.NewsArticleService;
-import backend.services.news.NewsSourceService;
-import backend.utils.MyDateUtils;
 import crawlers.Logos;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.news.Tag;
+import db.news.Publish;
+import db.news.Writes;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ListIterator;
@@ -24,6 +22,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import services.news.NewsArticleService;
+import services.news.NewsSourceService;
+import services.news.PublishService;
+import services.news.WriteService;
+import utils.MyDateUtils;
 
 /**
  *
@@ -74,24 +77,24 @@ public class BoomIOLZA {
 
 
     public boolean isArticleLink(String link) {
-        System.out.println("---------------------------------");
+        logger.log(Level.WARNING, "---------------------------------");
         Elements article = selectArticle(link);
         if (article != null) {
             String title = article.select("meta[itemprop=headline]").attr("content");
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                logger.log(Level.WARNING, "Empty title");
                 return false;
             }
 
             String description = article.select("meta[itemprop=description]").attr("content");
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                logger.log(Level.WARNING, "Empty description");
                 return false;
             }
 
             String url = link;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                logger.log(Level.WARNING, "Empty url");
                 return false;
             }
 
@@ -103,7 +106,7 @@ public class BoomIOLZA {
                 if (first != null) {
                     src = first.attr("src");
                     if (src == null || src.isEmpty()) {
-                        System.out.println("Empty image");
+                        logger.log(Level.WARNING, "Empty image");
                         return false;
                     }
                 }
@@ -112,29 +115,29 @@ public class BoomIOLZA {
 
             String imageCaption = article.select("span.imageCaption").text();
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                logger.log(Level.WARNING, "Empty image copyright");
                 return false;
             }
 
             String dateString = article.select("p.meta span[itemprop=datePublished]").attr("content");
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                logger.log(Level.WARNING, "Empty date");
                 return false;
             }
 
             String author = article.select("p.meta span[itemprop=author] strong[itemprop=name]").text();
             if (author == null || author.isEmpty()) {
-                System.out.println("Empty author");
+                logger.log(Level.WARNING, "Empty author");
                 return false;
             }
 
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
+            logger.log(Level.WARNING, "title       : " + title);
+            logger.log(Level.WARNING, "description : " + description);
+            logger.log(Level.WARNING, "url         : " + url);
+            logger.log(Level.WARNING, "image       : " + src);
+            logger.log(Level.WARNING, "imageCaption: " + imageCaption);
+            logger.log(Level.WARNING, "date        : " + dateString);
+            logger.log(Level.WARNING, "author      : " + author);
 
             return true;
         }
@@ -214,7 +217,7 @@ public class BoomIOLZA {
             try {
                 Document document = connection.get();
                 Elements anchorTags = document.body().getElementsByTag("a");
-                System.out.println(anchorTags.size());
+                logger.log(Level.WARNING, String.valueOf(anchorTags.size()));
                 return anchorTags;
             } catch (IOException ex) {
                 Logger.getLogger(BoomIOLZA.class.getName()).log(Level.SEVERE, null, ex);
@@ -250,7 +253,6 @@ public class BoomIOLZA {
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId("iol-news-za");
         return newsArticle;
     }
     
@@ -278,7 +280,7 @@ public class BoomIOLZA {
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
-            source.setCategory(new Tag("general"));
+            source.setUrl(SOURCES_URL);
         }
         
         return source;
@@ -290,10 +292,10 @@ public class BoomIOLZA {
     }
 
     private void store(NewsArticle newsArticle, NewsAuthor author, NewsSource source) {
-        author.getAuthored().add(newsArticle);
-        source.getAuthors().add(author);
-        new NewsSourceService().save(source);
+        new PublishService().save(new Publish(source, author));
+        new WriteService().save(new Writes(author, newsArticle));
     }
+
 
     private boolean inDb(String next) {
         return new NewsArticleService().findArticlesWithUrl(next).iterator().hasNext();

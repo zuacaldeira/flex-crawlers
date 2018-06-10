@@ -21,10 +21,14 @@ import crawlers.utils.CrawlerDBUtils;
 import crawlers.utils.FlexCrawlerLogger;
 import crawlers.utils.Neo4jSessionFactoryForCrawlers;
 import db.news.NewsAuthor;
+import db.news.Publish;
+import db.news.Writes;
 import json.MultipleArticlesResponse;
 import json.MultipleSourcesResponse;
 import json.SingleArticleResponse;
 import json.SingleSourceResponse;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -156,8 +160,8 @@ public class NewsOrgApiAggregator {
                             && !article.getTitle().isEmpty()
                             && notInBd(article.getTitle());
                     if (shouldSave) {
-                        source.getAuthors().add(author);
-                        author.getAuthored().add(article);
+                        new PublishService().save(new Publish(source, author));
+                        new WriteService().save(new Writes(author, article));
                         logger.info(String.format("%s", "\tSaved new article " + article.getTitle()));
                     }
                 }

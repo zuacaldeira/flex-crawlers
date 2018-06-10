@@ -47,7 +47,6 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         assertEquals("en", source.getLanguage());
         assertEquals("GB", source.getCountry());
         assertEquals("https://en.globalvoices.org", source.getUrl());
-        assertEquals("community", source.getCategory().getTag());
         assertEquals(Logos.getLogo("global-voices"), source.getLogoUrl());
     }
 
@@ -59,7 +58,6 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         assertEquals("Global Voices (EN)", source.getName());
         assertEquals(language, source.getLanguage());
         assertEquals("https://" + language + ".globalvoices.org", source.getUrl());
-        assertEquals("community", source.getCategory().getTag());
         assertEquals(Logos.getLogo("global-voices"), source.getLogoUrl());
     }
 
@@ -72,7 +70,6 @@ public class GlobalVoicesCrawlerTest extends AbstractCrawlerTest {
         assertEquals(language, source.getLanguage());
         assertEquals(country, source.getCountry());
         assertEquals("https://" + language + ".globalvoices.org", source.getUrl());
-        assertEquals("community", source.getCategory().getTag());
         assertEquals(Logos.getLogo("global-voices"), source.getLogoUrl());
     }
 

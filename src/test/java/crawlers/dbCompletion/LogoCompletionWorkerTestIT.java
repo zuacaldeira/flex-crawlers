@@ -6,10 +6,10 @@
 package crawlers.dbCompletion;
 
 import db.news.NewsSource;
-import backend.services.news.NewsSourceService;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.Test;
+import services.news.NewsSourceService;
 
 /**
  *
@@ -31,7 +31,7 @@ public class LogoCompletionWorkerTestIT {
         NewsSource source = new NewsSource();
         source.setSourceId("maka-angola");
         service.save(source);
-        assertNotNull(service.find(source.getSourceId()));
+        assertNotNull(service.findByIndex(source.getSourceId()));
         LogoCompletionWorker crawler = new LogoCompletionWorker();
         crawler.complete();
         assertEquals(0, new NewsSourceService().findSourcesWithoutLogo().size());

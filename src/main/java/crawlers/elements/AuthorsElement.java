@@ -7,7 +7,7 @@ package crawlers.elements;
 
 import java.util.HashSet;
 import java.util.Set;
-import backend.utils.NamesUtils;
+import utils.NamesUtils;
 
 /**
  * An author element stores a single string value with all the authors names and

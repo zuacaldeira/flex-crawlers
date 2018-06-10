@@ -9,7 +9,6 @@ import crawlers.FlexNewsCrawler;
 import crawlers.Logos;
 import crawlers.publishers.exceptions.ArticlesNotFoundException;
 import db.news.NewsSource;
-import db.news.Tag;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -36,7 +35,6 @@ public class TelaNonCrawler extends FlexNewsCrawler {
     @Override
     public NewsSource getMySource() {
         NewsSource source = new NewsSource();
-        source.setCategory(new Tag("geral"));
         source.setCountry("ST");
         source.setDescription("");
         source.setLanguage("pt");

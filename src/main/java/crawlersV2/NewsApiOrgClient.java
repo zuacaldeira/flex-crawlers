@@ -5,12 +5,13 @@
  */
 package crawlersV2;
 
-import backend.services.news.NewsSourceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import crawlers.utils.FlexCrawlerLogger;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
+import db.news.Publish;
+import db.news.Writes;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +27,8 @@ import json.MultipleArticlesResponse;
 import json.MultipleSourcesResponse;
 import json.SingleArticleResponse;
 import json.SingleSourceResponse;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -134,20 +137,10 @@ public class NewsApiOrgClient {
                 SingleArticleResponse single = it.next();
                 NewsArticle singleArticle = single.convert2NewsArticle(source);
                 NewsAuthor author = single.convert2NewsAuthor(source);
-                author.getAuthored().add(singleArticle);
-                source.getAuthors().add(author);
-                set.add(singleArticle);
-            }
-            
-            if(!source.getAuthors().isEmpty()) {
-                store(source);
+                new PublishService().save(new Publish(source, author));
+                new WriteService().save(new Writes(author, singleArticle));
             }
         }
         return set;
     }
-
-    private void store(NewsSource source) {
-        new NewsSourceService().save(source);
-    }
-
 }

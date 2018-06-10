@@ -7,7 +7,6 @@ package json;
 
 import crawlers.Logos;
 import db.news.NewsSource;
-import db.news.Tag;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,7 +115,6 @@ public class SingleSourceResponse {
         result.setLanguage(language);
         result.setUrl(url);
         result.setLogoUrl(Logos.getLogo(id));
-        result.setCategory(new Tag(category));
         return result;
     }
 }

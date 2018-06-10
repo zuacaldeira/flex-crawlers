@@ -7,7 +7,6 @@ package crawlers.publishers.iolNews;
 
 import crawlers.Logos;
 import db.news.NewsSource;
-import db.news.Tag;
 
 
 /**
@@ -31,7 +30,6 @@ import db.news.Tag;
         String country = "ZA";
 
         NewsSource source = new NewsSource();
-        source.setCategory(new Tag("geral"));
         source.setCountry(country);
         source.setDescription(description);
         source.setLanguage(language);

@@ -5,13 +5,12 @@
  */
 package crawlersV2;
 
-import backend.services.news.NewsArticleService;
-import backend.services.news.NewsSourceService;
 import crawlers.Logos;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.news.Tag;
+import db.news.Publish;
+import db.news.Writes;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +24,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import services.news.NewsArticleService;
+import services.news.NewsSourceService;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -37,6 +40,7 @@ public class BoomCorreioAngolense {
     private final String SOURCE_NAME = "Correio Angolense";
     private final String COUNTRY = "AO";
     private final String LANGUAGE = "pt";
+    private final Logger LOGGER = Logger.getLogger("Correio Angolense");
 
     public TreeSet<String> loadLinks() {
         TreeSet<String> result = new TreeSet();
@@ -75,42 +79,42 @@ public class BoomCorreioAngolense {
     }
 
     public boolean isArticleLink(String link) {
-        System.out.println("---------------------------------");
+        LOGGER.log(Level.WARNING, "---------------------------------");
         Element article = selectArticle(link);
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                LOGGER.log(Level.WARNING, "Empty title");
                 return false;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                LOGGER.log(Level.WARNING, "Empty description");
                 return false;
             }
 
             String url = link;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                LOGGER.log(Level.WARNING, "Empty url");
                 return false;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                System.out.println("Empty image");
+                LOGGER.log(Level.WARNING, "Empty image");
                 return false;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                LOGGER.log(Level.WARNING, "Empty image copyright");
                 //return false;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                LOGGER.log(Level.WARNING, "Empty date");
                 return false;
             }
 
@@ -127,37 +131,37 @@ public class BoomCorreioAngolense {
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                LOGGER.log(Level.WARNING, "Empty title");
                 return null;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                LOGGER.log(Level.WARNING, "Empty description");
                 return null;
             }
 
             String url = articleUrl;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                LOGGER.log(Level.WARNING, "Empty url");
                 return null;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                System.out.println("Empty image");
+                LOGGER.log(Level.WARNING, "Empty image");
                 return null;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                LOGGER.log(Level.WARNING, "Empty image copyright");
                 //return null;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                LOGGER.log(Level.WARNING, "Empty date");
                 return null;
             }
 
@@ -176,7 +180,7 @@ public class BoomCorreioAngolense {
                 connection.validateTLSCertificates(false);
                 Document document = connection.get();
                 Elements anchorTags = document.body().select("a");
-                System.out.println(anchorTags.size());
+                LOGGER.log(Level.WARNING, String.valueOf(anchorTags.size()));
                 return anchorTags;
             } catch (IOException ex) {
                 Logger.getLogger(BoomCorreioAngolense.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,7 +221,6 @@ public class BoomCorreioAngolense {
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId(SOURCE_ID);
         return newsArticle;
     }
     
@@ -243,7 +246,7 @@ public class BoomCorreioAngolense {
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
-            source.setCategory(new Tag("general"));
+            source.setUrl(SOURCES_URL);
         }
         
         return source;
@@ -255,11 +258,8 @@ public class BoomCorreioAngolense {
     }
 
     private void store(NewsArticle newsArticle, NewsAuthor author, NewsSource source) {
-        author.getAuthored().add(newsArticle);
-        source.getAuthors().add(author);
-        System.out.println("SOURCE NAME -> " + source.getName());
-        System.out.println("AUTHOR NAME -> " + author.getName());
-        new NewsSourceService().save(source);
+        new PublishService().save(new Publish(source, author));
+        new WriteService().save(new Writes(author, newsArticle));
     }
 
     private boolean inDb(String next) {
@@ -271,7 +271,7 @@ public class BoomCorreioAngolense {
         if(titles != null && !titles.isEmpty()) {
             Element title = titles.first();
             if(title != null) {
-                System.out.println("Found title " + title);
+                LOGGER.log(Level.WARNING, "Found title " + title);
                 return title.text();
             }
         }
@@ -284,7 +284,7 @@ public class BoomCorreioAngolense {
         if(first != null) {
             String text = first.text();
             if(text != null && !text.isEmpty()) {
-                System.out.println("Found description: " + text);
+                LOGGER.log(Level.WARNING, "Found description: " + text);
                 return text;
             }
         }
@@ -296,7 +296,7 @@ public class BoomCorreioAngolense {
         if(authors != null && !authors.isEmpty()) {
             Element author = authors.first();
             if(author != null) {
-                System.out.println("Found author " + author);
+                LOGGER.log(Level.WARNING, "Found author " + author);
                 return author.text();
             }
         }
@@ -315,7 +315,7 @@ public class BoomCorreioAngolense {
             first = images.first();
             if (first != null) {
                 String src = first.attr("src");
-                System.out.println("Found image " + src);
+                LOGGER.log(Level.WARNING, "Found image " + src);
                 return src;
             }
         }

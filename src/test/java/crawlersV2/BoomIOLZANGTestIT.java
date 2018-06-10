@@ -15,9 +15,9 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class BoomIOLSANGTest {
+public class BoomIOLZANGTestIT {
     
-    public BoomIOLSANGTest() {
+    public BoomIOLZANGTestIT() {
     }
 
     /**

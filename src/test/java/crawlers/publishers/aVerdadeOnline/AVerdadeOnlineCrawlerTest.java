@@ -39,7 +39,6 @@ public class AVerdadeOnlineCrawlerTest extends AbstractCrawlerTest {
         assertEquals("pt", source.getLanguage());
         assertEquals("MZ", source.getCountry());
         assertEquals("http://www.verdade.co.mz", source.getUrl());
-        assertEquals("geral", source.getCategory().getTag());
         assertEquals(Logos.getLogo("verdade-online"), source.getLogoUrl());
     }
 

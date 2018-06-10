@@ -23,55 +23,23 @@ import java.util.concurrent.TimeUnit;
  */
 public class BoomMain {
 
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
 
     public static void main(String[] args) {
         new BoomMain().schedule();
     }
 
     public void schedule() {
-        
+
         scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomCorreioAngolense().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-
-        scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomIOLZA().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-        
-        scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomJornalDeAngola().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-        
-        scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomAngop().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-
-        scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomAngonoticias().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-
-        scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomFolha8().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-
-        scheduler.scheduleAtFixedRate(() -> {
             System.out.println(new Date().toString() + " Articles: " + new BoomNovoJornal().loadArticles());
-        }, 1, 25, TimeUnit.MINUTES);
-
-        /*scheduler.scheduleAtFixedRate(() -> {
-            NewsApiOrgClient client = new NewsApiOrgClient();
-            TreeSet<NewsSource> sources = client.loadSources();
-            scheduler.scheduleAtFixedRate(() -> {
-                if(!sources.isEmpty()) {
-                    NewsSource next = sources.pollFirst();
-                    System.out.println("News APi Source  : " + next);
-                    System.out.println(sources.size() + " to go!");
-                    client.loadArticlesFromSource(next);
-                }
-            }, 1, 2, TimeUnit.MINUTES);
-        }, 0, 1, TimeUnit.DAYS);*/
-
+        }, 0, 25, TimeUnit.MINUTES);
     }
 
 }

@@ -32,7 +32,6 @@ public class MakaAngolaCrawlerTest extends AbstractCrawlerTest {
         assertEquals("pt", source.getLanguage());
         assertEquals("AO", source.getCountry());
         assertEquals("https://www.makaangola.org", source.getUrl());
-        assertEquals("política", source.getCategory().getTag());
         assertEquals(Logos.getLogo("maka-angola"), source.getLogoUrl());
     }
 

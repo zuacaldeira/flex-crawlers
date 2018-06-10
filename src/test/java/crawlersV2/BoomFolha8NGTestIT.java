@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -19,9 +19,9 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class BoomCorreioAngolenseNGTest {
+public class BoomFolha8NGTestIT {
     
-    public BoomCorreioAngolenseNGTest() {
+    public BoomFolha8NGTestIT() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class BoomCorreioAngolenseNGTest {
     @Test
     public void testLoadLinks() throws IOException {
         System.out.println("loadLinks");
-        BoomCorreioAngolense instance = new BoomCorreioAngolense();
+        BoomFolha8 instance = new BoomFolha8();
         TreeSet<String> expResult = new TreeSet<>();
         TreeSet<String> result = instance.loadLinks();
         assertTrue(result.size() >= expResult.size());
@@ -40,7 +40,7 @@ public class BoomCorreioAngolenseNGTest {
     @Test
     public void testLoadArticles() throws IOException {
         System.out.println("loadArticles");
-        BoomCorreioAngolense instance = new BoomCorreioAngolense();
+        BoomFolha8 instance = new BoomFolha8();
         TreeSet<NewsArticle> expResult = new TreeSet<>();
         TreeSet<NewsArticle> result = instance.loadArticles();
         assertTrue(result.size() >= expResult.size());
@@ -49,21 +49,21 @@ public class BoomCorreioAngolenseNGTest {
 
     @Test(dataProvider = "articleLinks")
     public void isArticleLink(String link) {
-        BoomCorreioAngolense instance = new BoomCorreioAngolense();
+        BoomFolha8 instance = new BoomFolha8();
         boolean b = instance.isArticleLink(link);
         assertTrue(b);
     }
     
     @Test(dataProvider = "articleLinks")
     public void toArticle(String link) {
-        BoomCorreioAngolense instance = new BoomCorreioAngolense();
+        BoomFolha8 instance = new BoomFolha8();
         NewsArticle article = instance.toArticle(link);
         assertNotNull(article);
     }
 
-    //@Test(dataProvider = "articleImages")
+    @Test(dataProvider = "articleImages")
     public void hasImage(String link, String imageUrl) {
-        BoomCorreioAngolense instance = new BoomCorreioAngolense();
+        BoomFolha8 instance = new BoomFolha8();
         NewsArticle article = instance.toArticle(link);
         assertEquals(article.getImageUrl(), imageUrl);
     }
@@ -71,18 +71,22 @@ public class BoomCorreioAngolenseNGTest {
     @DataProvider(name = "articleLinks")
     public static Object[][] articleLinks() {
         return new Object[][]{
-            {"https://www.correioangolense.com/artigo/africa-series-repor-a-relacao-africa-europa"},
-            {"https://www.correioangolense.com/artigo/politica/obrigacoes-impostas-pela-partida-do-homem-do-leme"},
+            {"https://jornalf8.net/2018/entregues-bicharada-nao-povo-faminto/"},
+            {"https://jornalf8.net/2016/assassinos/"},
+            {"https://jornalf8.net/2018/padarias-angolanos-estao-passar-historia/"},
+            {"https://jornalf8.net/2018/os-vitinhos/"},
+            {"https://jornalf8.net/2018/sim-nao-talvez-pelo-contrario-diz-moodys/"}
         };
     }
     
     @DataProvider(name = "articleImages")
     public static Object[][] articleImages() {
         return new Object[][]{
-            {"https://www.correioangolense.com/artigo/africa-series-repor-a-relacao-africa-europa", 
-                "https://pro-bee-user-content-eu-west-1.s3.amazonaws.com/public/users/Integrators/b99ad300-c627-4db2-8810-4b32cff172e3/editor-correioangolense/editor_images/WhatsApp%20Image%202017-12-07%20at%2017.04.33.jpeg"},
-            {"https://www.correioangolense.com/artigo/politica/obrigacoes-impostas-pela-partida-do-homem-do-leme", 
-                "https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/b99ad300-c627-4db2-8810-4b32cff172e3/editor-correioangolense/editor_images/interior.png"}
+            {"https://jornalf8.net/2018/entregues-bicharada-nao-povo-faminto/", "https://jornalf8.net/wp-content/uploads/2018/05/zedumorais.jpg"},
+            {"https://jornalf8.net/2016/assassinos/", "https://jornalf8.net/wp-content/uploads/2016/08/assassinos.jpg"},
+            {"https://jornalf8.net/2018/padarias-angolanos-estao-passar-historia/", "https://jornalf8.net/wp-content/uploads/2018/05/padaria.jpg"},
+            {"https://jornalf8.net/2018/os-vitinhos/", "https://jornalf8.net/wp-content/uploads/2018/04/vitinho.jpg"},
+            {"https://jornalf8.net/2018/sim-nao-talvez-pelo-contrario-diz-moodys/", "https://jornalf8.net/wp-content/uploads/2018/05/rating.jpg"}
         };
     }
 }

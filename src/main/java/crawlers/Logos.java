@@ -24,9 +24,9 @@ public final class Logos {
         logos.put("al-jazeera-english", "https://pbs.twimg.com/profile_images/875638617606987776/YBOKib96_400x400.jpg");
         logos.put("ars-technica", "https://pbs.twimg.com/profile_images/2215576731/ars-logo_400x400.png");
         logos.put("associated-press", "https://pbs.twimg.com/profile_images/461964160838803457/8z9FImcv_400x400.png");
-        logos.put("bbc-news", "https://pbs.twimg.com/profile_images/875702138680246273/BfQLzf7G_400x400.jpg");
-        logos.put("bbc-sport", "https://pbs.twimg.com/profile_images/897379868014411777/xpJaG4a5_400x400.jpg");
-        logos.put("bloomberg", "https://pbs.twimg.com/profile_images/880845394867097600/qugtOGJn_400x400.jpg");
+        logos.put("bbc-news", "https://pbs.twimg.com/profile_images/875702547016802304/9TC6qsAT_400x400.jpg");
+        logos.put("bbc-sport", "https://pbs.twimg.com/profile_images/968086146180886528/P_nvzGw__400x400.jpg");
+        logos.put("bloomberg", "https://pbs.twimg.com/profile_images/875701863957630977/KTviCCaU_400x400.jpg");
         logos.put("breitbart-news", "https://pbs.twimg.com/profile_images/649329146221297665/5UgMNCwA_400x400.jpg");
         logos.put("business-insider", "https://pbs.twimg.com/profile_images/887662979902304257/azSzxYkB_400x400.jpg");
         logos.put("business-insider-uk", "https://pbs.twimg.com/profile_images/890152475067650048/6MuA0NTT_400x400.jpg");

@@ -41,7 +41,6 @@ public class ANacaoCVCrawlerTest extends AbstractCrawlerTest {
         assertEquals("pt", source.getLanguage());
         assertEquals("CV", source.getCountry());
         assertEquals("http://anacao.cv", source.getUrl());
-        assertEquals("geral", source.getCategory().getTag());
         assertEquals(Logos.getLogo("a-nacao"), source.getLogoUrl());
     }
 

@@ -35,7 +35,6 @@ public class JornalDeAngolaCrawlerTest extends AbstractCrawlerTest {
         assertEquals("pt", source.getLanguage());
         assertEquals("AO", source.getCountry());
         assertEquals("http://jornaldeangola.sapo.ao", source.getUrl());
-        assertEquals("geral", source.getCategory().getTag());
         assertEquals(Logos.getLogo("jornal-de-angola"), source.getLogoUrl());
     }
 

@@ -18,9 +18,9 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class BoomAngopNGTest {
+public class BoomAngopNGTestIT {
     
-    public BoomAngopNGTest() {
+    public BoomAngopNGTestIT() {
     }
 
     /**

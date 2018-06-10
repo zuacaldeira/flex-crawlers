@@ -5,13 +5,12 @@
  */
 package crawlersV2;
 
-import backend.services.news.NewsArticleService;
-import backend.services.news.NewsSourceService;
 import crawlers.Logos;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.news.Tag;
+import db.news.Publish;
+import db.news.Writes;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +24,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import services.news.NewsArticleService;
+import services.news.NewsSourceService;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -215,7 +218,6 @@ public class BoomFolha8 {
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId(SOURCE_ID);
         return newsArticle;
     }
     
@@ -236,7 +238,7 @@ public class BoomFolha8 {
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
-            source.setCategory(new Tag("general"));
+            source.setUrl(SOURCES_URL);
         }
         
         return source;
@@ -248,10 +250,10 @@ public class BoomFolha8 {
     }
 
     private void store(NewsArticle newsArticle, NewsAuthor author, NewsSource source) {
-        author.getAuthored().add(newsArticle);
-        source.getAuthors().add(author);
-        new NewsSourceService().save(source);
+        new PublishService().save(new Publish(source, author));
+        new WriteService().save(new Writes(author, newsArticle));
     }
+
 
     private boolean inDb(String next) {
         return new NewsArticleService().findArticlesWithUrl(next).iterator().hasNext();

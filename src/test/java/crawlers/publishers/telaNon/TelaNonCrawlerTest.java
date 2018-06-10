@@ -38,7 +38,6 @@ public class TelaNonCrawlerTest extends AbstractCrawlerTest {
         assertEquals("pt", source.getLanguage());
         assertEquals("ST", source.getCountry());
         assertEquals("http://www.telanon.info/", source.getUrl());
-        assertEquals("geral", source.getCategory());
         assertEquals(Logos.getLogo("tela-non"), source.getLogoUrl());
     }
 

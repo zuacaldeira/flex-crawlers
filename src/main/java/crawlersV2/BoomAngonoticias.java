@@ -5,13 +5,12 @@
  */
 package crawlersV2;
 
-import backend.services.news.NewsArticleService;
-import backend.services.news.NewsSourceService;
 import crawlers.Logos;
 import db.news.NewsArticle;
 import db.news.NewsAuthor;
 import db.news.NewsSource;
-import db.news.Tag;
+import db.news.Publish;
+import db.news.Writes;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +24,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import services.news.NewsArticleService;
+import services.news.NewsSourceService;
+import services.news.PublishService;
+import services.news.WriteService;
 
 /**
  *
@@ -35,6 +38,7 @@ public class BoomAngonoticias {
     private final String SOURCES_URL = "http://www.angonoticias.com/";
     private final String COUNTRY = "AO";
     private final String LANGUAGE = "pt";
+    private final Logger logger = Logger.getLogger("BoomAngonoticias");
 
     public TreeSet<String> loadLinks() {
         TreeSet<String> result = new TreeSet();
@@ -43,7 +47,7 @@ public class BoomAngonoticias {
         for (int i = 0; it.hasNext(); i++) {
             String next = it.next().absUrl("href");
             if (next != null && !next.isEmpty()) {
-                System.out.print(next + ": ");
+                //System.out.print(next + ": ");
                 if (toArticle(next) != null) {
                     result.add(next);
                 }
@@ -72,61 +76,59 @@ public class BoomAngonoticias {
         return result;
     }
 
-
-
     public boolean isArticleLink(String link) {
-        System.out.println("---------------------------------");
+        logger.log(Level.WARNING, "---------------------------------");
         Elements article = selectArticle(link);
         if (article != null && !article.isEmpty()) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                logger.log(Level.WARNING, "Empty title");
                 return false;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                logger.log(Level.WARNING, "Empty description");
                 return false;
             }
 
             String url = link;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                logger.log(Level.WARNING, "Empty url");
                 return false;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                System.out.println("Empty image");
+                logger.log(Level.WARNING, "Empty image");
                 return false;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                logger.log(Level.WARNING, "Empty image copyright");
                 //return false;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                logger.log(Level.WARNING, "Empty date");
                 return false;
             }
 
             String author = getArticleAuthor(article);
             if (author == null || author.isEmpty()) {
-                System.out.println("Empty author");
+                logger.log(Level.WARNING, "Empty author");
                 author = "Angonoticias";
             }
 
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
+            logger.log(Level.WARNING, "title       : " + title);
+            logger.log(Level.WARNING, "description : " + description);
+            logger.log(Level.WARNING, "url         : " + url);
+            logger.log(Level.WARNING, "image       : " + src);
+            logger.log(Level.WARNING, "imageCaption: " + imageCaption);
+            logger.log(Level.WARNING, "date        : " + dateString);
+            logger.log(Level.WARNING, "author      : " + author);
 
             return true;
         }
@@ -140,49 +142,49 @@ public class BoomAngonoticias {
         if (article != null) {
             String title = getArticleTitle(article);
             if (title == null || title.isEmpty()) {
-                System.out.println("Empty title");
+                logger.log(Level.WARNING, "Empty title");
                 return null;
             }
 
             String description = getArticleDescription(article);
             if (description == null || description.isEmpty()) {
-                System.out.println("Empty description");
+                logger.log(Level.WARNING, "Empty description");
                 return null;
             }
 
             String url = articleUrl;
             if (url == null || url.isEmpty()) {
-                System.out.println("Empty url");
+                logger.log(Level.WARNING, "Empty url");
                 return null;
             }
 
             String src = getArticleImageSource(article);
             if (src == null || src.isEmpty()) {
-                System.out.println("Empty image");
+                logger.log(Level.WARNING, "Empty image");
                 return null;
             }
 
             String imageCaption = getArticleImageCopyright(article);
             if (imageCaption == null || imageCaption.isEmpty()) {
-                System.out.println("Empty image copyright");
+                logger.log(Level.WARNING, "Empty image copyright");
                 //return null;
             }
 
             String dateString = getArticleDate(article);
             if (dateString == null || dateString.isEmpty()) {
-                System.out.println("Empty date");
+                logger.log(Level.WARNING, "Empty date");
                 return null;
             }
 
             String author = getArticleAuthor(article);
-            
-            System.out.println("title       : " + title);
-            System.out.println("description : " + description);
-            System.out.println("url         : " + url);
-            System.out.println("image       : " + src);
-            System.out.println("imageCaption: " + imageCaption);
-            System.out.println("date        : " + dateString);
-            System.out.println("author      : " + author);
+
+            logger.log(Level.WARNING, "title       : " + title);
+            logger.log(Level.WARNING, "description : " + description);
+            logger.log(Level.WARNING, "url         : " + url);
+            logger.log(Level.WARNING, "image       : " + src);
+            logger.log(Level.WARNING, "imageCaption: " + imageCaption);
+            logger.log(Level.WARNING, "date        : " + dateString);
+            logger.log(Level.WARNING, "author      : " + author);
 
             return toArticle(title, description, url, src, imageCaption, dateString, author);
         }
@@ -197,7 +199,7 @@ public class BoomAngonoticias {
             try {
                 Document document = connection.get();
                 Elements anchorTags = document.body().select("a");
-                System.out.println(anchorTags.size());
+                logger.log(Level.WARNING, String.valueOf(anchorTags.size()));
                 return anchorTags;
             } catch (IOException ex) {
                 Logger.getLogger(BoomAngonoticias.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,10 +236,9 @@ public class BoomAngonoticias {
         newsArticle.setImageUrl(imageUrl);
         newsArticle.setCountry(COUNTRY);
         newsArticle.setLanguage(LANGUAGE);
-        newsArticle.setSourceId("angonoticias");
         return newsArticle;
     }
-    
+
     public NewsAuthor toAuthor(String articleUrl) {
         Elements article = selectArticle(articleUrl);
         String author = getArticleAuthor(article);
@@ -248,16 +249,16 @@ public class BoomAngonoticias {
         // If there is a source corresponding to IOL SA, return it
         NewsSource source = getSourceFromDb("Angonoticias");
         // Else create a new one
-        if(source == null){
+        if (source == null) {
             source = new NewsSource();
             source.setName("Angonoticias");
             source.setSourceId("angonoticias");
             source.setLogoUrl(Logos.getLogo(source.getSourceId()));
             source.setCountry(COUNTRY);
             source.setLanguage(LANGUAGE);
-            source.setCategory(new Tag("general"));
+            source.setUrl(SOURCES_URL);
         }
-        
+
         return source;
     }
 
@@ -267,9 +268,8 @@ public class BoomAngonoticias {
     }
 
     private void store(NewsArticle newsArticle, NewsAuthor author, NewsSource source) {
-        author.getAuthored().add(newsArticle);
-        source.getAuthors().add(author);
-        new NewsSourceService().save(source);
+        new PublishService().save(new Publish(source, author));
+        new WriteService().save(new Writes(author, newsArticle));
     }
 
     private boolean inDb(String next) {
@@ -278,9 +278,9 @@ public class BoomAngonoticias {
 
     private String getArticleTitle(Elements article) {
         Elements titles = article.select("div.title");
-        if(titles != null && !titles.isEmpty()) {
+        if (titles != null && !titles.isEmpty()) {
             Element title = titles.first();
-            if(title != null) {
+            if (title != null) {
                 return title.text();
             }
         }
@@ -290,7 +290,7 @@ public class BoomAngonoticias {
     private String getArticleAuthor(Elements article) {
         String author = article.select("div.info").text().split(" \\| ")[1];
         if (author == null || author.isEmpty()) {
-            System.out.println("Empty author");
+            logger.log(Level.WARNING, "Empty author");
             author = "Angonoticias";
         }
         return author;
@@ -310,7 +310,7 @@ public class BoomAngonoticias {
 
     private String getArticleDescription(Elements article) {
         String text = article.select("#article_block > div.content").text().split("\\. ")[0];
-        System.out.println("FOUND TEXT: " + text);
+        logger.log(Level.WARNING, "FOUND TEXT: " + text);
         return text;
     }
 

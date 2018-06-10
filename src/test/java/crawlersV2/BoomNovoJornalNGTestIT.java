@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -19,9 +19,9 @@ import org.testng.annotations.Test;
  *
  * @author zua
  */
-public class BoomFolha8NGTest {
+public class BoomNovoJornalNGTestIT {
     
-    public BoomFolha8NGTest() {
+    public BoomNovoJornalNGTestIT() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class BoomFolha8NGTest {
     @Test
     public void testLoadLinks() throws IOException {
         System.out.println("loadLinks");
-        BoomFolha8 instance = new BoomFolha8();
+        BoomNovoJornal instance = new BoomNovoJornal();
         TreeSet<String> expResult = new TreeSet<>();
         TreeSet<String> result = instance.loadLinks();
         assertTrue(result.size() >= expResult.size());
@@ -40,7 +40,7 @@ public class BoomFolha8NGTest {
     @Test
     public void testLoadArticles() throws IOException {
         System.out.println("loadArticles");
-        BoomFolha8 instance = new BoomFolha8();
+        BoomNovoJornal instance = new BoomNovoJornal();
         TreeSet<NewsArticle> expResult = new TreeSet<>();
         TreeSet<NewsArticle> result = instance.loadArticles();
         assertTrue(result.size() >= expResult.size());
@@ -49,21 +49,21 @@ public class BoomFolha8NGTest {
 
     @Test(dataProvider = "articleLinks")
     public void isArticleLink(String link) {
-        BoomFolha8 instance = new BoomFolha8();
+        BoomNovoJornal instance = new BoomNovoJornal();
         boolean b = instance.isArticleLink(link);
         assertTrue(b);
     }
     
     @Test(dataProvider = "articleLinks")
     public void toArticle(String link) {
-        BoomFolha8 instance = new BoomFolha8();
+        BoomNovoJornal instance = new BoomNovoJornal();
         NewsArticle article = instance.toArticle(link);
         assertNotNull(article);
     }
 
-    @Test(dataProvider = "articleImages")
+    //@Test(dataProvider = "articleImages")
     public void hasImage(String link, String imageUrl) {
-        BoomFolha8 instance = new BoomFolha8();
+        BoomNovoJornal instance = new BoomNovoJornal();
         NewsArticle article = instance.toArticle(link);
         assertEquals(article.getImageUrl(), imageUrl);
     }
@@ -71,22 +71,18 @@ public class BoomFolha8NGTest {
     @DataProvider(name = "articleLinks")
     public static Object[][] articleLinks() {
         return new Object[][]{
-            {"https://jornalf8.net/2018/entregues-bicharada-nao-povo-faminto/"},
-            {"https://jornalf8.net/2016/assassinos/"},
-            {"https://jornalf8.net/2018/padarias-angolanos-estao-passar-historia/"},
-            {"https://jornalf8.net/2018/os-vitinhos/"},
-            {"https://jornalf8.net/2018/sim-nao-talvez-pelo-contrario-diz-moodys/"}
+            {"http://novojornal.co.ao/sociedade/interior/luanda-dez-parques-infantis-com-condicoes-numa-capital-com-mais-de-6-milhoes-de-habitantes-53035.html"},
+            {"http://novojornal.co.ao/economia/interior/3-mil-milhoes-usd-do-fundo-soberano-blindados-pela-justica-britanica-zenu-e-bastos-e-morais-obrigados-a-declarar-bens-52946.html"},
         };
     }
     
     @DataProvider(name = "articleImages")
     public static Object[][] articleImages() {
         return new Object[][]{
-            {"https://jornalf8.net/2018/entregues-bicharada-nao-povo-faminto/", "https://jornalf8.net/wp-content/uploads/2018/05/zedumorais.jpg"},
-            {"https://jornalf8.net/2016/assassinos/", "https://jornalf8.net/wp-content/uploads/2016/08/assassinos.jpg"},
-            {"https://jornalf8.net/2018/padarias-angolanos-estao-passar-historia/", "https://jornalf8.net/wp-content/uploads/2018/05/padaria.jpg"},
-            {"https://jornalf8.net/2018/os-vitinhos/", "https://jornalf8.net/wp-content/uploads/2018/04/vitinho.jpg"},
-            {"https://jornalf8.net/2018/sim-nao-talvez-pelo-contrario-diz-moodys/", "https://jornalf8.net/wp-content/uploads/2018/05/rating.jpg"}
+            {"http://novojornal.co.ao/sociedade/interior/luanda-dez-parques-infantis-com-condicoes-numa-capital-com-mais-de-6-milhoes-de-habitantes-53035.html", 
+                "http://ngx-image-nv.azurewebsites.net/image.ashx?type=generate&id=53035&source=ng1026835"},
+            {"http://novojornal.co.ao/economia/interior/3-mil-milhoes-usd-do-fundo-soberano-blindados-pela-justica-britanica-zenu-e-bastos-e-morais-obrigados-a-declarar-bens-52946.html", 
+                "http://ngx-image-nv.azurewebsites.net/image.ashx?type=generate&id=52946&source=ng1026729"}
         };
     }
 }
